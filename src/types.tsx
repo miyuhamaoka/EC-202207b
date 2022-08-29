@@ -39,16 +39,14 @@ type Orderitem={
 }
 
 type User ={
-  id: number;
+  // id: number;
   name: string;
   email:string;
   password:string;
+  confirmationPassword:string;
   zipcode:string;
   address:string;
   telephone:string;
 }
 
 export type{Order,Item,Orderitem,User}
-
-
-
