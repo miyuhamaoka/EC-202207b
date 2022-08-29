@@ -1,4 +1,3 @@
-import { type } from "os";
 
 type Item = {
   id: number;
@@ -48,7 +47,7 @@ type User ={
   telephone:string;
 }
 
-export type{Order,Item,Orderitem,User}
+export type{Order,Item,Orderitem,User};
 
 
 

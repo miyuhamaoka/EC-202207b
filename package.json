@@ -13,9 +13,13 @@
     "mock-api": "json-server --watch data/db.json --port 8000"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.7",
+    "@supabase/supabase-js": "^1.35.6",
     "next": "12.2.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.34.2",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
