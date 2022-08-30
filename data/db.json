@@ -55,15 +55,6 @@
       "deleted": false
     },
     {
-      "id": 52,
-      "type": "curry",
-      "name": "季節の野菜カレー",
-      "description": "季節の野菜が一つになった4種の栄養満点カレー。ラクラクカレーオリジナル商品でベジタリアンの方にオススメです",
-      "price": 2160,
-      "image_path": "/12.jpg",
-      "deleted": false
-    },
-    {
       "id": 27,
       "type": "coffee",
       "name": "カプチーノ",
