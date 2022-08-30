@@ -166,8 +166,13 @@
   "users": [
     {
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "name": "楽々　楽子",
+      "email":"rakus@sumple.com",
+      "password":"rakus0000",
+      "zipcode":"123-456",
+      "address":"東京",
+      "telephone":"090-1234-5678",
+      "logined":"false"
     }
   ],
   "orderItems": [
@@ -180,4 +185,5 @@
       "name": "typicode"
     }
   ]
+
 }
