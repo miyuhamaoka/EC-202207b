@@ -2,6 +2,129 @@
   "items": [
     {
       "id": 21,
+      "imageUrl": "json-server",
+      "name": "Gorgeous4サンド",
+      "price":"480"
+
+    },    
+    {
+      "id": 22,
+      "imageUrl": "json-server",
+      "name": "エスプレッソフラペチーノ",
+      "price":"530"
+
+    },   
+    {
+      "id": 23,
+      "imageUrl": "json-server",
+      "name": "Specialキャラメルドーナッツ",
+      "price":"250"
+
+    },
+    {
+      "id": 24,
+      "imageUrl": "json-server",
+      "name": "チョコクッキー",
+      "price":"190"
+
+    },
+    {
+      "id": 25,
+      "imageUrl": "json-server",
+      "name": "カフェモカ",
+      "price":"400"
+
+    },
+    {
+      "id": 26,
+      "imageUrl": "json-server",
+      "name": "カフェラテ",
+      "price":"340"
+
+    },
+    {
+      "id": 27,
+      "imageUrl": "json-server",
+      "name": "カプチーノ",
+      "price":"340"
+
+    },
+    {
+      "id": 28,
+      "imageUrl": "json-server",
+      "name": "キャラメルマキアート",
+      "price":"390"
+
+    },
+    {
+      "id": 29,
+      "imageUrl": "json-server",
+      "name": "キャラメルフラペチーノ",
+      "price":"490"
+
+    },
+    {
+      "id": 30,
+      "imageUrl": "json-server",
+      "name": "バニラ クリーム フラペチーノ",
+      "price":"490"
+
+    },
+    {
+      "id": 31,
+      "imageUrl": "json-server",
+      "name": "ダークモカフラペチーノ",
+      "price":"500"
+
+    },
+    {
+      "id": 32,
+      "imageUrl": "json-server",
+      "name": "抹茶クリームフラペチーノ",
+      "price":"490"
+
+    },
+    {
+      "id": 33,
+      "imageUrl": "json-server",
+      "name": "ドリップコーヒー",
+      "price":"290"
+
+    },
+    {
+      "id": 34,
+      "imageUrl": "json-server",
+      "name": "アイスコーヒー",
+      "price":"330"
+
+    },
+    {
+      "id": 35,
+      "imageUrl": "json-server",
+      "name": "アメリカン",
+      "price":"310"
+
+    },
+    {
+      "id": 36,
+      "imageUrl": "json-server",
+      "name": "エスプレッソ",
+      "price":"310"
+
+    },
+    {
+      "id": 37,
+      "imageUrl": "json-server",
+      "name": "ナッティホワイトモカ",
+      "price":"450"
+
+    },
+    {
+      "id": 38,
+      "imageUrl": "json-server",
+      "name": "ジンジャーブレッドラテ",
+      "price":"450"
+
       "type": "coffee",
       "name": "Gorgeous4サンド",
       "description": "人気の定番具材「ハム」と「チキン」をセットにした食べごたえ抜群のサンドイッチです。",
@@ -161,7 +284,9 @@
       "price": 450,
       "image_path": "/18.jpg",
       "deleted": false
+
     }
+
   ],
   "users": [
     {
