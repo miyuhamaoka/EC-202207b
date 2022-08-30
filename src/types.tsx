@@ -44,13 +44,11 @@ export type User ={
   name: string;
   email:string;
   password:string;
+  confirmationPassword:string;
   zipcode:string;
   address:string;
   telephone:string;
   logined:boolean;
 }
 
-
-
-
-
+export type{Order,Item,Orderitem,User}
