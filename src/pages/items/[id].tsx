@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { Item } from '../../types';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 export async function getStaticPaths() {
   const res = await fetch('http://localhost:8000/items');
@@ -29,8 +29,26 @@ export async function getStaticProps({ params }: any) {
 }
 
 const ItemData = ({ detail }: any) => {
-  const [num, setNum] = useState(1)
-  let total = num * detail.price
+  const router = useRouter();
+  const [num, setNum] = useState(1);
+  let total = num * detail.price;
+
+  const Submit = () => {
+    return fetch('http://localhost:8000/order', {
+      method: 'POST',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({
+        id: detail.id,
+        quantity: num,
+        item: detail
+      }),
+    })
+      .then((res) => res.json)
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <>
       <Head>
@@ -47,10 +65,13 @@ const ItemData = ({ detail }: any) => {
         />
         <p>金額：{detail.price}円（税込）</p>
       </div>
-      <form name="info">
+      <form method="post">
         <p>
           数量：
-          <select name="quantity" onChange={(e: any) => setNum(e.target.value)}>
+          <select
+            name="quantity"
+            onChange={(e: any) => setNum(e.target.value)}
+          >
             <option value="1" selected>
               1
             </option>
@@ -58,11 +79,12 @@ const ItemData = ({ detail }: any) => {
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
-          </select>
-          {' '}個
+          </select>{' '}
+          個
         </p>
+        <p>この商品の金額：{total}円（税込）</p>
+        <input type="submit" value="カートに入れる" onClick={() => {Submit(); router.push('/cart')}} />
       </form>
-      <p>この商品の金額：{total}円（税込）</p>
     </>
   );
 };
