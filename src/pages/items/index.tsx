@@ -3,6 +3,9 @@ import Link from 'next/Link';
 import Items from '../../components/ItemList';
 //import { Layout } from '../components/Layout';
 
+
+
+
 export default function Home() {
   return (
     <>
@@ -11,7 +14,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Link href="/">
+      <Link href="/items">
         <a>商品一覧</a>
       </Link>
       <Link href="/users/index">
@@ -23,6 +26,7 @@ export default function Home() {
       <Link href="/items/order_comfirm">
         <a>注文履歴</a>
       </Link>
+      
 
       <div>
         <Items></Items>
