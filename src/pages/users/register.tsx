@@ -1,8 +1,22 @@
 import Head from 'next/head';
+import Router from 'next/router';
 import React, { useState } from 'react';
 import { User } from '../../types';
 
-const Register = () => {
+export const getStaticProps = async () => {
+  const res = await fetch('http://localhost:8000/users');
+  const users = await res.json();
+
+  return {
+    props: { users }
+  };
+};
+
+type Users = {
+  users: User[]
+};
+
+const Register = ({ users }: Users) => {
   const [name, setName] = useState('');
   const onChangeName = (e: any) => setName(e.target.value);
 
@@ -30,10 +44,72 @@ const Register = () => {
   async function postEvent(e: any) {
     e.preventDefault();
 
+    const zipcodePattern = /^[0-9]{3}-[0-9]{4}$/;
+    const telephonePattern = /^[-0-9]{11,12}$/;
+    const emailPattern = /.+@.+\..+/;
+
+    function userEmails ({ users }: Users) {
+      const emailArr = users.map((user: User) => user.email)
+      return emailArr.includes(email);
+    };
+
     if (!name) {
       alert('名前を入力して下さい');
       return;
-    } else {
+    }
+    else if (!email) {
+      alert('メールアドレスを入力して下さい');
+      return;
+    }
+    else if (userEmails({ users })) {
+      alert('そのメールアドレスはすでに使われています');
+      return;
+    }
+    else if (!emailPattern.test(email)) {
+      alert('メールアドレスの形式が不正です');
+      return;
+    }
+    else if (!zipcode) {
+      alert('郵便番号を入力して下さい');
+      return;
+    }
+    else if (!zipcodePattern.test(zipcode)) {
+      alert('郵便番号はXXX-XXXXの形式で入力してください');
+      return;
+    }
+    else if (!address) {
+      alert('住所を入力して下さい');
+      return;
+    }
+    else if (!phoneNumber) {
+      alert('電話番号を入力して下さい');
+      return;
+    }
+    else if (!telephonePattern.test(phoneNumber)) {
+      alert('電話番号はXXXX-XXXX-XXXXの形式で入力してください');
+      return;
+    }
+    else if (!password) {
+      alert('パスワードを入力して下さい');
+      return;
+    }
+    else if (16 < password.length) {
+      alert('パスワードは８文字以上１６文字以内で設定してください');
+      return;
+    }
+    else if (password.length < 8) {
+      alert('パスワードは８文字以上１６文字以内で設定してください');
+      return;
+    }
+    else if (!confirmationPassword) {
+      alert('確認用パスワードを入力して下さい');
+      return;
+    }
+    else if (password !== confirmationPassword) {
+      alert('パスワードと確認用パスワードが不一致です');
+      return;
+    }
+    else {
       const postParam: User = {
         name: name,
         email: email,
@@ -42,6 +118,7 @@ const Register = () => {
         zipcode: zipcode,
         address: address,
         telephone: phoneNumber,
+        id: 0
       };
 
       const parameter = {
@@ -60,7 +137,19 @@ const Register = () => {
       });
 
       console.log(result);
+      Router.push('/users');
     }
+  };
+
+  function clearFormAll() {
+    setName('');
+    setEmail('');
+    setAddress('');
+    setPhoneNumber('');
+    setZipcode('');
+    setPassword('');
+    setConfirmationPassword('');
+    return;
   };
 
   return (
@@ -180,7 +269,7 @@ const Register = () => {
           </div>
           <div>
             <button type="submit">登録</button>
-            <button type="reset">クリア</button>
+            <button type="reset" onClick={clearFormAll}>クリア</button>
           </div>
         </fieldset>
       </form>
