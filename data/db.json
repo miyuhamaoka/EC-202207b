@@ -292,12 +292,12 @@
     {
       "id": 1,
       "name": "楽々　楽子",
-      "email":"rakus@sumple.com",
-      "password":"rakus0000",
-      "zipcode":"123-456",
-      "address":"東京",
-      "telephone":"090-1234-5678",
-      "logined":"false"
+      "email": "rakus@sumple.com",
+      "password": "raku0",
+      "zipcode": "123-456",
+      "address": "東京",
+      "telephone": "090-1234-5678",
+      "logined": true
     }
   ],
   "orderItems": [
@@ -310,4 +310,8 @@
       "name": "typicode"
     }
   ]
+
 }
+
+}
+
