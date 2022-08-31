@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Router from 'next/router';
 import React, { useState } from 'react';
+import Layout from '../../components/layout';
 import { User } from '../../types';
 
 export const getStaticProps = async () => {
@@ -118,7 +119,8 @@ const Register = ({ users }: Users) => {
         zipcode: zipcode,
         address: address,
         telephone: phoneNumber,
-        id: 0
+        id: 0,
+        logined: false
       };
 
       const parameter = {
@@ -157,6 +159,7 @@ const Register = ({ users }: Users) => {
       <Head>
         <title>ユーザ登録</title>
       </Head>
+      <Layout></Layout>
       <form method="post" action="#" onSubmit={postEvent}>
         <fieldset>
           <legend>ユーザ登録</legend>
