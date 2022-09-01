@@ -1,12 +1,13 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import Router from 'next/router';
 import { CartItem } from '../../types';
 
 export async function getServerSideProps({ query }: any) {
-  console.log(
-    'URL',
-    `http://localhost:8000/cartItems?userId=${query.userId}`
-  );
+  // console.log(
+  //   'URL',
+  //   `http://localhost:8000/cartItems?userId=${query.userId}`
+  // );
   const res = await fetch(
     `http://localhost:8000/cartItems?userId=${query.userId}` //クエリパラメーターのuserId取り出す
   );
@@ -26,44 +27,53 @@ export async function getServerSideProps({ query }: any) {
   };
 }
 
-const CartPage = ({
-  cartItem,
-}: {
-  cartItem: CartItem;
-}) => {
-  console.log('アイテム', cartItem);
+const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
+  // console.log('アイテム', cartItem);
 
   //cartItemsのitemsから削除ボタンが押されたitemIdの商品を除いてcartitemをbodyにセットする
   //(idが一致したものを削除?)
-  const onClickDelete = async(itemId:number) => {
+  const onClickDelete = async (itemId: number) => {
+
+    const restItems = cartItem.items.filter(item => item.id !== itemId);
+
+    const body = {
+      id: cartItem.id,
+      userId: cartItem.userId,
+      items: restItems
+    };
+
+    console.log(restItems);
+
     const parameter = {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            cartItem
-        })
-      };
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body)
+    };
 
     //   const delete = [];
 
-     const response =  await fetch(`http://localhost:8000/cartItems/${cartItem.id}`, parameter)
-     console.log(await response.json);
-    }
+    const response = await fetch(
+      `http://localhost:8000/cartItems/${cartItem.id}`,
+      parameter
+    );
+    console.log(response.json);
 
-    // return fetch(`http://localhost:8000/cartItems?userId=${userId}`, {
-    //   method: 'PATCH',
-    //   body: JSON.stringify(cartItem),
-    // });
-//   };
+    Router.push(`/items/cart?userId=${cartItem.userId}`)
+  };
 
+  // return fetch(`http://localhost:8000/cartItems?userId=${userId}`, {
+  //   method: 'PATCH',
+  //   body: JSON.stringify(cartItem),
+  // });
+  //   };
 
-//消費税と商品合計に使用する価格の合計を取得
-  const itemPrice = cartItem.items.map((e:any) => e.price)
+  //消費税と商品合計に使用する価格の合計を取得
+  const itemPrice = cartItem.items.map((e: any) => e.price);
   const total = itemPrice.reduce((a: number, b: number) => a + b);
-  console.log('アイテム', itemPrice);
-  console.log(total);
+  // console.log('アイテム', itemPrice);
+  // console.log(total);
 
   //商品の表示
   return (
@@ -84,7 +94,7 @@ const CartPage = ({
           </tr>
         </thead>
         <tbody>
-          {cartItem.items.map((item : any) => (
+          {cartItem.items.map((item: any) => (
             <tr key={item.id}>
               <td>
                 {/* <img src='' /> */}
@@ -105,7 +115,6 @@ const CartPage = ({
         </tbody>
       </table>
 
-      
       <h3>消費税:{total * 0.08}円</h3>
       <h2>ご注文金額合計:{total * 1.08}円（税込）</h2>
 
@@ -114,14 +123,13 @@ const CartPage = ({
       </Link>
     </>
   );
-          };
+};
 
 export default CartPage;
 
 //ショッピングカート
 
 //削除ボタン
-
 
 //「注文に進む」ボタン
 
