@@ -48,7 +48,11 @@ type User ={
   telephone:string;
 }
 
-export type{Order,Item,Orderitem,User}
+type CartItem = {
+  id: number;
+  userId: number;
+  items: Item[];
+};
 
 
-
+export type{Order,Item,Orderitem,User,CartItem}
