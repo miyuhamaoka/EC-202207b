@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Router from 'next/router';
 import React, { useState } from 'react';
+import Layout from '../../components/layout';
 import { User } from '../../types';
 import register from '../../styles/register.module.css';
 
@@ -169,6 +170,7 @@ const Register = ({ users }: Users) => {
       <Head>
         <title>ユーザ登録</title>
       </Head>
+      <Layout></Layout>
       <form method="post" action="#" onSubmit={postEvent} className={register.registerForm}>
         <fieldset>
           <legend>ユーザ登録</legend>
