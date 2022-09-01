@@ -5,13 +5,14 @@ import layoutStyle from '../styles/layout.module.css';
 
 const Layout = () => {
   return (
-    <div>
+    <div className={layoutStyle.body}>
       <header className={layoutStyle.header}>
         <div className={layoutStyle.logo}>
           <Link href="/items">
-            <a>
+            <a >
               <Image
                 src="/../public/header_logo.png"
+                className={layoutStyle.img}
                 height={70}
                 width={180}
                 alt="ロゴ"
@@ -26,7 +27,7 @@ const Layout = () => {
             </Link>
           </li>
           <li>
-            <Link href='#'>
+            <Link href='../users/login'>
               <a>ログイン</a>
             </Link>
           </li>

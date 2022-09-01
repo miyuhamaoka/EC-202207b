@@ -3,13 +3,16 @@
 // エラー時対応
 
 import { SyntheticEvent, useState } from 'react';
-import { User } from '../../types';
+
 import Link from 'next/link';
 import fetch from 'unfetch';
 import { useRouter } from 'next/router';
-import Head from 'next/head';
-// import { Layout } from '../../component/layout';
-// import styles from '../../styles/login.module.css';
+import loginStyle from '../../styles/login.module.css';
+import Image from 'next/image';
+import layoutStyle from '../../styles/layout.module.css';
+import Layout from '../../components/layout';
+
+
 
 export default function Login() {
   const [data, setData] = useState({ mail: '', pass: '' });
@@ -34,17 +37,20 @@ export default function Login() {
       const date = new Date();
       document.cookie = `id=${
         user.id
-      }; expires=Thu, expires=${date.setDate(
+      }; expires=${date.setDate(
         date.getDate() + 1
-      )} path=/;`;
+      )}; path=/items;`;
+
+      console.log(document.cookie)
       return fetch(`http://localhost:8000/users/${user.id}`, {
+        
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user),
       })
         .then((res) => {
           console.log(res.status);
-          return router.push('/');
+          return router.push('/items');
         })
         .catch((err) => {
           console.log('エラー');
@@ -56,14 +62,19 @@ export default function Login() {
 
   return (
     <>
-      {/* スタイルコンポーネント入れる */}
-    
-        <form onSubmit={(e) => OnCkickHandle(e)}>
-          <h1 >ログイン</h1>
+      <Layout />
+
+      <div className={loginStyle.primary}>
+        <form
+          className={loginStyle.contactform}
+          onSubmit={(e) => OnCkickHandle(e)}
+        >
+          <h1>ログイン</h1>
           <div>
-            <div>
+            <div className={loginStyle.lavel}>
               <label>メールアドレス：</label>
               <input
+                className={loginStyle.forminput}
                 type="email"
                 placeholder="Email"
                 name="mail"
@@ -72,9 +83,10 @@ export default function Login() {
               />
             </div>
 
-            <div>
+            <div className={loginStyle.lavel}>
               <label>パスワード：</label>
               <input
+                className={loginStyle.forminput}
                 type="password"
                 placeholder="Password"
                 name="pass"
@@ -82,13 +94,15 @@ export default function Login() {
                 onChange={(e) => handleChange(e)}
               />
             </div>
-            <button>ログイン</button>
+            <button className={loginStyle.loginbtn}>ログイン</button>
           </div>
         </form>
         <Link href="./create">
-          <a>ユーザ登録はこちら</a>
+          <a className={loginStyle.userregister}>
+            ユーザ登録はこちら
+          </a>
         </Link>
-   
+      </div>
     </>
   );
 }
