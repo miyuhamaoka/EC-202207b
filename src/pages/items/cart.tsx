@@ -1,7 +1,10 @@
+//ショッピングカート
+
 import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
 import { CartItem } from '../../types';
+import Layout from '../../components/layout';
 
 export async function getServerSideProps({ query }: any) {
   // console.log(
@@ -12,8 +15,9 @@ export async function getServerSideProps({ query }: any) {
     `http://localhost:8000/cartItems?userId=${query.userId}` //クエリパラメーターのuserId取り出す
   );
   const cartItems = await res.json();
-
-  //elseはユーザー登録したことない人
+  
+  //length=1は登録してある(買い物したことある)人。カートの[0]番目を持ってくる
+  //elseはユーザー登録したことない人は[]を用意
   let cartItem: Omit<CartItem, 'id'>;
 
   if (cartItems.length === 1) {
@@ -34,6 +38,7 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
   //(idが一致したものを削除?)
   const onClickDelete = async (itemId: number) => {
 
+    //cartItemsのitemsのitemIdだけ抜く
     const restItems = cartItem.items.filter(item => item.id !== itemId);
 
     const body = {
@@ -41,8 +46,7 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
       userId: cartItem.userId,
       items: restItems
     };
-
-    console.log(restItems);
+    // console.log(restItems);
 
     const parameter = {
       method: 'PATCH',
@@ -52,7 +56,6 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
       body: JSON.stringify(body)
     };
 
-    //   const delete = [];
 
     const response = await fetch(
       `http://localhost:8000/cartItems/${cartItem.id}`,
@@ -60,30 +63,22 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
     );
     console.log(response.json);
 
+    //削除後遷移
     Router.push(`/items/cart?userId=${cartItem.userId}`)
   };
 
-  // return fetch(`http://localhost:8000/cartItems?userId=${userId}`, {
-  //   method: 'PATCH',
-  //   body: JSON.stringify(cartItem),
-  // });
-  //   };
 
-  //消費税と商品合計に使用する価格の合計を取得
+  //消費税と商品合計に使用する価格の合計を取得 (商品無くなったら0がセットされる)
   const itemPrice = cartItem.items.map((e: any) => e.price);
-  const total = itemPrice.reduce((a: number, b: number) => a + b);
-  // console.log('アイテム', itemPrice);
-  // console.log(total);
+  const total = itemPrice.reduce((a: number, b: number) => a + b,0);
 
   //商品の表示
-  return (
-    <>
-      <Head>
-        <title>ショッピングカート</title>
-      </Head>
-      <h1>ショッピングカート</h1>
-
-      <table>
+  //カートに商品がある時ない時(ない時はlength0でタグ非表示)
+  function Render() {
+    if (cartItem.items.length > 0) {
+      return (
+        <>
+        <table>
         <thead>
           <tr>
             <th>商品名</th>
@@ -114,32 +109,33 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
           ))}
         </tbody>
       </table>
-
       <h3>消費税:{total * 0.08}円</h3>
       <h2>ご注文金額合計:{total * 1.08}円（税込）</h2>
 
       <Link href="/items/order_comfirm">
         <button type="button">注文に進む</button>
       </Link>
+      </>
+      );
+    } else {
+      return (
+        <p>カートに商品がありません</p>
+      );
+    }
+  }
+ 
+  return (
+    <>
+      <Head>
+        <title>ショッピングカート</title>
+      </Head>
+      <Layout />
+      <h1>ショッピングカート</h1>
+
+      <Render />
+
     </>
   );
 };
 
 export default CartPage;
-
-//ショッピングカート
-
-//削除ボタン
-
-//「注文に進む」ボタン
-
-// 追加(商品詳細画面)・削除ボタンで使う？
-// fetch (`http://localhost:8000/cartItems?userId=${userId}`, {
-//     method:'PATCH',
-//     body: JSON.stringify({
-//         name: "",
-//         description: "",
-//         price: 0,
-//         imagePath: "",
-//     }),
-// });

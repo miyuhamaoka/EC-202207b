@@ -101,33 +101,6 @@ const ItemData = ({ detail }: any) => {
 export default ItemData;
 
 
-
-
-// import { CartItem } from '../../types';
-
-// //コンポーネントの中に
-
-// const DetailsPage = ({
-//     cartItem,
-//   }: {
-//     cartItem: Omit<CartItem, 'id'>;
-//   }) => {
-  
-//     const cartQulick = async() => {
-//         const parameter = {
-//             method: 'POST',
-//             headers: {
-//               'Content-Type': 'application/json'
-//             },
-//           };
-    
-//           await fetch(`http://localhost:8000/items`, parameter)
-//           .then((res) => {
-//             return res.json();
-//           });
-//         }
-//     }
-    
         
         
         

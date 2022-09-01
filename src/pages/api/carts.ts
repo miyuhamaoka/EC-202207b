@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 //カートに入れるボタンを押した時に呼ばれるAPI
 //POST：カートに入れるボタンを押した時の処理画面にJSONを返す？(商品詳細画面で実行)
-//PATCH：削除バタンが押された時の処理(ショッピングカートで実行)
+//PATCH：削除ボタンが押された時の処理(ショッピングカートで実行)
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<CartItem>
