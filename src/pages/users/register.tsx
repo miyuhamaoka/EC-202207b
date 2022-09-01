@@ -45,7 +45,7 @@ const Register = ({ users }: Users) => {
     e.preventDefault();
 
     const zipcodePattern = /^[0-9]{3}-[0-9]{4}$/;
-    const telephonePattern = /^[-0-9]{11,12}$/;
+    const telephonePattern = /^\d{3,4}-\d{3,4}-\d{4}$/;
     const emailPattern = /.+@.+\..+/;
 
     function userEmails ({ users }: Users) {
