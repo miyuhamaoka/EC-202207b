@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import Login from '../users/login';
 import { Cookies } from 'next/dist/server/web/spec-extension/cookies';
+import Layout from '../../components/layout';
 
 export async function getStaticPaths() {
   const res = await fetch('http://localhost:8000/items');
@@ -105,6 +106,7 @@ const ItemData = ({ detail }: any) => {
         <title>商品詳細</title>
       </Head>
       <div>
+        <Layout></Layout>
         <h1>{detail.name}</h1>
         <p>{detail.description}</p>
         <Image
@@ -146,4 +148,3 @@ const ItemData = ({ detail }: any) => {
 };
 
 export default ItemData;
-
