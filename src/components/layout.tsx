@@ -2,8 +2,23 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import layoutStyle from '../styles/layout.module.css';
+// import LogoutBtn from '../pages/users/logout';
+import { GetStaticProps } from 'next';
+import { User } from '../types';
+import Logout from '../pages/users/logout';
 
-const Layout = () => {
+
+export const getStaticProps: GetStaticProps = async () => {
+  const response = await fetch('http://localhost:8000/users');
+  const users = (await response.json());
+  return {
+    props: { users },
+    revalidate: 5,
+  };
+};
+
+const Layout = ({users}:any) => {
+
   return (
     <div className={layoutStyle.body}>
       <header className={layoutStyle.header}>
@@ -32,9 +47,7 @@ const Layout = () => {
             </Link>
           </li>
           <li>
-            <Link href='#'>
-              <a>ログアウト</a>
-            </Link>
+          <Logout/>
           </li>
         </ul>
       </header>
