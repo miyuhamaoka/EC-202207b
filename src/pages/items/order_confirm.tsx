@@ -1,4 +1,6 @@
-import Head from 'next/head';
+import Checkout from '../../components/checkout'
+import Head from 'next/head'; 
+import Link from 'next/Link';
 
 const OrderConfirm = () => {
   return (
@@ -7,8 +9,20 @@ const OrderConfirm = () => {
         <title>注文確認画面</title>
       </Head>
       <p>aaa</p>
-    </>
-  );
-};
 
-export default OrderConfirm;
+
+
+
+<div>
+<Checkout></Checkout>
+</div>
+
+ <button>
+<Link href="/items/order_checkouted">
+    <a>この内容で注文する</a>
+</Link>
+</button>
+</>
+  )}
+
+  export default OrderConfirm;
