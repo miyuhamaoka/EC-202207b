@@ -34,13 +34,16 @@ const ItemData = ({ detail }: any) => {
   let total = num * detail.price;
 
   const Submit = () => {
-    return fetch('http://localhost:8000/orderItems', {
+
+    return fetch('http://localhost:8000/order', {
+
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify({
         id: detail.id,
         quantity: num,
-        subtotal: num * detail.price,
+
+
         item: detail
       }),
     })
@@ -84,15 +87,9 @@ const ItemData = ({ detail }: any) => {
           個
         </p>
         <p>この商品の金額：{total}円（税込）</p>
-        <button
-          type="button"
-          onClick={() => {
-            Submit();
-            router.push(``);
-          }}
-        >
-          カートに入れる
-        </button>
+
+        <input type="submit" value="カートに入れる" onClick={() => {Submit(); router.push('/cart')}} />
+
       </form>
     </>
   );
@@ -100,9 +97,3 @@ const ItemData = ({ detail }: any) => {
 
 export default ItemData;
 
-
-        
-        
-        
-        
-        
