@@ -1,23 +1,29 @@
 // https://swr.vercel.app/ja/docs/mutation
-// ↑から一旦持ってきた。
+// ↑から一旦持ってきた。使えるかわかんない
 // 次の例では、ユーザーが "Logout" ボタンをクリックしたときに、ログイン情報 （ たとえば <Profile/> の中身 ）を自動的に取得する方法を示します。
 
-import useSWR, { useSWRConfig } from 'swr'
+export const Logout = () => {
+  const onclickHundle = () => {
 
-function App () {
-  const { mutate } = useSWRConfig()
-
+    if(document.cookie!==''){
+    var date = new Date('1970-12-31T23:59:59Z');
+    document.cookie = `id=;path=/;expires=${date.toUTCString()};`;
+    document.cookie = `name=;path=/;expires=${date.toUTCString()};`;
+   
+      // document.cookie = 'name=; max-age=0';
+      // document.cookie = 'id=; max-age=0';
+      alert('ログアウトしました');
+    }else{
+      alert('ログインをしてください')
+    }
+  };
   return (
-    <div>
-      <button onClick={() => {
-        // クッキーを期限切れとして設定します
-        document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+    <>
+      <a href="/users/login" onClick={onclickHundle}>
+        ログアウト
+      </a>
+    </>
+  );
+};
 
-        // このキーを使用してすべての SWR に再検証するように指示します
-        mutate('/api/user')
-      }}>
-        Logout
-      </button>
-    </div>
-  )
-}
+export default Logout;
