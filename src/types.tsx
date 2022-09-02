@@ -51,4 +51,4 @@ export type User ={
   logined:boolean;
 }
 
-export type{Order,Item,Orderitem,User}
+

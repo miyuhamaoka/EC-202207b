@@ -4,7 +4,9 @@
 }
 
 .logo {
-  padding: 8px;
+  padding: 13px;
+  align-items: center;
+
 }
 
 .link {
@@ -14,5 +16,7 @@
 }
 
 .link > li {
+  margin-top: 25px;
   padding: 8px;
 }
+

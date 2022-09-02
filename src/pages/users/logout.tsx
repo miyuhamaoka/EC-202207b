@@ -2,22 +2,28 @@
 // ↑から一旦持ってきた。使えるかわかんない
 // 次の例では、ユーザーが "Logout" ボタンをクリックしたときに、ログイン情報 （ たとえば <Profile/> の中身 ）を自動的に取得する方法を示します。
 
-import useSWR, { useSWRConfig } from 'swr'
+export const Logout = () => {
+  const onclickHundle = () => {
 
-export default function Logout () {
-  const { mutate } = useSWRConfig()
+    if(document.cookie!==''){
+    var date = new Date('1970-12-31T23:59:59Z');
+    document.cookie = `id=;path=/;expires=${date.toUTCString()};`;
+    document.cookie = `name=;path=/;expires=${date.toUTCString()};`;
+   
+      // document.cookie = 'name=; max-age=0';
+      // document.cookie = 'id=; max-age=0';
+      alert('ログアウトしました');
+    }else{
+      alert('ログインをしてください')
+    }
+  };
   return (
-    <div>
-      {/* ここに取得するコンポーネント入れたい */}
-      <button onClick={() => {
-        // クッキーを期限切れとして設定
-        const date =new Date();
-        document.cookie = `id=; expires=Thu, expires=${date.toUTCString} path=/;`
-        // このキーを使用してすべての SWR に再検証
-        mutate('http://localhost:8000/users');
-      }}>
-        Logout
-      </button>
-    </div>
-  )
-}
+    <>
+      <a href="/users/login" onClick={onclickHundle}>
+        ログアウト
+      </a>
+    </>
+  );
+};
+
+export default Logout;
