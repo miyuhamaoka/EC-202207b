@@ -55,7 +55,7 @@ const Register = ({ users }: Users) => {
 
     // 入力値を制御
     const zipcodePattern = /^[0-9]{3}-[0-9]{4}$/;
-    const telephonePattern = /^\d{3,4}-\d{3,4}-\d{4}$/;
+    const telephonePattern = /^\d{2,4}-\d{3,4}-\d{4}$/;
     const emailPattern = /.+@.+\..+/;
 
     // 登録済みのメールアドレスを取得し、重複してないかチェック
