@@ -2,7 +2,8 @@ import Link from 'next/link';
 import { useState } from 'react';
 import useSWR from 'swr';
 import { Item } from '../types';
-import  styles  from '../components/items.module.css' 
+import  styles  from '../components/items.module.css'
+import Image from 'next/image'
 
 export const fetcher: (args: string) => Promise<any> = (...args) =>
   fetch(...args).then((res) => res.json());
@@ -73,7 +74,7 @@ export default function Items() {
         {}
         {nameText == ''
           ? data.map((item: Item) => {
-              const { id, name, price } = item;
+              const { id, name, price, image_path} = item;
               return (
                 <div key={id}>
                   <table className={styles.item}>
@@ -88,6 +89,11 @@ export default function Items() {
                     </tr>
                     <tr>
                       <th>
+                        <Image src={image_path} width={100} height={100} alt='商品名'/>
+                      </th>
+                    </tr>
+                    <tr>
+                      <th>
                         <p>価格: {price}円</p>
                       </th>
                     </tr>
@@ -96,7 +102,7 @@ export default function Items() {
               );
             })
           : searchData.map((item: Item) => {
-              const { id, name, price } = item;
+              const { id, name, price ,image_path} = item;
               return (
                 <div key={id}>
                   <table className={styles.item}>
