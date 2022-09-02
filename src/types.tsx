@@ -6,7 +6,7 @@ type Item = {
   name: string;
   description: string;
   price: number;
-  imageUrl: string;
+  image_path: string;
   priceM:number;
   priceL:number;
   deleted: boolean;
@@ -26,10 +26,10 @@ type Order ={
   deliveryTime:Date;
   paymentMethod:number;
   user:User;
-  orderltemList:Date;
+  orderltemList:OrderItem;
 }
 
-type Orderitem={
+type OrderItem={
   id:number;
   itemId:number;
   orderId:number;
@@ -38,17 +38,23 @@ type Orderitem={
   item:Item;
 }
 
-type User ={
+export type User ={
   id: number;
   name: string;
   email:string;
   password:string;
+  confirmationPassword:string;
   zipcode:string;
   address:string;
   telephone:string;
+  logined:boolean
 }
 
-export type{Order,Item,Orderitem,User}
+type CartItem = {
+  id: number;
+  userId: number;
+  items: Item[];
+};
 
 
-
+export type{Order,Item,OrderItem,CartItem}

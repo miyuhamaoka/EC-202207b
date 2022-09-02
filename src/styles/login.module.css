@@ -1,0 +1,83 @@
+
+
+.right{
+  display: flex;
+}
+
+.list {
+ margin-left: auto;
+ display: block;
+}
+
+.primary{
+  margin-top: 20px;
+  text-align: center;
+  padding: 1.5%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.lavel{
+  padding-bottom: 2%;
+}
+
+.loginbtn{
+  width:180px;
+  display: block;
+  height: auto;
+  padding:15px;
+  color:#fff;
+  background:#f0952e;
+  border:none;
+  border-radius:3px;
+  outline: none;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  margin:auto;
+  box-shadow: 0px 1px 4px rgb(61, 66, 9);
+  -moz-box-shadow: 0px 1px 4px rgb(81, 70, 18);
+  -webkit-box-shadow: 0px 1px 4px rgb(76, 78, 16);
+  margin-bottom: 50px;
+
+}
+
+.loginbtn:hover{
+  background:rgb(79, 92, 175);
+  color: white;
+  border:none;
+}
+
+
+.forminput{
+  width: 100%;
+  padding: 15px;
+  background:#f8f8f8;
+  border:1px solid rgba(0, 0, 0, 0.075);
+  margin-bottom:25px;
+  color:#727272 !important;
+  font-size:13px;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+
+.loginbtn:active{
+  opacity: 0.9;
+}
+
+.forminput:hover{
+  border:1px solid #f6e4a3;
+}
+
+.forminput:focus{
+  color: white;
+  outline: none;
+  border:1px solid #fadd76;
+}
+
+.button:hover{
+  background:#f79e10;
+  color:white;
+}

@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  padding: 8px;
+}
+
+.link {
+  margin-left: auto;
+  list-style: none;
+  display: flex;
+}
+
+.link > li {
+  padding: 8px;
+}
