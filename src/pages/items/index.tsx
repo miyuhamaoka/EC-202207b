@@ -9,7 +9,6 @@ import { useState } from 'react';
 
 
 export default function Home() {
-  
   const cookies =document.cookie;
   const cookiesArray = cookies.split('; ');
   return (

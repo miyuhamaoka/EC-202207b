@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import useSWR from 'swr';
 import { Item } from '../types';
-import  styles  from '../components/items.module.css' 
+import  styles  from '../components/items.module.css'
 
 export const fetcher: (args: string) => Promise<any> = (...args) =>
   fetch(...args).then((res) => res.json());
