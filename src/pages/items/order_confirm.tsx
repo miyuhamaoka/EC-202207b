@@ -1,3 +1,7 @@
+
+import Checkout from '../../components/checkout'
+import Link from 'next/Link';
+
 import Head from 'next/head';
 import { OrderItem } from '../../types';
 import Image from 'next/image';
@@ -19,11 +23,15 @@ const OrderConfirm = ({ items }: any) => {
   const total = itemtotal.reduce((a: number, b: number) => a + b);
   const time = [10, 11, 12, 13, 14, 15, 16, 17, 18]
 
+
   return (
     <>
       <Head>
         <title>注文確認画面</title>
       </Head>
+
+      <p>aaa</p>
+
 
       <table>
         <thead>
@@ -61,8 +69,21 @@ const OrderConfirm = ({ items }: any) => {
         ご注文金額合計：{Math.round(total * 1.08).toLocaleString()}
         円（税込）
       </p>
+      <div>
+<Checkout></Checkout>
+</div>
+
+ <button>
+<Link href="/items/order_checkouted">
+    <a>この内容で注文する</a>
+</Link>
+</button>
+      
     </>
   );
 };
 
-export default OrderConfirm;
+
+  )}
+
+  export default OrderConfirm;
