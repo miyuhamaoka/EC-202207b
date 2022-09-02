@@ -34,12 +34,16 @@ const ItemData = ({ detail }: any) => {
   let total = num * detail.price;
 
   const Submit = () => {
+
     return fetch('http://localhost:8000/order', {
+
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify({
         id: detail.id,
         quantity: num,
+
+
         item: detail
       }),
     })
@@ -83,10 +87,13 @@ const ItemData = ({ detail }: any) => {
           個
         </p>
         <p>この商品の金額：{total}円（税込）</p>
+
         <input type="submit" value="カートに入れる" onClick={() => {Submit(); router.push('/cart')}} />
+
       </form>
     </>
   );
 };
 
 export default ItemData;
+

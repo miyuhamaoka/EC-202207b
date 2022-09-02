@@ -51,4 +51,12 @@ export type User ={
   logined:boolean;
 }
 
+type CartItem = {
+  id: number;
+  userId: number;
+  items: Item[];
+};
 
+
+
+export type{Order,Item,Orderitem,User,CartItem}
