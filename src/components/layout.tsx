@@ -29,7 +29,6 @@ const Layout = ({users}:any) => {
               <Image
                 src="/../public/header_logo.png"
                 className={layoutStyle.img}
-
                 height={70}
                 width={180}
                 alt="ロゴ"
@@ -53,6 +52,7 @@ const Layout = ({users}:any) => {
           <li>
 
           <Logout/>
+
 
           </li>
         </ul>

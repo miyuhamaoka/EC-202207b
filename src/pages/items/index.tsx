@@ -29,8 +29,6 @@ export default function Home() {
         <title>ラクラクカフェ！</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-       
-
       <Link href="/items">
         <a>商品一覧</a>
       </Link>
@@ -50,8 +48,6 @@ export default function Home() {
     </>
   );
 }
-
-
  // const cookies = document.cookie;
   // const array = cookies.split(';');
 

@@ -1,4 +1,3 @@
-
 //ショッピングカート
 
 import Head from 'next/head';
@@ -100,7 +99,6 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
               <td>{item.price}円</td>
               <td>{item.quantity}個</td>
               <td>{item.price}円</td>
-
               <td>
                 <button onClick={() => onClickDelete(item.id)}>
                   削除
@@ -140,4 +138,3 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
 };
 
 export default CartPage;
-
