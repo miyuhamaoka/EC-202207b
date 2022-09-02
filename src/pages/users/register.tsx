@@ -148,7 +148,7 @@ const Register = ({ users }: Users) => {
       });
 
       console.log(result);
-      Router.push('/users');
+      Router.push('/users/login');
     }
   };
 

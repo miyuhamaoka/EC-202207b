@@ -27,7 +27,7 @@ export type Order ={
   deliveryTime:Date;
   paymentMethod:number;
   user:User;
-  orderltemList:OrderItem;
+  orderltemList:Orderitem;
 }
 
 export type Orderitem={
