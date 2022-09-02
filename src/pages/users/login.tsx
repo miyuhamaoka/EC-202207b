@@ -33,11 +33,12 @@ export default function Login() {
       })
         .then((res) => {
           console.log(res.status);
-                const date = new Date();
-                date.setDate(date.getDate() + 1) //秒や分
-      // expires=${date};//ログインの有効期限
-          document.cookie = `id=${user.id};path=/;expires=${date};`;
-          document.cookie = `name=${user.name};path=/;expires=${date};`;
+          if (typeof document !== 'undefined') {
+            const date = new Date();
+            date.setDate(date.getDate() + 1); //秒や分
+            document.cookie = `id=${user.id};path=/;expires=${date};`;
+            document.cookie = `name=${user.name};path=/;expires=${date};`;
+          }
           console.log(document.cookie);
           return router.push('/items');
         })
@@ -48,7 +49,6 @@ export default function Login() {
       alert('入力内容の確認をしてください');
     }
   }
-
 
   return (
     <>

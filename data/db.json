@@ -202,7 +202,7 @@
   "users": [
     {
       "id": 1,
-<<<<<<< HEAD
+
       "name": "楽々　楽子",
       "email":"rakus@sumple.com",
       "password":"rakus00",
@@ -212,15 +212,7 @@
       "logined":"false"
     },
     {
-      "id": 2,
-      "name": "楽々　楽男",
-      "email":"rakuraku@sumple.com",
-      "password":"rakus0",
-      "zipcode":"123-455",
-      "address":"東京",
-      "telephone":"090-1234-5678",
-      "logined":"false"
-=======
+      "id": 1,
       "name": "楽子",
       "email": "rakus@sumple.com",
       "password": "raku0",
@@ -239,7 +231,7 @@
       "telephone": "090-1234-5678",
 
       "logined": true
->>>>>>> 2869490bfcfa7ddfd72511cec79a1347fa2b7185
+
     }
   ],
   "orderItems": [
