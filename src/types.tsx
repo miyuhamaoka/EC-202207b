@@ -7,7 +7,7 @@ export type Item = {
   name: string;
   description: string;
   price: number;
-  imageUrl: string;
+  image_path: string;
   priceM:number;
   priceL:number;
   deleted: boolean;
@@ -27,7 +27,7 @@ export type Order ={
   deliveryTime:Date;
   paymentMethod:number;
   user:User;
-  orderltemList:Date;
+  orderltemList:OrderItem;
 }
 
 export type Orderitem={
@@ -51,4 +51,8 @@ export type User ={
   logined:boolean;
 }
 
-
+export type CartItem = {
+  id: number;
+  userId: number;
+  items: Item[];
+};

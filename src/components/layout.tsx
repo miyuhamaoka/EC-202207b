@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import layoutStyle from '../styles/layout.module.css';
+
 // import LogoutBtn from '../pages/users/logout';
 import { GetStaticProps } from 'next';
 import { User } from '../types';
@@ -42,12 +43,17 @@ const Layout = ({users}:any) => {
             </Link>
           </li>
           <li>
+
             <Link href='../users/login'>
+
               <a>ログイン</a>
             </Link>
           </li>
           <li>
+
           <Logout/>
+
+
           </li>
         </ul>
       </header>

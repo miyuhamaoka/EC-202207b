@@ -21,7 +21,6 @@ type Users = {
 };
 
 const Register = ({ users }: Users) => {
-
   // フォームの入力値を取得
   const [name, setName] = useState('');
   const onChangeName = (e: any) => setName(e.target.value);
