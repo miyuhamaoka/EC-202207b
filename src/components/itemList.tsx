@@ -2,14 +2,13 @@ import Link from 'next/link';
 import { useState } from 'react';
 import useSWR from 'swr';
 import { Item } from '../types';
-import  styles  from '../components/items.module.css'
-import Image from 'next/image'
+import  styles  from '../components/items.module.css' 
 
 export const fetcher: (args: string) => Promise<any> = (...args) =>
   fetch(...args).then((res) => res.json());
 
 export default function Items() {
-  const { data, error } = useSWR('http://localhost:8000/items', fetcher);
+  const { data, error } = useSWR('/api/items', fetcher);
 
   const [nameText, setNameText] = useState('');
   const onChangeNameText = (event: any) =>
@@ -20,7 +19,6 @@ export default function Items() {
   if (!data) return <div>Loading...</div>;
 
   const onClickSearch = () => {
-    console.log('data', data)
     setSearchData(
       data.filter((e: any) => {
         return e.name === nameText;
@@ -74,22 +72,22 @@ export default function Items() {
         {}
         {nameText == ''
           ? data.map((item: Item) => {
-              const { id, name, price, image_path} = item;
+              const { id, imageUrl, name, price } = item;
               return (
                 <div key={id}>
                   <table className={styles.item}>
                     <tr>
                       <th>
-                        <Link href={`http://localhost:3000/items/${id}`}>
-                          <a>
-                            {name}
-                          </a>
-                        </Link>
+                        <img src={imageUrl} width={300} />
                       </th>
                     </tr>
                     <tr>
                       <th>
-                        <Image src={image_path} width={100} height={100} alt='商品名'/>
+                        <Link href={`/api/items`}>
+                          <a>
+                            <p>{name}</p>
+                          </a>
+                        </Link>
                       </th>
                     </tr>
                     <tr>
@@ -102,15 +100,20 @@ export default function Items() {
               );
             })
           : searchData.map((item: Item) => {
-              const { id, name, price ,image_path} = item;
+              const { id, imageUrl, name, price } = item;
               return (
                 <div key={id}>
                   <table className={styles.item}>
                     <tr>
                       <th>
-                        <Link href={`http://localhost:3000/items/${id}`}>
+                        <img src={imageUrl} width={300} />
+                      </th>
+                    </tr>
+                    <tr>
+                      <th>
+                        <Link href={`/api/items`}>
                           <a>
-                            {name}
+                            <p>{name}</p>
                           </a>
                         </Link>
                       </th>

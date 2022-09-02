@@ -1,17 +1,21 @@
 import Head from 'next/head';
 import Link from 'next/Link';
-import Items from '../../components/ItemList';
+import Items from '../../components/itemList';
 import Layout from '../../components/layout';
 import {User} from '../../types'
 // import {GetStaticPaths} from 'next';
 // import { GetStaticProps } from 'next';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 
 export default function Home() {
-if(typeof document !== 'undefined'){
-  const cookies = document.cookie;
-  const cookiesArray = cookies.split('; ');
+  const [cookiesArray,setCookiesArray]:[string[],Function]=useState();
+  useEffect(()=>{
+    const cookies = document.cookie;
+    const array = cookies.split(';');
+    setCookiesArray(array)
+  },[])
+
   return (
     <>
       <Head>
@@ -21,13 +25,11 @@ if(typeof document !== 'undefined'){
       <Layout />
     {cookiesArray.map((cookie)=>{
       const cookieArray = cookie.split('=');
-      if ( cookieArray[0] === 'name') {
+      if ( cookieArray[0] === ' name') {
         return(
           // eslint-disable-next-line react/jsx-key
           <p>{`こんにちは${cookieArray.slice(1)}`}さん</p>
           )
-        }else if(typeof document !== 'undefined'){
-          <p>ログインをしてください</p>
         }
       })}
       <Link href="/items">
@@ -48,28 +50,5 @@ if(typeof document !== 'undefined'){
     </>
   );
 }
-}
 
 
-
-// fetch(`http://localhost:8000/users`)
- 
- 
-//   const cookies=document.cookie;
-
-//   const response = await fetch(
-//     `http://localhost:8000/users`,
-//     {
-//       method: 'GET',
-//       headers: {
-//         Accept: 'application/json',
-//       },
-//       credentials: 'include',
-//     }
-//   );
-//   const users:User = await response.json();
-// return(
-//   <>
-//   <Home users={users}/>
-//   </>
-// )
