@@ -14,7 +14,7 @@ export default function button() {
       </div>
       <div>
         <button type="submit">
-          <Link href="/">
+          <Link href="/items">
             <a>トップ画面を表示する</a>
           </Link>
         </button>

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Router from 'next/router';
 import { CartItem } from '../../types';
 import Layout from '../../components/layout';
+import Image from 'next/image';
 
 export async function getServerSideProps({ query }: any) {
   // console.log(
@@ -92,8 +93,7 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
           {cartItem.items.map((item: any) => (
             <tr key={item.id}>
               <td>
-                {/* <img src='' /> */}
-                <p>{item.image_path}</p>
+                <Image src={item.image_path} width={100} height={100} alt={item.name} />
                 <p>{item.name}</p>
               </td>
               <td>{item.price}円</td>
@@ -108,10 +108,10 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
           ))}
         </tbody>
       </table>
-      <h3>消費税:{total * 0.08}円</h3>
-      <h2>ご注文金額合計:{total * 1.08}円（税込）</h2>
+      <h3>消費税:{Math.round(total * 0.08)}円</h3>
+      <h2>ご注文金額合計:{Math.round(total * 1.08)}円（税込）</h2>
 
-      <Link href="/items/order_comfirm">
+      <Link href="/items/order_confirm">
         <button type="button">注文に進む</button>
       </Link>
       </>

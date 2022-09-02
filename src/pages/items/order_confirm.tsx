@@ -3,7 +3,6 @@ import Checkout from '../../components/checkout'
 import Link from 'next/Link';
 
 import Head from 'next/head';
-import { OrderItem } from '../../types';
 import Image from 'next/image';
 
 export async function getServerSideProps() {
@@ -21,7 +20,6 @@ export async function getServerSideProps() {
 const OrderConfirm = ({ items }: any) => {
   const itemtotal = items.map((e: any) => e.subtotal);
   const total = itemtotal.reduce((a: number, b: number) => a + b);
-  const time = [10, 11, 12, 13, 14, 15, 16, 17, 18]
 
 
   return (
@@ -30,7 +28,7 @@ const OrderConfirm = ({ items }: any) => {
         <title>注文確認画面</title>
       </Head>
 
-      <p>aaa</p>
+      <h1>注文内容確認</h1>
 
 
       <table>
@@ -43,7 +41,7 @@ const OrderConfirm = ({ items }: any) => {
           </tr>
         </thead>
         <tbody>
-          {items.map((n: OrderItem) => {
+          {items.map((n: any) => {
             const subtotal = n.item.price * n.quantity;
             return (
               <tr key={n.id}>
@@ -82,8 +80,5 @@ const OrderConfirm = ({ items }: any) => {
     </>
   );
 };
-
-
-  )}
 
   export default OrderConfirm;
