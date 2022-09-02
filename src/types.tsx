@@ -1,6 +1,7 @@
 import { type } from "os";
 
-type Item = {
+
+export type Item = {
   id: number;
   type:string;
   name: string;
@@ -12,7 +13,7 @@ type Item = {
   deleted: boolean;
 };
 
-type Order ={
+export type Order ={
   id: number;
   userId:number;
   status:number;
@@ -29,7 +30,7 @@ type Order ={
   orderltemList:Date;
 }
 
-type Orderitem={
+export type Orderitem={
   id:number;
   itemId:number;
   orderId:number;
@@ -38,17 +39,20 @@ type Orderitem={
   item:Item;
 }
 
-type User ={
+export type User ={
   id: number;
   name: string;
   email:string;
   password:string;
+  confirmationPassword:string;
   zipcode:string;
   address:string;
   telephone:string;
+  logined:boolean;
 }
 
-export type{Order,Item,Orderitem,User}
-
-
-
+export type CartItem = {
+  id: number;
+  userId: number;
+  items: Item[];
+};
