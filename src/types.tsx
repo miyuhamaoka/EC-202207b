@@ -8,6 +8,7 @@ export type Item = {
   description: string;
   price: number;
   imageUrl: string;
+  image_path: string;
   priceM:number;
   priceL:number;
   deleted: boolean;

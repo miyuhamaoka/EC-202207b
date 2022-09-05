@@ -1,11 +1,13 @@
 import Head from 'next/head';
 import Link from 'next/Link';
-import Items from '../../components/itemList';
+import Items from '../../components/ItemList';
 import Layout from '../../components/layout';
+import ItemlistLayout from '../../components/itemlistlayout';
 import {User} from '../../types'
 // import {GetStaticPaths} from 'next';
 // import { GetStaticProps } from 'next';
 import { useState,useEffect } from 'react';
+import  styles  from '../../components/items.module.css';
 
 
 export default function Home() {
@@ -21,20 +23,20 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>ラクラクカフェ！</title>
-        <Link rel="icon" href="/favicon.ico" />
+        <title>RakurakuCoffee</title>
+        <a rel="icon" href="favicon.ico" />
       </Head>
-      <Layout />
+      <ItemlistLayout />
     {cookiesArray.map((cookie)=>{
       const cookieArray = cookie.split('=');
       if ( cookieArray[0] === ' name') {
         return(
           // eslint-disable-next-line react/jsx-key
-          <p>{`こんにちは${cookieArray.slice(1)}`}さん</p>
+          <p className={styles.hello}>{`こんにちは${cookieArray.slice(1)}`}さん</p>
           )
         }
       })}
-      <Link href="/items">
+      {/* <Link href="/items">
         <a>商品一覧</a>
       </Link>
       <Link href="/users/index">
@@ -45,7 +47,7 @@ export default function Home() {
       </Link>
       <Link href="/items/order_comfirm">
         <a>注文履歴</a>
-      </Link>
+      </Link> */}
       <div>
         <Items></Items>
       </div>

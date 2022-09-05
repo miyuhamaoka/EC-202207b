@@ -1,12 +1,18 @@
 .header {
   display: flex;
   align-items: center;
+  position: relative;
+  padding: 0.7rem 1rem;
+  margin-bottom: 0.2rem;
+  background-image: repeating-linear-gradient(45deg, transparent 0 3px, #f7af58 3px 6px);
+  background-repeat: no-repeat;
+  background-size: 100% 15px;
+  background-position: left 0 bottom 7px;
 }
 
 .logo {
   padding: 13px;
   align-items: center;
-
 }
 
 .link {
