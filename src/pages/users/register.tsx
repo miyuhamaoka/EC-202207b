@@ -3,7 +3,9 @@ import Router from 'next/router';
 import React, { useState } from 'react';
 import Layout from '../../components/layout';
 import { User } from '../../types';
+import register from '../../styles/register.module.css';
 
+// ユーザ情報を取得
 export const getStaticProps = async () => {
   const res = await fetch('http://localhost:8000/users');
   const users = await res.json();
@@ -13,11 +15,13 @@ export const getStaticProps = async () => {
   };
 };
 
+// ユーザーのかたまりを型ガード
 type Users = {
   users: User[]
 };
 
 const Register = ({ users }: Users) => {
+  // フォームの入力値を取得
   const [name, setName] = useState('');
   const onChangeName = (e: any) => setName(e.target.value);
 
@@ -42,13 +46,18 @@ const Register = ({ users }: Users) => {
   const onChangeConfirmationPassword = (e: any) =>
     setConfirmationPassword(e.target.value);
 
+    // 登録情報を送信
   async function postEvent(e: any) {
+
+    // 無効な入力値で送信されないために初めにキャンセルする
     e.preventDefault();
 
+    // 入力値を制御
     const zipcodePattern = /^[0-9]{3}-[0-9]{4}$/;
-    const telephonePattern = /^[-0-9]{11,12}$/;
+    const telephonePattern = /^\d{2,4}-\d{3,4}-\d{4}$/;
     const emailPattern = /.+@.+\..+/;
 
+    // 登録済みのメールアドレスを取得し、重複してないかチェック
     function userEmails ({ users }: Users) {
       const emailArr = users.map((user: User) => user.email)
       return emailArr.includes(email);
@@ -139,10 +148,11 @@ const Register = ({ users }: Users) => {
       });
 
       console.log(result);
-      Router.push('/users');
+      Router.push('/users/login');
     }
   };
 
+  // フォームの入力値をクリアにする
   function clearFormAll() {
     setName('');
     setEmail('');
@@ -160,7 +170,7 @@ const Register = ({ users }: Users) => {
         <title>ユーザ登録</title>
       </Head>
       <Layout></Layout>
-      <form method="post" action="#" onSubmit={postEvent}>
+      <form method="post" action="#" onSubmit={postEvent} className={register.registerForm}>
         <fieldset>
           <legend>ユーザ登録</legend>
           <div>
