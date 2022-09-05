@@ -1,0 +1,70 @@
+
+.searchForm{
+  box-sizing: border-box;
+  padding: 10px 0 0 35px;
+}
+.searchForm input[type="text"]{
+  background: #f4dcbc;
+  border: none;
+  height: 2.0em;
+  padding: 20px;
+  width: 230px;
+  color: rgb(66, 63, 57);
+}
+.searchForm input[type="text"]:focus {
+  outline: 0;
+}
+.searchForm button[type="button"]{
+  cursor: pointer;
+  border: none;
+  background: #e0a14e;
+  color: #fff;
+  outline : none;
+  padding: 9px;
+  margin-left:11px ;
+}
+.searchForm ::-webkit-input-placeholder {
+  color: #7e7062;
+}
+
+.hello {
+  color: #353535;
+  font-size: 18px;
+  padding: 0.8rem 0 0 2rem;
+  display: block;
+  width: 200px;
+}
+
+.itemWrapper{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  text-align: center;
+  padding: 20px;
+}
+
+.card{
+  border: #f0a169 2px solid;
+  padding: 10px;
+  margin: 15px;
+}
+
+.text {
+  position: relative;
+  margin-bottom: 0.2rem;
+  border-bottom: 5px solid #f0a169;
+  color: #353535;
+  font-size: 15px;
+  font-weight: bold;
+  display: block;
+
+}
+
+.text:before{
+  position: absolute;
+  bottom: -0.6rem;
+  left: 0rem;
+  right: 0rem;
+  border-bottom: 1px solid #f0a169;
+  content: '';
+}
