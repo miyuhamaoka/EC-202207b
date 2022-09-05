@@ -56,3 +56,16 @@ export type CartItem = {
   userId: number;
   items: Item[];
 };
+
+export type Option = {
+   id: number;
+   name: string;
+  //  price: number
+}
+
+export type OrderOption = {
+  id: number;
+  optionId: number;
+  cartItemID: number;
+  option: Option
+}

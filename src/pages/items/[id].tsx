@@ -48,7 +48,7 @@ const ItemData = ({ detail }: any) => {
       `http://localhost:8000/cartItems?userId=${cookie()}`
     );
     const data = await res.json();
-    console.log('data', data)
+    console.log('data', data);
 
     if (data[0]) {
       return fetch(`http://localhost:8000/cartitems/${data[0].id}`, {
@@ -69,6 +69,7 @@ const ItemData = ({ detail }: any) => {
               priceL: detail.priceL,
               quantity: num,
               subtotal: num * detail.price,
+              // option: detail.options
             },
           ],
         }),
@@ -92,13 +93,13 @@ const ItemData = ({ detail }: any) => {
               priceL: detail.priceL,
               quantity: num,
               subtotal: num * detail.price,
+              // option: detail.options
             },
           ],
         }),
       });
     }
   };
-
 
   return (
     <>
@@ -132,6 +133,10 @@ const ItemData = ({ detail }: any) => {
           </select>{' '}
           個
         </p>
+        {/* <p>
+          オプション（各100円）{detail.option}
+        </p> */}
+
         <p>この商品の金額：{total}円</p>
         <button
           type="button"
