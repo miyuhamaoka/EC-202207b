@@ -37,7 +37,7 @@ const Layout = ({users}:any) => {
         </div>
         <ul className={layoutStyle.link}>
           <li>
-            <Link href='#'>
+            <Link href='../items/cart'>
               <a>ショッピングカート</a>
             </Link>
           </li>

@@ -68,7 +68,7 @@ export default function Items() {
                 <div key={id} className={styles.card}>
                   <div className={styles.item}>
                     <Image src={image_path} width={210} height={210}/>
-                    <Link href={`/api/items`}>
+                    <Link href={`http://localhost:3000/items/${id}`}>
                       <a>
                         <p className={styles.text}>{name}</p>
                       </a>
@@ -85,12 +85,12 @@ export default function Items() {
                   <table className={styles.item}>
                     <tr>
                       <th>
-                        <Image src={image_path} width={200} height={100}/>
+                        <Image src={image_path} width={200} height={200}/>
                       </th>
                     </tr>
                     <tr>
                       <th>
-                        <Link href={`/api/items`}>
+                        <Link href={`http://localhost:3000/items/${id}`}>
                           <a>
                             <p>{name}</p>
                           </a>

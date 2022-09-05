@@ -194,9 +194,6 @@
       "address": "東京",
       "telephone": "090-1234-5678",
       "logined": true
-<<<<<<< HEAD
-
-=======
     },
     {
       "name": "前田",
@@ -218,23 +215,6 @@
       "address": "神奈川",
       "telephone": "1111-1111-1111",
       "id": 4,
-      "logined": true
-    },
-    {
-      "name": "maeda",
-      "email": "c@c.com",
-      "password": "12345678",
-      "confirmationPassword": "12345678",
-      "zipcode": "111-1111",
-      "address": "maeda",
-      "telephone": "111-111-1111",
-      "id": 5,
-<<<<<<< HEAD
-      "logined": false
->>>>>>> 8c53011a4697fe644d998374a613267a3f084d28
-=======
-      "logined": true
->>>>>>> 36a3ff2820f1f53dcc2bd65afab5f2d983cb9b74
     }
   ],
   "orderItems": [
@@ -440,15 +420,31 @@
           "subtotal": 530
         },
         {
-          "id": 28,
+          "id": 27,
           "type": "coffee",
-          "name": "キャラメルマキアート",
-          "description": "バニラシロップとスチームミルクのコンビネーションになめらかなフォームミルクをたっぷりのせ、その上からエスプレッソを注いでアクセントを付けました。仕上げにオリジナルキャラメルソースをトッピングしています。",
-          "price": 390,
-          "image_path": "/8.jpg",
+          "name": "カプチーノ",
+          "description": "リッチなエスプレッソに一気にミルクを注ぐことで、一口飲んだときからコーヒー感が感じられるビバレッジです。ベルベットのようにきめ細かいフォームミルクをお楽しみください。",
+          "price": 340,
+          "image_path": "/7.jpg",
           "deleted": false,
-          "quantity": "3",
-          "subtotal": 1170
+          "quantity": 1,
+          "subtotal": 340
+        }
+      ]
+    },
+    {
+      "userId": 2,
+      "items": [
+        {
+          "id": 29,
+          "type": "coffee",
+          "name": "キャラメルフラペチーノ",
+          "description": "コーヒー、ミルク、キャラメルシロップを氷とブレンドした、多くのお客様に愛されているフローズン ビバレッジです。トッピングしたホイップクリームとキャラメルソースと混ぜながら、豊かでほんのり香ばしいキャラメルの風味をお楽しみください。",
+          "price": 490,
+          "image_path": "/9.jpg",
+          "deleted": false,
+          "quantity": 1,
+          "subtotal": 490
         },
         {
           "id": 24,
@@ -480,6 +476,140 @@
           "price": 490,
           "image_path": "/10.jpg",
           "deleted": false,
+          "quantity": "2",
+          "subtotal": 980
+        }
+      ],
+      "id": 2,
+      "cartItem": {
+        "userId": 2,
+        "items": [
+          {
+            "id": 28,
+            "type": "coffee",
+            "name": "キャラメルマキアート",
+            "description": "バニラシロップとスチームミルクのコンビネーションになめらかなフォームミルクをたっぷりのせ、その上からエスプレッソを注いでアクセントを付けました。仕上げにオリジナルキャラメルソースをトッピングしています。",
+            "price": 390,
+            "image_path": "/8.jpg",
+            "deleted": false,
+            "quantity": 1,
+            "subtotal": 390
+          },
+          {
+            "id": 29,
+            "type": "coffee",
+            "name": "キャラメルフラペチーノ",
+            "description": "コーヒー、ミルク、キャラメルシロップを氷とブレンドした、多くのお客様に愛されているフローズン ビバレッジです。トッピングしたホイップクリームとキャラメルソースと混ぜながら、豊かでほんのり香ばしいキャラメルの風味をお楽しみください。",
+            "price": 490,
+            "image_path": "/9.jpg",
+            "deleted": false,
+            "quantity": 1,
+            "subtotal": 490
+          },
+          {
+            "id": 29,
+            "type": "coffee",
+            "name": "キャラメルフラペチーノ",
+            "description": "コーヒー、ミルク、キャラメルシロップを氷とブレンドした、多くのお客様に愛されているフローズン ビバレッジです。トッピングしたホイップクリームとキャラメルソースと混ぜながら、豊かでほんのり香ばしいキャラメルの風味をお楽しみください。",
+            "price": 490,
+            "image_path": "/9.jpg",
+            "deleted": false,
+            "quantity": 1,
+            "subtotal": 490
+          }
+        ],
+        "id": 2
+      }
+    },
+    {
+      "userId": null,
+      "items": [
+        {
+          "id": 21,
+          "type": "coffee",
+          "name": "Gorgeous4サンド",
+          "description": "人気の定番具材「ハム」と「チキン」をセットにした食べごたえ抜群のサンドイッチです。",
+          "price": 480,
+          "image_path": "/1.jpg",
+          "deleted": false,
+          "quantity": 1,
+          "subtotal": 480
+        }
+      ],
+      "id": 3
+    },
+    {
+      "userId": null,
+      "items": [
+        {
+          "id": 21,
+          "type": "coffee",
+          "name": "Gorgeous4サンド",
+          "description": "人気の定番具材「ハム」と「チキン」をセットにした食べごたえ抜群のサンドイッチです。",
+          "price": 480,
+          "image_path": "/1.jpg",
+          "deleted": false,
+          "quantity": 1,
+          "subtotal": 480
+        }
+      ],
+      "id": 4
+    },
+    {
+      "userId": null,
+      "items": [
+        {
+          "id": 21,
+          "type": "coffee",
+          "name": "Gorgeous4サンド",
+          "description": "人気の定番具材「ハム」と「チキン」をセットにした食べごたえ抜群のサンドイッチです。",
+          "price": 480,
+          "image_path": "/1.jpg",
+          "deleted": false,
+          "quantity": 1,
+          "subtotal": 480
+        }
+      ],
+      "id": 5
+    },
+    {
+      "userId": null,
+      "items": [
+        {
+          "id": 21,
+          "type": "coffee",
+          "name": "Gorgeous4サンド",
+          "description": "人気の定番具材「ハム」と「チキン」をセットにした食べごたえ抜群のサンドイッチです。",
+          "price": 480,
+          "image_path": "/1.jpg",
+          "deleted": false,
+          "quantity": 1,
+          "subtotal": 480
+        }
+      ],
+      "id": 6
+    },
+    {
+      "userId": null,
+      "items": [
+        {
+          "id": 21,
+          "type": "coffee",
+          "name": "Gorgeous4サンド",
+          "description": "人気の定番具材「ハム」と「チキン」をセットにした食べごたえ抜群のサンドイッチです。",
+          "price": 480,
+          "image_path": "/1.jpg",
+          "deleted": false,
+          "quantity": 1,
+          "subtotal": 480
+        }
+      ],
+      "id": 7
+    },
+    {
+      "userId": 0,
+      "items": [
+=======
           "quantity": "3",
           "subtotal": 1470
         },
@@ -544,12 +674,24 @@
           "subtotal": 480
         }
       ],
-      "id": 2
     }
   ],
   "order": [
     {
       "name": "typicode"
+    },
+    {
+      "id": 25,
+      "quantity": 1,
+      "item": {
+        "id": 25,
+        "type": "coffee",
+        "name": "カフェモカ",
+        "description": "エスプレッソにほろ苦いチョコレートシロップとミルクを加え、ホットビバレッジにはホイップクリームをトッピング。ちょっとした贅沢を楽しみたい方におすすめです。",
+        "price": 400,
+        "image_path": "/img_coffee/5.jpg",
+        "deleted": false
+      }
     }
   ],
   "options": [

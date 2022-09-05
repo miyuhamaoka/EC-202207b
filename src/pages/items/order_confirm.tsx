@@ -1,10 +1,9 @@
 
 import Checkout from '../../components/checkout';
 import Link from 'next/Link';
-
 import Head from 'next/head';
 import Image from 'next/image';
-import { useState } from 'react';
+
 
 const cookie = () => {
   if (typeof document !== 'undefined') {
@@ -36,7 +35,6 @@ const OrderConfirm = ({ items }: any) => {
   const total = itemtotal.reduce((a: number, b: number) => a + b);
 
 
-const OrderConfirm = () => {
   return (
     <>
       <Head>
@@ -80,16 +78,16 @@ const OrderConfirm = () => {
         円（税込）
       </p>
       <div>
-        <Checkout></Checkout>
-      </div>
+<Checkout></Checkout>
+</div>
 
-      <button>
-        <Link href="/items/order_checkouted">
-          <a>この内容で注文する</a>
-        </Link>
-      </button>
+ <button>
+<Link href="/items/order_checkouted">
+    <a>この内容で注文する</a>
+</Link>
+</button>
     </>
   );
 };
 
-export default OrderConfirm;
+  export default OrderConfirm;
