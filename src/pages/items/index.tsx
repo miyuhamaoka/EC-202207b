@@ -4,8 +4,6 @@ import Items from '../../components/ItemList';
 import Layout from '../../components/layout';
 import ItemlistLayout from '../../components/itemlistlayout';
 import {User} from '../../types'
-// import {GetStaticPaths} from 'next';
-// import { GetStaticProps } from 'next';
 import { useState,useEffect } from 'react';
 import  styles  from '../../components/items.module.css';
 
@@ -19,7 +17,6 @@ export default function Home() {
       setCookiesArray(array)
     }
   },[])
-
   return (
     <>
       <Head>
@@ -36,18 +33,6 @@ export default function Home() {
           )
         }
       })}
-      {/* <Link href="/items">
-        <a>商品一覧</a>
-      </Link>
-      <Link href="/users/index">
-        <a>ログイン</a>
-      </Link>
-      <Link href="/users/register">
-        <a>新規登録画面</a>
-      </Link>
-      <Link href="/items/order_comfirm">
-        <a>注文履歴</a>
-      </Link> */}
       <div>
         <Items></Items>
       </div>
