@@ -213,8 +213,7 @@
       "confirmationPassword": "12345678",
       "zipcode": "111-1111",
       "address": "神奈川",
-      "telephone": "1111-1111-1111",
-      "id": 4,
+      "telephone": "1111-1111-1111"
     }
   ],
   "orderItems": [
@@ -609,7 +608,8 @@
     {
       "userId": 0,
       "items": [
-=======
+        {
+
           "quantity": "3",
           "subtotal": 1470
         },
@@ -673,7 +673,7 @@
           "quantity": 1,
           "subtotal": 480
         }
-      ],
+      ]
     }
   ],
   "order": [
