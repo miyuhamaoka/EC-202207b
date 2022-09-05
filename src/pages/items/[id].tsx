@@ -42,7 +42,7 @@ const ItemData = ({ detail }: any) => {
     }
   };
   console.log('cookie', cookie());
-  
+
   const router = useRouter();
   const [num, setNum] = useState(1);
   let total = num * detail.price;
