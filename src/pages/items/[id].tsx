@@ -2,9 +2,6 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
-import Login from '../users/login';
-import { Cookies } from 'next/dist/server/web/spec-extension/cookies';
 import Layout from '../../components/layout';
 
 export async function getStaticPaths() {
@@ -33,12 +30,19 @@ export async function getStaticProps({ params }: any) {
 }
 
 const ItemData = ({ detail }: any) => {
+
+
   const cookie = () => {
     if (typeof document !== 'undefined') {
-      return Number(document.cookie.slice(3));
+      const cookies = document.cookie;
+      console.log('id', cookies);
+      const cookieArray = cookies.split('; ')
+      console.log('need', cookieArray[0].slice(3))
+      return Number(cookieArray[0].slice(3));
     }
   };
   console.log('cookie', cookie());
+  
   const router = useRouter();
   const [num, setNum] = useState(1);
   let total = num * detail.price;

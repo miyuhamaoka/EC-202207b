@@ -2,30 +2,33 @@ import Head from 'next/head';
 import Link from 'next/Link';
 import Items from '../../components/itemList';
 import Layout from '../../components/layout';
-import {User} from '../../types'
+import { User } from '../../types';
 // import {GetStaticPaths} from 'next';
 // import { GetStaticProps } from 'next';
 import { useState } from 'react';
 
-
 export default function Home() {
-  
-  const cookies = document.cookie;
-  const cookiesArray = cookies.split('; ');
+  const CookieWatch: any = () => {
+    if (typeof document !== undefined) {
+      `ログインをしてください`;
+    } else {
+      const cookies = document.cookie;
+      console.log('id', cookies);
+      const cookiesArray = cookies.split('; ');
+      cookiesArray.map((cookie) => {
+        const cookieArray = cookie.split('=');
+        return (
+          // eslint-disable-next-line react/jsx-key
+          `こんにちは${cookieArray.slice(1)}}さん`
+        );
+      });
+    }
+  };
+
   return (
     <>
       <Layout />
-    {cookiesArray.map((cookie)=>{
-      const cookieArray = cookie.split('=');
-      if (cookieArray[0] === 'name') {
-      return(
-        // eslint-disable-next-line react/jsx-key
-        <p>{`こんにちは${cookieArray.slice(1)}`}さん</p>
-        )
-        }else{
-          <p>ログインをしてください</p>
-        }
-    })}
+      <CookieWatch />
       <Head>
         <title>ラクラクカフェ！</title>
         <link rel="icon" href="/favicon.ico" />
@@ -49,28 +52,3 @@ export default function Home() {
     </>
   );
 }
- // const cookies = document.cookie;
-  // const array = cookies.split(';');
-
-
-  // fetch(`http://localhost:8000/users`)
- 
- 
-//   const cookies=document.cookie;
-
-//   const response = await fetch(
-//     `http://localhost:8000/users`,
-//     {
-//       method: 'GET',
-//       headers: {
-//         Accept: 'application/json',
-//       },
-//       credentials: 'include',
-//     }
-//   );
-//   const users:User = await response.json();
-// return(
-//   <>
-//   <Home users={users}/>
-//   </>
-// )
