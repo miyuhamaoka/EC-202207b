@@ -1,7 +1,7 @@
 import { SyntheticEvent, useState } from 'react';
 
 import Link from 'next/link';
-import fetch from 'unfetch';
+// import fetch from 'unfetch';
 import { useRouter } from 'next/router';
 import loginStyle from '../../styles/login.module.css';
 import Image from 'next/image';

@@ -2,7 +2,8 @@ import Link from 'next/link';
 import { useState } from 'react';
 import useSWR from 'swr';
 import { Item } from '../types';
-import  styles  from '../components/items.module.css' 
+import styles from '../components/items.module.css';
+import Image from 'next/image'
 
 export const fetcher: (args: string) => Promise<any> = (...args) =>
   fetch(...args).then((res) => res.json());
@@ -12,7 +13,7 @@ export default function Items() {
 
   const [nameText, setNameText] = useState('');
   const onChangeNameText = (event: any) =>
-    setNameText(event. target. value);
+    setNameText(event.target.value);
   const [searchData, setSearchData] = useState([]);
 
   if (error) return <div>Failed to load</div>;
@@ -30,24 +31,22 @@ export default function Items() {
   return (
     <div>
       <div className={styles.searchWrapper}>
-        <p className={styles.seachTitle}>商品を検索！</p>
         <div className="sercheform">
           <form
             method="post"
             action="#"
             className={styles.searchForm}
           >
-            <label htmlFor="name">商品名</label>
+            <label htmlFor="name"></label>
             <input
               type="text"
               id="name"
               name="name"
               value={nameText}
-              placeholder={'search'}
+              placeholder={'商品名を入れてください'}
               onChange={onChangeNameText}
-              className={styles.searchNameInput}
+              className={styles.search_container}
             ></input>
-            <br />
             <button
               type="button"
               value="検索"
@@ -58,55 +57,35 @@ export default function Items() {
             >
               検索
             </button>
-            <button
-              type="reset"
-              value="クリア"
-              className={styles.caselBtn}
-            >
-              クリア
-            </button>
           </form>
         </div>
       </div>
       <div className={styles.itemWrapper}>
-        {}
         {nameText == ''
           ? data.map((item: Item) => {
-              const { id, imageUrl, name, price } = item;
+              const { id, image_path, name, price } = item;
               return (
-                <div key={id}>
-                  <table className={styles.item}>
-                    <tr>
-                      <th>
-                        <img src={imageUrl} width={300} />
-                      </th>
-                    </tr>
-                    <tr>
-                      <th>
-                        <Link href={`/api/items`}>
-                          <a>
-                            <p>{name}</p>
-                          </a>
-                        </Link>
-                      </th>
-                    </tr>
-                    <tr>
-                      <th>
-                        <p>価格: {price}円</p>
-                      </th>
-                    </tr>
-                  </table>
+                <div key={id} className={styles.card}>
+                  <div className={styles.item}>
+                    <Image src={image_path} width={210} height={210}/>
+                    <Link href={`/api/items`}>
+                      <a>
+                        <p className={styles.text}>{name}</p>
+                      </a>
+                    </Link>
+                    <p>価格: {price}円</p>
+                  </div>
                 </div>
               );
             })
           : searchData.map((item: Item) => {
-              const { id, imageUrl, name, price } = item;
+              const { id, image_path, name, price } = item;
               return (
                 <div key={id}>
                   <table className={styles.item}>
                     <tr>
                       <th>
-                        <img src={imageUrl} width={300} />
+                        <Image src={image_path} width={200} height={100}/>
                       </th>
                     </tr>
                     <tr>
@@ -127,7 +106,6 @@ export default function Items() {
                 </div>
               );
             })}
-        ;
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ export type Item = {
   name: string;
   description: string;
   price: number;
+  imageUrl: string;
   image_path: string;
   priceM:number;
   priceL:number;
@@ -27,7 +28,7 @@ export type Order ={
   deliveryTime:Date;
   paymentMethod:number;
   user:User;
-  orderltemList:Orderitem;
+  orderltemList:Date;
 }
 
 export type Orderitem={
@@ -56,3 +57,16 @@ export type CartItem = {
   userId: number;
   items: Item[];
 };
+
+export type Option = {
+   id: number;
+   name: string;
+  //  price: number
+}
+
+export type OrderOption = {
+  id: number;
+  optionId: number;
+  cartItemID: number;
+  option: Option
+}

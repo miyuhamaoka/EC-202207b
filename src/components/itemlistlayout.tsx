@@ -17,7 +17,7 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const Layout = ({users}:any) => {
+const ItemlistLayout = ({users}:any) => {
 
   return (
     <div className={layoutStyle.body}>
@@ -37,8 +37,13 @@ const Layout = ({users}:any) => {
         </div>
         <ul className={layoutStyle.link}>
           <li>
-            <Link href='#'>
+            <Link href='items/cart'>
               <a>ショッピングカート</a>
+            </Link>
+          </li>
+          <li>
+            <Link href='../users/register'>
+              <a>新規登録</a>
             </Link>
           </li>
           <li>
@@ -55,4 +60,4 @@ const Layout = ({users}:any) => {
   );
 };
 
-export default Layout;
+export default ItemlistLayout;
