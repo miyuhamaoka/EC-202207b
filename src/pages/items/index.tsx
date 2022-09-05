@@ -7,7 +7,6 @@ import {User} from '../../types'
 import { useState,useEffect } from 'react';
 import  styles  from '../../components/items.module.css';
 
-
 export default function Home() {
 
   const [cookiesArray,setCookiesArray]:[string[],Function]=useState([]);
