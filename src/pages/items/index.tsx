@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/Link';
-import Items from '../../components/itemList';
+import Items from '../../components/menuList';
 import Layout from '../../components/layout';
 import ItemlistLayout from '../../components/itemlistlayout';
 import {User} from '../../types'
@@ -25,7 +25,7 @@ export default function Home() {
         <a rel="icon" href="favicon.ico" />
       </Head>
 
-      <Layout />
+    <ItemlistLayout />
     {cookiesArray.map((cookie)=>{
       const cookieArray = cookie.split('=');
       if ( cookieArray[0] === ' name') {
@@ -35,13 +35,10 @@ export default function Home() {
           )
         }
       })}
-      <ItemlistLayout />
+   
       <div>
         <Items></Items>
       </div>
     </>
   );
 }
-
-
-
