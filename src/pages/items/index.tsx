@@ -9,6 +9,7 @@ import  styles  from '../../components/items.module.css';
 
 
 export default function Home() {
+
   const [cookiesArray,setCookiesArray]:[string[],Function]=useState([]);
   useEffect(()=>{
     const cookies = document.cookie;
@@ -17,6 +18,7 @@ export default function Home() {
       setCookiesArray(array)
     }
   },[])
+
   return (
     <>
       <Head>
@@ -26,6 +28,7 @@ export default function Home() {
       <ItemlistLayout />
     {cookiesArray.map((cookie)=>{
       const cookieArray = cookie.split('=');
+
       if ( cookieArray[0] === ' name') {
         return(
           // eslint-disable-next-line react/jsx-key
@@ -38,4 +41,5 @@ export default function Home() {
       </div>
     </>
   );
+
 }

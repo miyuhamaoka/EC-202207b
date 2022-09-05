@@ -1,4 +1,3 @@
-
 import { SyntheticEvent, useState } from 'react';
 
 import Link from 'next/link';
@@ -51,7 +50,6 @@ export default function Login() {
   }
 
 
-
   return (
     <>
       <Layout />
@@ -63,7 +61,6 @@ export default function Login() {
           <h2>ログイン</h2>
           <div>
             <div className={loginStyle.lavel}>
-
               <input
                 className={loginStyle.forminput}
                 type="email"
@@ -75,7 +72,6 @@ export default function Login() {
             </div>
 
             <div className={loginStyle.lavel}>
-
               <input
                 className={loginStyle.forminput}
                 type="password"
@@ -88,7 +84,7 @@ export default function Login() {
             <button className={loginStyle.loginbtn}>ログイン</button>
           </div>
         </form>
-        <Link href="./create">
+        <Link href="./register">
           <a className={loginStyle.userregister}>
             ユーザ登録はこちら
           </a>
