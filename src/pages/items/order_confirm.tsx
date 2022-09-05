@@ -14,7 +14,6 @@ const cookie = () => {
     return Number(cookieArray[0].slice(3));
   }
 };
-console.log('cookie', cookie());
 
 export async function getServerSideProps() {
   const res = await fetch(`http://localhost:8000/cartItems/${cookie()}`);
