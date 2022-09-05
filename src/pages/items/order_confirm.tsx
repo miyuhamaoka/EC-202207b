@@ -1,84 +1,14 @@
-
-import Checkout from '../../components/checkout'
-import Link from 'next/Link';
-
 import Head from 'next/head';
-import Image from 'next/image';
 
-export async function getServerSideProps() {
-  const resItem = await fetch('http://localhost:8000/orderItems');
-  const items = await resItem.json();
-  if (!items) {
-    return { notFound: true };
-  } else {
-    return {
-      props: { items },
-    };
-  }
-}
-
-const OrderConfirm = ({ items }: any) => {
-  const itemtotal = items.map((e: any) => e.subtotal);
-  const total = itemtotal.reduce((a: number, b: number) => a + b);
-
-
+const OrderConfirm = () => {
   return (
     <>
       <Head>
         <title>注文確認画面</title>
       </Head>
-
-      <h1>注文内容確認</h1>
-
-
-      <table>
-        <thead>
-          <tr>
-            <th colSpan={2}>商品</th>
-            <th>価格</th>
-            <th>数量</th>
-            <th>小計</th>
-          </tr>
-        </thead>
-        <tbody>
-          {items.map((n: any) => {
-            const subtotal = n.item.price * n.quantity;
-            return (
-              <tr key={n.id}>
-                <td>{n.item.name}</td>
-                <td>
-                  <Image
-                    src={n.item.image_path}
-                    width="30px"
-                    height="30px"
-                    alt={n.item.description}
-                  />
-                </td>
-                <td>{n.item.price}円</td>
-                <td>{n.quantity}個</td>
-                <td>{subtotal}円</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      <p>消費税：{Math.round(total * 0.08).toLocaleString()}円</p>
-      <p>
-        ご注文金額合計：{Math.round(total * 1.08).toLocaleString()}
-        円（税込）
-      </p>
-      <div>
-<Checkout></Checkout>
-</div>
-
- <button>
-<Link href="/items/order_checkouted">
-    <a>この内容で注文する</a>
-</Link>
-</button>
-      
+      <p>aaa</p>
     </>
   );
 };
 
-  export default OrderConfirm;
+export default OrderConfirm;
