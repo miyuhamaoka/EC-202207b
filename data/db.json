@@ -531,19 +531,6 @@
   "order": [
     {
       "name": "typicode"
-    },
-    {
-      "id": 25,
-      "quantity": 1,
-      "item": {
-        "id": 25,
-        "type": "coffee",
-        "name": "カフェモカ",
-        "description": "エスプレッソにほろ苦いチョコレートシロップとミルクを加え、ホットビバレッジにはホイップクリームをトッピング。ちょっとした贅沢を楽しみたい方におすすめです。",
-        "price": 400,
-        "image_path": "/img_coffee/5.jpg",
-        "deleted": false
-      }
     }
   ]
 }

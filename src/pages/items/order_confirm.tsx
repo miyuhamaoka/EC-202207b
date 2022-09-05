@@ -1,3 +1,4 @@
+
 import Checkout from '../../components/checkout';
 import Link from 'next/Link';
 
@@ -36,12 +37,12 @@ const OrderConfirm = ({ items }: any) => {
   const total = itemtotal.reduce((a: number, b: number) => a + b);
 
 
+const OrderConfirm = () => {
   return (
     <>
       <Head>
         <title>注文確認画面</title>
       </Head>
-
       <h1>注文内容確認</h1>
       <table>
         <thead>
