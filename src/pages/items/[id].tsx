@@ -52,7 +52,9 @@ const ItemData = ({ detail }: any) => {
       `http://localhost:8000/cartItems?userId=${cookie()}`
     );
     const data = await res.json();
+
     console.log('data', data)
+
 
     if (data[0]) {
       return fetch(`http://localhost:8000/cartitems/${data[0].id}`, {

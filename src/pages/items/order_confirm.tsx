@@ -1,13 +1,26 @@
-import Checkout from '../../components/checkout'
-import Link from 'next/Link';
 
+import Checkout from '../../components/checkout';
+import Link from 'next/Link';
 import Head from 'next/head';
 import Image from 'next/image';
 
+
+const cookie = () => {
+  if (typeof document !== 'undefined') {
+    const cookies = document.cookie;
+    console.log('id', cookies);
+    const cookieArray = cookies.split('; ');
+    console.log('need', cookieArray[0].slice(3));
+    return Number(cookieArray[0].slice(3));
+  }
+};
+
 export async function getServerSideProps() {
-  const resItem = await fetch('http://localhost:8000/orderItems');
-  const items = await resItem.json();
-  if (!items) {
+  const res = await fetch(`http://localhost:8000/cartItems/${cookie()}`);
+  const data = await res.json();
+  const items = data.items
+  console.log('data', items)
+  if (!data) {
     return { notFound: true };
   } else {
     return {
@@ -17,6 +30,7 @@ export async function getServerSideProps() {
 }
 
 const OrderConfirm = ({ items }: any) => {
+
   const itemtotal = items.map((e: any) => e.subtotal);
   const total = itemtotal.reduce((a: number, b: number) => a + b);
 
@@ -26,10 +40,7 @@ const OrderConfirm = ({ items }: any) => {
       <Head>
         <title>注文確認画面</title>
       </Head>
-
       <h1>注文内容確認</h1>
-
-
       <table>
         <thead>
           <tr>
@@ -41,19 +52,19 @@ const OrderConfirm = ({ items }: any) => {
         </thead>
         <tbody>
           {items.map((n: any) => {
-            const subtotal = n.item.price * n.quantity;
+            const subtotal = n.price * n.quantity;
             return (
               <tr key={n.id}>
-                <td>{n.item.name}</td>
+                <td>{n.name}</td>
                 <td>
                   <Image
-                    src={n.item.image_path}
+                    src={n.image_path}
                     width="30px"
                     height="30px"
-                    alt={n.item.description}
+                    alt={n.description}
                   />
                 </td>
-                <td>{n.item.price}円</td>
+                <td>{n.price}円</td>
                 <td>{n.quantity}個</td>
                 <td>{subtotal}円</td>
               </tr>
@@ -75,7 +86,6 @@ const OrderConfirm = ({ items }: any) => {
     <a>この内容で注文する</a>
 </Link>
 </button>
-      
     </>
   );
 };
