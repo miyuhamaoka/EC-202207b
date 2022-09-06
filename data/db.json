@@ -166,14 +166,13 @@
   "users": [
     {
       "id": 1,
-
       "name": "楽々　楽子",
-      "email":"rakus@sumple.com",
-      "password":"rakus00",
-      "zipcode":"123-456",
-      "address":"東京",
-      "telephone":"090-1234-5678",
-      "logined":"false"
+      "email": "rakus@sumple.com",
+      "password": "rakus00",
+      "zipcode": "123-456",
+      "address": "東京",
+      "telephone": "090-1234-5678",
+      "logined": "false"
     },
     {
       "id": 1,
@@ -194,26 +193,6 @@
       "address": "東京",
       "telephone": "090-1234-5678",
       "logined": true
-    },
-    {
-      "name": "前田",
-      "email": "sample@a.com",
-      "password": "12345678",
-      "confirmationPassword": "12345678",
-      "zipcode": "111-1111",
-      "address": "東京",
-      "telephone": "1111-1111-1111",
-      "id": 3,
-      "logined": true
-    },
-    {
-      "name": "前田2",
-      "email": "sample2@a.com",
-      "password": "12345678",
-      "confirmationPassword": "12345678",
-      "zipcode": "111-1111",
-      "address": "神奈川",
-      "telephone": "1111-1111-1111"
     }
   ],
   "orderItems": [
@@ -408,17 +387,6 @@
           "subtotal": 1800
         },
         {
-          "id": 22,
-          "type": "coffee",
-          "name": "エスプレッソフラペチーノ",
-          "description": "ひと口目に感じるエスプレッソは「リストレット」という方法で抽出した力強い香りと優しい苦味を、ふた口目は全体を混ぜて、こだわりのクリームから来るアフォガートのような味わいをお楽しみください。リフレッシュしたい時や、ほっとひと息つきたい時にも、何度でも飲みたくなるフラペチーノ®です。",
-          "price": 530,
-          "image_path": "/2.jpg",
-          "deleted": false,
-          "quantity": 1,
-          "subtotal": 530
-        },
-        {
           "id": 27,
           "type": "coffee",
           "name": "カプチーノ",
@@ -428,250 +396,6 @@
           "deleted": false,
           "quantity": 1,
           "subtotal": 340
-        }
-      ]
-    },
-    {
-      "userId": 2,
-      "items": [
-        {
-          "id": 29,
-          "type": "coffee",
-          "name": "キャラメルフラペチーノ",
-          "description": "コーヒー、ミルク、キャラメルシロップを氷とブレンドした、多くのお客様に愛されているフローズン ビバレッジです。トッピングしたホイップクリームとキャラメルソースと混ぜながら、豊かでほんのり香ばしいキャラメルの風味をお楽しみください。",
-          "price": 490,
-          "image_path": "/9.jpg",
-          "deleted": false,
-          "quantity": 1,
-          "subtotal": 490
-        },
-        {
-          "id": 24,
-          "type": "coffee",
-          "name": "チョコクッキー",
-          "description": "ソフトな食感のクッキー生地には、小麦の香ばしさが感じられるよう全粒粉を入れ、砂糖の一部にはブラウンシュガーを使い、コクのある甘さをプラスしています。風味豊かなスターバックスオリジナルのチョコレートチャンクがごろごろ入っていて、どこを食べてもチョコレートの味わいを存分に楽しめます。ショートサイズのマグカップの上に乗せられるくらいのサイズは、コーヒーと一緒に楽しむのにもぴったりです。",
-          "price": 190,
-          "image_path": "/4.jpg",
-          "deleted": false,
-          "quantity": "3",
-          "subtotal": 570
-        },
-        {
-          "id": 28,
-          "type": "coffee",
-          "name": "キャラメルマキアート",
-          "description": "バニラシロップとスチームミルクのコンビネーションになめらかなフォームミルクをたっぷりのせ、その上からエスプレッソを注いでアクセントを付けました。仕上げにオリジナルキャラメルソースをトッピングしています。",
-          "price": 390,
-          "image_path": "/8.jpg",
-          "deleted": false,
-          "quantity": "2",
-          "subtotal": 780
-        },
-        {
-          "id": 30,
-          "type": "coffee",
-          "name": "バニラ クリーム フラペチーノ",
-          "description": "ミルクとバニラシロップを氷とブレンドし、ホイップクリームをトッピングした、クリーミーな味わいのフローズン ビバレッジ。真っ白な見た目も爽やかです。ミルクとバニラシロップというシンプルな組み合わせはいろいろなカスタマイズとも好相性。",
-          "price": 490,
-          "image_path": "/10.jpg",
-          "deleted": false,
-          "quantity": "2",
-          "subtotal": 980
-        }
-      ],
-      "id": 2,
-      "cartItem": {
-        "userId": 2,
-        "items": [
-          {
-            "id": 28,
-            "type": "coffee",
-            "name": "キャラメルマキアート",
-            "description": "バニラシロップとスチームミルクのコンビネーションになめらかなフォームミルクをたっぷりのせ、その上からエスプレッソを注いでアクセントを付けました。仕上げにオリジナルキャラメルソースをトッピングしています。",
-            "price": 390,
-            "image_path": "/8.jpg",
-            "deleted": false,
-            "quantity": 1,
-            "subtotal": 390
-          },
-          {
-            "id": 29,
-            "type": "coffee",
-            "name": "キャラメルフラペチーノ",
-            "description": "コーヒー、ミルク、キャラメルシロップを氷とブレンドした、多くのお客様に愛されているフローズン ビバレッジです。トッピングしたホイップクリームとキャラメルソースと混ぜながら、豊かでほんのり香ばしいキャラメルの風味をお楽しみください。",
-            "price": 490,
-            "image_path": "/9.jpg",
-            "deleted": false,
-            "quantity": 1,
-            "subtotal": 490
-          },
-          {
-            "id": 29,
-            "type": "coffee",
-            "name": "キャラメルフラペチーノ",
-            "description": "コーヒー、ミルク、キャラメルシロップを氷とブレンドした、多くのお客様に愛されているフローズン ビバレッジです。トッピングしたホイップクリームとキャラメルソースと混ぜながら、豊かでほんのり香ばしいキャラメルの風味をお楽しみください。",
-            "price": 490,
-            "image_path": "/9.jpg",
-            "deleted": false,
-            "quantity": 1,
-            "subtotal": 490
-          }
-        ],
-        "id": 2
-      }
-    },
-    {
-      "userId": null,
-      "items": [
-        {
-          "id": 21,
-          "type": "coffee",
-          "name": "Gorgeous4サンド",
-          "description": "人気の定番具材「ハム」と「チキン」をセットにした食べごたえ抜群のサンドイッチです。",
-          "price": 480,
-          "image_path": "/1.jpg",
-          "deleted": false,
-          "quantity": 1,
-          "subtotal": 480
-        }
-      ],
-      "id": 3
-    },
-    {
-      "userId": null,
-      "items": [
-        {
-          "id": 21,
-          "type": "coffee",
-          "name": "Gorgeous4サンド",
-          "description": "人気の定番具材「ハム」と「チキン」をセットにした食べごたえ抜群のサンドイッチです。",
-          "price": 480,
-          "image_path": "/1.jpg",
-          "deleted": false,
-          "quantity": 1,
-          "subtotal": 480
-        }
-      ],
-      "id": 4
-    },
-    {
-      "userId": null,
-      "items": [
-        {
-          "id": 21,
-          "type": "coffee",
-          "name": "Gorgeous4サンド",
-          "description": "人気の定番具材「ハム」と「チキン」をセットにした食べごたえ抜群のサンドイッチです。",
-          "price": 480,
-          "image_path": "/1.jpg",
-          "deleted": false,
-          "quantity": 1,
-          "subtotal": 480
-        }
-      ],
-      "id": 5
-    },
-    {
-      "userId": null,
-      "items": [
-        {
-          "id": 21,
-          "type": "coffee",
-          "name": "Gorgeous4サンド",
-          "description": "人気の定番具材「ハム」と「チキン」をセットにした食べごたえ抜群のサンドイッチです。",
-          "price": 480,
-          "image_path": "/1.jpg",
-          "deleted": false,
-          "quantity": 1,
-          "subtotal": 480
-        }
-      ],
-      "id": 6
-    },
-    {
-      "userId": null,
-      "items": [
-        {
-          "id": 21,
-          "type": "coffee",
-          "name": "Gorgeous4サンド",
-          "description": "人気の定番具材「ハム」と「チキン」をセットにした食べごたえ抜群のサンドイッチです。",
-          "price": 480,
-          "image_path": "/1.jpg",
-          "deleted": false,
-          "quantity": 1,
-          "subtotal": 480
-        }
-      ],
-      "id": 7
-    },
-    {
-      "userId": 0,
-      "items": [
-        {
-
-          "quantity": "3",
-          "subtotal": 1470
-        },
-        {
-          "id": 38,
-          "type": "coffee",
-          "name": "ジンジャーブレッドラテ",
-          "description": "スターバックスのホリデーといえばやっぱりジンジャーブレッド ラテ、という人も多いのではないでしょうか。ジンジャーブレッドクッキーをイメージした、ほんのり甘くてスパイシーな風味は、この時期にしか味わえない特別なビバレッジです。体の中からじんわりとあたためてくれる一杯で、ほっとリラックスしたひと時をお過ごしください。",
-          "price": 450,
-          "image_path": "/18.jpg",
-          "deleted": false,
-          "quantity": "4",
-          "subtotal": 1800
-        },
-        {
-          "id": 24,
-          "type": "coffee",
-          "name": "チョコクッキー",
-          "description": "ソフトな食感のクッキー生地には、小麦の香ばしさが感じられるよう全粒粉を入れ、砂糖の一部にはブラウンシュガーを使い、コクのある甘さをプラスしています。風味豊かなスターバックスオリジナルのチョコレートチャンクがごろごろ入っていて、どこを食べてもチョコレートの味わいを存分に楽しめます。ショートサイズのマグカップの上に乗せられるくらいのサイズは、コーヒーと一緒に楽しむのにもぴったりです。",
-          "price": 190,
-          "image_path": "/4.jpg",
-          "deleted": false,
-          "quantity": "3",
-          "subtotal": 570
-        },
-        {
-          "id": 38,
-          "type": "coffee",
-          "name": "ジンジャーブレッドラテ",
-          "description": "スターバックスのホリデーといえばやっぱりジンジャーブレッド ラテ、という人も多いのではないでしょうか。ジンジャーブレッドクッキーをイメージした、ほんのり甘くてスパイシーな風味は、この時期にしか味わえない特別なビバレッジです。体の中からじんわりとあたためてくれる一杯で、ほっとリラックスしたひと時をお過ごしください。",
-          "price": 450,
-          "image_path": "/18.jpg",
-          "deleted": false,
-          "quantity": "2",
-          "subtotal": 900
-        }
-      ]
-    },
-    {
-      "userId": 2,
-      "items": [
-        {
-          "id": 37,
-          "type": "coffee",
-          "name": "ナッティホワイトモカ",
-          "description": "ホワイトチョコレートとヘーゼルナッツに香り高いエスプレッソを加えた風味豊かなホワイト モカ。ホイップクリームをツリーに見立て、ナッツ&ホワイトチョコレートソースのリボンと、3色のチョコレート、シルバーのアラザンをイルミネーションのようにちりばめました。ホリデーシーズンにぴったりのあたたかな一杯で、特別なひと時をお楽しみください。",
-          "price": 450,
-          "image_path": "/17.jpg",
-          "deleted": false,
-          "quantity": 1,
-          "subtotal": 450
-        },
-        {
-          "id": 21,
-          "type": "coffee",
-          "name": "Gorgeous4サンド",
-          "description": "人気の定番具材「ハム」と「チキン」をセットにした食べごたえ抜群のサンドイッチです。",
-          "price": 480,
-          "image_path": "/1.jpg",
-          "deleted": false,
-          "quantity": 1,
-          "subtotal": 480
         }
       ]
     }
