@@ -25,7 +25,7 @@ export default function Checkout() {
   const router = useRouter();
 
   const zipcodePattern = /^[0-9]{3}-[0-9]{4}$/;
-  const telPattern = /^\d{3,4}-\d{3,4}-\d{4}$/;
+  const telPattern = /^(0[5-9]0-[0-9]{4}-[0-9]{4})$/;
   const emailPattern = /.+@.+\..+/;
 
   const onClickCheck = () => {
@@ -41,7 +41,7 @@ export default function Checkout() {
             ) &&
             zipcode.match(/^\d{3}-\d{4}$/) &&
             address &&
-            tel.match(/^(0[5-9]0-[0-9]{4}-[0-9]{4})$/)
+            tel.match(/^(0[5-9]0-[0-9]{4}-[0-9]{4})$/) 
           )
         ) {
           alert('全ての項目を正しく入力してください');

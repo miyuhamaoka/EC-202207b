@@ -4,6 +4,8 @@ import Link from 'next/link';
 	import { Item } from '../types';
 	import styles from '../components/items.module.css';
 	import Image from 'next/image'
+import { resourceLimits } from 'worker_threads';
+//import useSWRInfinite from "swr/infinite";
 
 	
 	export const fetcher: (args: string) => Promise<any> = (...args) =>
@@ -16,25 +18,44 @@ import Link from 'next/link';
 	const onChangeNameText = (event: any) =>
 	setNameText(event.target.value);
 	const [searchData, setSearchData] = useState([]);
-	
+	//const [orderData, setOrderData] = useState();
+	//const [notSeach, setNotSearch] = useState('none');
+
+
 	if (error) return <div>Failed to load</div>;
 	if (!data) return <div>Loading...</div>;
+
+
 	
-	const onClickSearch = () => {
+const formClear = () =>{
+	setNameText('');
+	setSearchData([]);
+};
+
+	const onClickSearch = ()=>  {
 	setSearchData(
-	data.filter((e: any) => {
+    data.filter((e: any) => {
 	return e.name === nameText;
 	})
 	);
 	console.log(searchData);
+	//console.log(notSeach)
 	};
+
+	const cheapData = data.sort(function (
+		{ price: a }: any,
+		{ price: b }: any
+	  ) {
+		return a - b;
+	  });
+       
 	
 	return (
 	<div>
 	<div className={styles.searchWrapper}>
 	<div className="sercheform">
 	<form
-	method="post"
+	method="get"
 	action="#"
 	className={styles.searchForm}
 	>
@@ -58,7 +79,18 @@ import Link from 'next/link';
 	>
 	検索
 	</button>
-	</form>
+
+	<button
+	type= "reset"
+	value="クリア"
+	className={styles.clearBtn}
+	onClick={() => formClear()}>
+		クリア
+	</button>
+ {/*<p style={{display: notSeach}}>
+	該当の商品はありません。
+</p>*/}
+    </form>
 	</div>
 	</div>
 	<div className={styles.itemWrapper}>
