@@ -30,14 +30,11 @@ export async function getStaticProps({ params }: any) {
 }
 
 const ItemData = ({ detail }: any) => {
-
-
   const cookie = () => {
     if (typeof document !== 'undefined') {
       const cookies = document.cookie;
       console.log('id', cookies);
-      const cookieArray = cookies.split('; ')
-      console.log('need', cookieArray[0].slice(3))
+      const cookieArray = cookies.split('; ');
       return Number(cookieArray[0].slice(3));
     }
   };
@@ -53,8 +50,7 @@ const ItemData = ({ detail }: any) => {
     );
     const data = await res.json();
 
-    console.log('data', data)
-
+    console.log('data', data);
 
     if (data[0]) {
       return fetch(`http://localhost:8000/cartitems/${data[0].id}`, {
@@ -105,7 +101,6 @@ const ItemData = ({ detail }: any) => {
     }
   };
 
-
   return (
     <>
       <Head>
@@ -141,10 +136,10 @@ const ItemData = ({ detail }: any) => {
         <p>この商品の金額：{total}円</p>
         <button
           type="button"
-          onClick={() => {
-            Submit();
-            router.push(`/items/cart?userId=${cookie()}`);
-          }}
+          onMouseDown={() => Submit()}
+          onClick={() =>
+            router.push(`/items/cart?userId=${cookie()}`)
+          }
         >
           カートに入れる
         </button>
