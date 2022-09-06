@@ -1,29 +1,37 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 const TimeAlert = () => {
   const [time, setTime] = useState('');
 
-  const onChangeTime = (e: any) => setTime(e.target.value)
+  const onChangeTime = (e: any) => setTime(e.target.value);
 
   const now = new Date();
   const selectTime = new Date(time);
 
-  console.log(now);
-  console.log(selectTime);
+  // console.log(now);
+  // console.log(selectTime);
 
-  const diffTime = (selectTime.getTime() - now.getTime()) / (60*60*1000);
+  const diffTime =
+    (selectTime.getTime() - now.getTime()) / (60 * 60 * 1000);
 
-  console.log(diffTime)
+  // console.log(diffTime);
 
   return (
     <>
-    <label>配達日時：
-      {!time && <span>配達日時を入力して下さい</span>}
-      {diffTime <= 3 && <span>今から3時間後の日時をご入力ください</span>}
-      <input type="datetime-local" value={time} onChange={onChangeTime}/>
-    </label>
+      <label>
+        配達日時：
+        {!time && <span>配達日時を入力して下さい</span>}
+        {diffTime <= 3 && (
+          <span>今から3時間後の日時をご入力ください</span>
+        )}
+        <input
+          type="datetime-local"
+          value={time}
+          onChange={onChangeTime}
+        />
+      </label>
     </>
-  )
-}
+  );
+};
 
 export default TimeAlert;
