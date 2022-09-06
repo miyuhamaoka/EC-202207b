@@ -166,14 +166,13 @@
   "users": [
     {
       "id": 1,
-
       "name": "楽々　楽子",
-      "email":"rakus@sumple.com",
-      "password":"rakus00",
-      "zipcode":"123-456",
-      "address":"東京",
-      "telephone":"090-1234-5678",
-      "logined":"false"
+      "email": "rakus@sumple.com",
+      "password": "rakus00",
+      "zipcode": "123-456",
+      "address": "東京",
+      "telephone": "090-1234-5678",
+      "logined": "false"
     },
     {
       "id": 1,
@@ -214,6 +213,17 @@
       "zipcode": "111-1111",
       "address": "神奈川",
       "telephone": "1111-1111-1111"
+    },
+    {
+      "name": "五反田太郎",
+      "email": "takax0410@gmail.com",
+      "password": "11111111",
+      "confirmationPassword": "11111111",
+      "zipcode": "111-1111",
+      "address": "111-1111",
+      "telephone": "111-1111-1111",
+      "id": 4,
+      "logined": true
     }
   ],
   "orderItems": [
@@ -609,7 +619,6 @@
       "userId": 0,
       "items": [
         {
-
           "quantity": "3",
           "subtotal": 1470
         },
@@ -674,6 +683,23 @@
           "subtotal": 480
         }
       ]
+    },
+    {
+      "userId": 4,
+      "items": [
+        {
+          "id": 24,
+          "type": "coffee",
+          "name": "チョコクッキー",
+          "description": "ソフトな食感のクッキー生地には、小麦の香ばしさが感じられるよう全粒粉を入れ、砂糖の一部にはブラウンシュガーを使い、コクのある甘さをプラスしています。風味豊かなスターバックスオリジナルのチョコレートチャンクがごろごろ入っていて、どこを食べてもチョコレートの味わいを存分に楽しめます。ショートサイズのマグカップの上に乗せられるくらいのサイズは、コーヒーと一緒に楽しむのにもぴったりです。",
+          "price": 190,
+          "image_path": "/4.jpg",
+          "deleted": false,
+          "quantity": 1,
+          "subtotal": 190
+        }
+      ],
+      "id": 8
     }
   ],
   "order": [
