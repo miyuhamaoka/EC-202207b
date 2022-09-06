@@ -70,7 +70,7 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
 
 
   //消費税と商品合計に使用する価格の合計を取得 (商品無くなったら0がセットされる)
-  const itemPrice = cartItem.items.map((e: any) => e.price);
+  const itemPrice = cartItem.items.map((e: any) => e.subtotal);
   const total = itemPrice.reduce((a: number, b: number) => a + b,0);
 
   //商品の表示
@@ -98,7 +98,7 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
               </td>
               <td>{item.price}円</td>
               <td>{item.quantity}個</td>
-              <td>{item.price}円</td>
+              <td>{item.subtotal}円</td>
               <td>
                 <button onClick={() => onClickDelete(item.id)}>
                   削除

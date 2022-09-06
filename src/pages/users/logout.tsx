@@ -1,3 +1,4 @@
+import Link from "next/link";
 // https://swr.vercel.app/ja/docs/mutation
 // ↑から一旦持ってきた。使えるかわかんない
 // 次の例では、ユーザーが "Logout" ボタンをクリックしたときに、ログイン情報 （ たとえば <Profile/> の中身 ）を自動的に取得する方法を示します。
@@ -19,9 +20,10 @@ export const Logout = () => {
   };
   return (
     <>
-      <a href="/users/login" onClick={onclickHundle}>
-        ログアウト
+    <Link  href="/users/login">
+      <a onClick={onclickHundle}>ログアウト
       </a>
+    </Link>
     </>
   );
 };

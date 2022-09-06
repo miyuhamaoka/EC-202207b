@@ -69,7 +69,7 @@ import Link from 'next/link';
 	<div key={id} className={styles.card}>
 	<div className={styles.item}>
 	<Image src={image_path} alt={name} width={210} height={210}/>
-	<Link href={`src/components/menuList.tsx`}>
+	<Link href={`http://localhost:3000/items/${id}`}>
 	<a>
 	<p className={styles.text}>{name}</p>
 	</a>
@@ -91,7 +91,7 @@ import Link from 'next/link';
 	</tr>
 	<tr>
 	<th>
-	<Link href={`src/components/menuList.tsx`}>
+	<Link href={`http://localhost:3000/items/${id}`}>
 	<a>
 	<p>{name}</p>
 	</a>
