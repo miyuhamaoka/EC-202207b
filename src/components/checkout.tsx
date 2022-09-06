@@ -103,6 +103,7 @@ export default function Checkout() {
       <h3>お届け先情報</h3>
       <form action="post">
         <table>
+          <tbody>
           <tr>
             <td>
               <label htmlFor="name">お名前：</label>
@@ -254,6 +255,7 @@ export default function Checkout() {
               18時
             </td>
           </tr>
+          </tbody>
         </table>
 
         <h3>お支払い方法</h3>

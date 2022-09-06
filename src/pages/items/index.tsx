@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Link from 'next/Link';
+import Link from 'next/link';
 import Items from '../../components/menuList';
 import Layout from '../../components/layout';
 import ItemlistLayout from '../../components/itemlistlayout';
