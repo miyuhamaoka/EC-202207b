@@ -193,7 +193,6 @@
       "address": "東京",
       "telephone": "090-1234-5678",
       "logined": true
-    }
   ],
   "orderItems": [
     {
@@ -398,7 +397,6 @@
           "subtotal": 340
         }
       ]
-    }
   ],
   "order": [
     {
