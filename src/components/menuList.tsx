@@ -4,8 +4,10 @@ import Link from 'next/link';
 	import { Item } from '../types';
 	import styles from '../components/items.module.css';
 	import Image from 'next/image'
-import { resourceLimits } from 'worker_threads';
-//import useSWRInfinite from "swr/infinite";
+import OrderConfirm from '../pages/items/order_confirm';
+//import { resourceLimits } from 'worker_threads';
+    //import useSWRInfinite from "swr/infinite";
+
 
 	
 	export const fetcher: (args: string) => Promise<any> = (...args) =>
@@ -18,14 +20,29 @@ import { resourceLimits } from 'worker_threads';
 	const onChangeNameText = (event: any) =>
 	setNameText(event.target.value);
 	const [searchData, setSearchData] = useState([]);
-	//const [orderData, setOrderData] = useState();
-	//const [notSeach, setNotSearch] = useState('none');
-
+	const [orderData, setOrderData] = useState([]);
+    const[expensive, setExpensive] = useState([]);
+	const[randomData, setRandomData] = useState([]);
 
 	if (error) return <div>Failed to load</div>;
 	if (!data) return <div>Loading...</div>;
 
+const randoms =()=>{
+	setRandomData([]);
 
+}
+
+
+const expensiveData = ()=>{
+	setExpensive([]);
+		data.sort(function(
+			{ price: a}:any,
+			{ price: b}:any
+		){
+			return b - a;
+		})
+       console.log(expensive)
+}
 	
 const formClear = () =>{
 	setNameText('');
@@ -35,20 +52,26 @@ const formClear = () =>{
 	const onClickSearch = ()=>  {
 	setSearchData(
     data.filter((e: any) => {
-	return e.name === nameText;
+	return e.name.indexOf(nameText) >=0;
 	})
 	);
 	console.log(searchData);
-	//console.log(notSeach)
 	};
 
-	const cheapData = data.sort(function (
-		{ price: a }: any,
-		{ price: b }: any
-	  ) {
-		return a - b;
-	  });
-       
+
+
+	const  cheapData = ()=> {
+		setOrderData([]);
+		data.sort(function (
+   { price: a }: any,
+   { price: b }: any
+ ) {
+   return a - b;
+})
+console.log(orderData)
+}; 
+
+
 	
 	return (
 	<div>
@@ -81,15 +104,29 @@ const formClear = () =>{
 	</button>
 
 	<button
-	type= "reset"
+	type= "button"
 	value="クリア"
 	className={styles.clearBtn}
 	onClick={() => formClear()}>
 		クリア
 	</button>
- {/*<p style={{display: notSeach}}>
-	該当の商品はありません。
-</p>*/}
+	<label>
+	<input
+ type = "radio"
+ value= "安価"
+ name = "Btn"
+ className={styles.cheapBtn}
+ onClick={()=> cheapData()}/>
+価格が安い順番
+ <input
+ type = "radio"
+ value= "高価"
+ name = "Btn"
+className={styles.expensiveBtn}
+ onClick={()=> expensiveData()}/>
+価格が高い順番
+
+</label>
     </form>
 	</div>
 	</div>
@@ -110,8 +147,11 @@ const formClear = () =>{
 	</div>
 	</div>
 	);
-	})
-	: searchData.map((item: Item) => {
+	}):
+	searchData.length == 0 ? (
+<p>該当する商品がありません</p>
+	)
+	:( searchData.map((item: Item) => {
 	const { id, image_path, name, price } = item;
 	return (
 	<div key={id}>
@@ -138,8 +178,9 @@ const formClear = () =>{
 	</table>
 	</div>
 	);
-	})}
+	})
+)}
 	</div>
-	</div>
+    </div>
 	);
 	}
