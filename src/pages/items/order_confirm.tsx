@@ -3,9 +3,10 @@ import Link from 'next/link';
 import Head from 'next/head';
 import Image from 'next/image';
 import ItemConfirm from '../../components/item_confirm';
-import Layout from '../../components/layout';
+import Layout from '../../components/itemlistlayout';
 import { useState } from 'react';
 import Router from 'next/router';
+import style from '../../styles/item_confirm.module.css';
 
 export async function getServerSideProps({ req }: any) {
   // console.log('req', req.cookies.id);
@@ -58,10 +59,16 @@ const OrderConfirm = ({ items, user }: any) => {
   const onClickPost = async () => {
     const now = new Date();
     const selectTime = new Date(time);
-    const diffTime = (selectTime.getTime() - now.getTime()) / (60 * 60 * 1000);
+    const diffTime =
+      (selectTime.getTime() - now.getTime()) / (60 * 60 * 1000);
 
-    const itemPrice = items.map((item: any) => {return item.subtotal})
-    const total = itemPrice.reduce((a: number, b: number) => a + b,0);
+    const itemPrice = items.map((item: any) => {
+      return item.subtotal;
+    });
+    const total = itemPrice.reduce(
+      (a: number, b: number) => a + b,
+      0
+    );
 
     if (
       !name ||
@@ -122,30 +129,32 @@ const OrderConfirm = ({ items, user }: any) => {
   return (
     <>
       <Layout />
-      <div>
-        <ItemConfirm item={items}></ItemConfirm>
-      </div>
-      <div>
-        <Checkout
-          user={user}
-          name={name}
-          onChangeName={onChangeName}
-          email={email}
-          onChangeEmail={onChangeEmail}
-          zipcode={zipcode}
-          onChangeZipcode={onChangeZipcode}
-          address={address}
-          onChangeAddress={onChangeAddress}
-          tel={tel}
-          onChangeTel={onChangeTel}
-          time={time}
-          onChangeTime={onChangeTime}
-          onChangeSta={onChangeSta}
-        ></Checkout>
-      </div>
-      <button type="button" onClick={onClickPost}>
-        この内容で注文する
-      </button>
+      <section className={style.confirm}>
+        <div>
+          <ItemConfirm item={items}></ItemConfirm>
+        </div>
+        <div>
+          <Checkout
+            user={user}
+            name={name}
+            onChangeName={onChangeName}
+            email={email}
+            onChangeEmail={onChangeEmail}
+            zipcode={zipcode}
+            onChangeZipcode={onChangeZipcode}
+            address={address}
+            onChangeAddress={onChangeAddress}
+            tel={tel}
+            onChangeTel={onChangeTel}
+            time={time}
+            onChangeTime={onChangeTime}
+            onChangeSta={onChangeSta}
+          ></Checkout>
+        </div>
+        <button type="button" onClick={onClickPost}>
+          この内容で注文する
+        </button>
+      </section>
     </>
   );
 };
