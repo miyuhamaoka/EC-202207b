@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import ItemConfirm from '../../components/item_confirm';
 import Layout from '../../components/layout';
+import { useState } from 'react';
 
 export async function getServerSideProps({ req }: any) {
   // console.log('req', req.cookies.id);
@@ -26,9 +27,83 @@ export async function getServerSideProps({ req }: any) {
   }
 }
 
-
-
 const OrderConfirm = ({ items , user }: any) => {
+  const [name, setName] = useState(user.name);
+  const onChangeName = (e: any) => setName(e.target.value);
+
+  const [email, setEmail] = useState(user.email);
+  const onChangeEmail = (e: any) => setEmail(e.target.value);
+
+  const [zipcode, setZipcode] = useState(user.zipcode);
+  const onChangeZipcode = (e: any) => setZipcode(e.target.value);
+
+  const [address, setAddress] = useState(user.address);
+  const onChangeAddress = (e: any) => setAddress(e.target.value);
+
+  const [tel, setTel] = useState(user.telephone);
+  const onChangeTel = (e: any) => setTel(e.target.value);
+
+  const [time, setTime] = useState('');
+  const onChangeTime = (e: any) => setTime(e.target.value);
+
+  const [sta, setSta] = useState(0);
+  const onChangeSta = (e: any) => {
+    const value = Number(e.target.value);
+    return setSta(value);
+  };
+
+  const onClickPost = async () => {
+
+
+  const now = new Date();
+  const selectTime = new Date(time);
+
+  const diffTime =
+    (selectTime.getTime() - now.getTime()) / (60 * 60 * 1000);
+
+    if(!name || !email || !zipcode || !address || !tel || !time || !sta || items.length === 0 || !email.match(
+      /^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/
+    ) || !zipcode.match(/^\d{3}-\d{4}$/) || !tel.match(/^\d{2,4}-\d{3,4}-\d{4}$/) || diffTime <= 3) {
+      alert('入力内容に誤りがあります');
+      return;
+    } else {
+      const postParam = {
+        id: 0,
+        userId: user.id,
+        status: sta,
+        // totalPrice: number;
+        orderDate: now,
+        distenationName: name,
+        distenationEmail: email,
+        distenationZipcode: zipcode,
+        distenationAddress: address,
+        distenationTel: tel,
+        deliveryTime: time,
+        // paymentMethod: number;
+        user: user,
+        orderltemList: items
+      }
+
+      const parameter = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(postParam),
+      };
+
+      const result = await fetch(
+        'http://localhost:8000/order',
+        parameter
+      ).then((res) => {
+        return res.json();
+      });
+
+      console.log(result);
+      // Router.push('/users/login');
+    }
+  }
+
   return (
     <>
     <Layout />
@@ -36,12 +111,10 @@ const OrderConfirm = ({ items , user }: any) => {
         <ItemConfirm item={items}></ItemConfirm>
       </div>
       <div>
-        <Checkout user={user}></Checkout>
+        <Checkout user={user} name={name} onChangeName={onChangeName} email={email} onChangeEmail={onChangeEmail} zipcode={zipcode} onChangeZipcode={onChangeZipcode} address={address} onChangeAddress={onChangeAddress} tel={tel} onChangeTel={onChangeTel} time={time} onChangeTime={onChangeTime} onChangeSta={onChangeSta}></Checkout>
       </div>
-      <button>
-        <Link href="/items/order_checkouted">
-          <a>この内容で注文する</a>
-        </Link>
+      <button type='button' onClick={onClickPost}>
+        この内容で注文する
       </button>
     </>
   );

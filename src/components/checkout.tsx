@@ -1,45 +1,14 @@
 import { useState } from 'react';
 import { User } from '../types';
-import TimeAlert from './time_alert';
 
-export default function Checkout({ user }: any) {
-  const [name, setName] = useState(user.name);
-  const onChangeName = (e: any) => setName(e.target.value);
+export default function Checkout({name, onChangeName, email, onChangeEmail, zipcode, onChangeZipcode, address, onChangeAddress, tel, onChangeTel, time, onChangeTime, onChangeSta}: any) {
 
-  const [email, setEmail] = useState(user.email);
-  const onChangeEmail = (e: any) => setEmail(e.target.value);
 
-  const [zipcode, setZipcode] = useState(user.zipcode);
-  const onChangeZipcode = (e: any) => setZipcode(e.target.value);
+  const now = new Date();
+  const selectTime = new Date(time);
 
-  const [address, setAddress] = useState(user.address);
-  const onChangeAddress = (e: any) => setAddress(e.target.value);
-
-  const [tel, setTel] = useState(user.telephone);
-  const onChangeTel = (e: any) => setTel(e.target.value);
-
-  // const onSubmitData = async (e: any) => {
-  //   if (condition) {
-      
-  //   }
-  //   else {
-  //     const postParam = {
-  //       id: 0,
-  //       userId: 0,
-  //       totalPrice: props.;
-  //       orderDate: Date;
-  //       distenationName: string;
-  //       distenationEmail: string;
-  //       distenationZipcode: string;
-  //       distenationAddress: string;
-  //       distenationTel: string;
-  //       deliveryTime: Date;
-  //       paymentMethod: number;
-  //       user: User;
-  //       orderltemList: Orderitem;
-  //     }
-  //   }
-  // };
+  const diffTime =
+    (selectTime.getTime() - now.getTime()) / (60 * 60 * 1000);
 
   return (
     <div>
@@ -119,7 +88,7 @@ export default function Checkout({ user }: any) {
           {tel.length === 0 && (
             <span>電話番号を入力してください</span>
           )}
-          {!tel.match(/^(0[5-9]0-[0-9]{4}-[0-9]{4})$/) &&
+          {!tel.match(/^\d{2,4}-\d{3,4}-\d{4}$/) &&
             tel.length >= 1 && (
               <span>
                 電話番号はXXX-XXXX-XXXXの形式で入力してください
@@ -137,21 +106,33 @@ export default function Checkout({ user }: any) {
           />
         </div>
         <div>
-          <TimeAlert />
+          <label>
+            <div>
+          配達日時：
+          {!time && <span>配達日時を入力して下さい</span>}
+          {diffTime <= 3 && (
+            <span>今から3時間後の日時をご入力ください</span>
+          )}
+            </div>
+          <div>
+          <input
+            type="datetime-local"
+            value={time}
+            onChange={onChangeTime}
+          />
+          </div>
+          </label>
         </div>
 
         <h3>お支払い方法</h3>
         <label>
-          <input type="radio" name="lavel" value="money" />
+          <input type="radio" name="lavel" value="1" onChange={onChangeSta}/>
           代金引換
         </label>
         <label>
-          <input type="radio" name="lavel" value="credit" />
+          <input type="radio" name="lavel" value="2" onChange={onChangeSta}/>
           クレジットカード
         </label>
-        <div>
-          <button type='submit'>注文する</button>
-        </div>
       </form>
     </div>
   );
