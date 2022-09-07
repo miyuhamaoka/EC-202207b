@@ -1,9 +1,21 @@
 import { useState } from 'react';
 import { User } from '../types';
 
-export default function Checkout({name, onChangeName, email, onChangeEmail, zipcode, onChangeZipcode, address, onChangeAddress, tel, onChangeTel, time, onChangeTime, onChangeSta}: any) {
-
-
+export default function Checkout({
+  name,
+  onChangeName,
+  email,
+  onChangeEmail,
+  zipcode,
+  onChangeZipcode,
+  address,
+  onChangeAddress,
+  tel,
+  onChangeTel,
+  time,
+  onChangeTime,
+  onChangeSta,
+}: any) {
   const now = new Date();
   const selectTime = new Date(time);
 
@@ -108,29 +120,39 @@ export default function Checkout({name, onChangeName, email, onChangeEmail, zipc
         <div>
           <label>
             <div>
-          配達日時：
-          {!time && <span>配達日時を入力して下さい</span>}
-          {diffTime <= 3 && (
-            <span>今から3時間後の日時をご入力ください</span>
-          )}
+              配達日時：
+              {!time && <span>配達日時を入力して下さい</span>}
+              {diffTime <= 3 && (
+                <span>今から3時間後の日時をご入力ください</span>
+              )}
             </div>
-          <div>
-          <input
-            type="datetime-local"
-            value={time}
-            onChange={onChangeTime}
-          />
-          </div>
+            <div>
+              <input
+                type="datetime-local"
+                value={time}
+                onChange={onChangeTime}
+              />
+            </div>
           </label>
         </div>
 
         <h3>お支払い方法</h3>
         <label>
-          <input type="radio" name="lavel" value="1" onChange={onChangeSta}/>
+          <input
+            type="radio"
+            name="lavel"
+            value="1"
+            onChange={onChangeSta}
+          />
           代金引換
         </label>
         <label>
-          <input type="radio" name="lavel" value="2" onChange={onChangeSta}/>
+          <input
+            type="radio"
+            name="lavel"
+            value="2"
+            onChange={onChangeSta}
+          />
           クレジットカード
         </label>
       </form>
