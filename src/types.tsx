@@ -60,13 +60,14 @@ export type CartItem = {
 export type Option = {
    id: number;
    name: string;
-  //  price: number
+   price: number;
+   checked:boolean;
 }
 
 export type OrderOption = {
   id: number;
   optionId: number;
   cartItemID: number;
-  option: Option
+  option: Option;
 }
 
