@@ -5,6 +5,7 @@ import Image from 'next/image';
 import ItemConfirm from '../../components/item_confirm';
 import Layout from '../../components/layout';
 import { useState } from 'react';
+import Router from 'next/router';
 
 export async function getServerSideProps({ req }: any) {
   // console.log('req', req.cookies.id);
@@ -15,7 +16,9 @@ export async function getServerSideProps({ req }: any) {
   const items = data[0].items;
   // console.log('data', items);
 
-  const userRes = await fetch(`http://localhost:8000/users/${req.cookies.id}`);
+  const userRes = await fetch(
+    `http://localhost:8000/users/${req.cookies.id}`
+  );
   const user = await userRes.json();
 
   if (!data) {
@@ -27,7 +30,7 @@ export async function getServerSideProps({ req }: any) {
   }
 }
 
-const OrderConfirm = ({ items , user }: any) => {
+const OrderConfirm = ({ items, user }: any) => {
   const [name, setName] = useState(user.name);
   const onChangeName = (e: any) => setName(e.target.value);
 
@@ -53,17 +56,29 @@ const OrderConfirm = ({ items , user }: any) => {
   };
 
   const onClickPost = async () => {
+    const now = new Date();
+    const selectTime = new Date(time);
+    const diffTime = (selectTime.getTime() - now.getTime()) / (60 * 60 * 1000);
 
+    const itemPrice = items.map((item: any) => {return item.subtotal})
+    const total = itemPrice.reduce((a: number, b: number) => a + b,0);
 
-  const now = new Date();
-  const selectTime = new Date(time);
-
-  const diffTime =
-    (selectTime.getTime() - now.getTime()) / (60 * 60 * 1000);
-
-    if(!name || !email || !zipcode || !address || !tel || !time || !sta || items.length === 0 || !email.match(
-      /^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/
-    ) || !zipcode.match(/^\d{3}-\d{4}$/) || !tel.match(/^\d{2,4}-\d{3,4}-\d{4}$/) || diffTime <= 3) {
+    if (
+      !name ||
+      !email ||
+      !zipcode ||
+      !address ||
+      !tel ||
+      !time ||
+      !sta ||
+      items.length === 0 ||
+      !email.match(
+        /^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/
+      ) ||
+      !zipcode.match(/^\d{3}-\d{4}$/) ||
+      !tel.match(/^\d{2,4}-\d{3,4}-\d{4}$/) ||
+      diffTime <= 3
+    ) {
       alert('入力内容に誤りがあります');
       return;
     } else {
@@ -71,7 +86,7 @@ const OrderConfirm = ({ items , user }: any) => {
         id: 0,
         userId: user.id,
         status: sta,
-        // totalPrice: number;
+        totalPrice: total,
         orderDate: now,
         distenationName: name,
         distenationEmail: email,
@@ -79,10 +94,10 @@ const OrderConfirm = ({ items , user }: any) => {
         distenationAddress: address,
         distenationTel: tel,
         deliveryTime: time,
-        // paymentMethod: number;
+        paymentMethod: sta,
         user: user,
-        orderltemList: items
-      }
+        orderltemList: items,
+      };
 
       const parameter = {
         method: 'POST',
@@ -100,20 +115,35 @@ const OrderConfirm = ({ items , user }: any) => {
       });
 
       console.log(result);
-      // Router.push('/users/login');
+      Router.push('/items/order_checkouted');
     }
-  }
+  };
 
   return (
     <>
-    <Layout />
+      <Layout />
       <div>
         <ItemConfirm item={items}></ItemConfirm>
       </div>
       <div>
-        <Checkout user={user} name={name} onChangeName={onChangeName} email={email} onChangeEmail={onChangeEmail} zipcode={zipcode} onChangeZipcode={onChangeZipcode} address={address} onChangeAddress={onChangeAddress} tel={tel} onChangeTel={onChangeTel} time={time} onChangeTime={onChangeTime} onChangeSta={onChangeSta}></Checkout>
+        <Checkout
+          user={user}
+          name={name}
+          onChangeName={onChangeName}
+          email={email}
+          onChangeEmail={onChangeEmail}
+          zipcode={zipcode}
+          onChangeZipcode={onChangeZipcode}
+          address={address}
+          onChangeAddress={onChangeAddress}
+          tel={tel}
+          onChangeTel={onChangeTel}
+          time={time}
+          onChangeTime={onChangeTime}
+          onChangeSta={onChangeSta}
+        ></Checkout>
       </div>
-      <button type='button' onClick={onClickPost}>
+      <button type="button" onClick={onClickPost}>
         この内容で注文する
       </button>
     </>
