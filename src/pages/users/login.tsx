@@ -1,7 +1,6 @@
 import { SyntheticEvent, useState } from 'react';
 
 import Link from 'next/link';
-// import fetch from 'unfetch';
 import { useRouter } from 'next/router';
 import loginStyle from '../../styles/login.module.css';
 import Image from 'next/image';
@@ -33,12 +32,11 @@ export default function Login() {
       })
         .then((res) => {
           console.log(res.status);
-          if (typeof document !== 'undefined') {
-            const date = new Date();
-            date.setDate(date.getDate() + 1); //秒や分
-            document.cookie = `id=${user.id};path=/;expires=${date};`;
-            document.cookie = `name=${user.name};path=/;expires=${date};`;
-          }
+                const date = new Date();
+                date.setDate(date.getDate() + 1) //秒や分
+      // expires=${date};//ログインの有効期限
+          document.cookie = `id=${user.id};path=/;expires=${date};`;
+          document.cookie = `name=${user.name};path=/;expires=${date};`;
           console.log(document.cookie);
           return router.push('/items');
         })
@@ -49,6 +47,7 @@ export default function Login() {
       alert('入力内容の確認をしてください');
     }
   }
+
 
   return (
     <>
