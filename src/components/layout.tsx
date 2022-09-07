@@ -8,6 +8,7 @@ import { User } from '../types';
 import Logout from '../pages/users/logout';
 
 
+
 export const getStaticProps: GetStaticProps = async () => {
   const response = await fetch('http://localhost:8000/users');
   const users = (await response.json());
@@ -18,6 +19,7 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 const Layout = ({users}:any) => {
+  
 
   return (
     <div className={layoutStyle.body}>
