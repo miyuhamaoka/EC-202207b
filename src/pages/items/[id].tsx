@@ -112,8 +112,8 @@ const ItemData = ({ detail }: any) => {
       <Head>
         <title>商品詳細</title>
       </Head>
+      <Layout></Layout>
       <div className={style.itemDetail}>
-        <Layout></Layout>
         <h1>{detail.name}</h1>
         <p>{detail.description}</p>
         <Image
