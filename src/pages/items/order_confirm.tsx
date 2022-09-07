@@ -23,17 +23,27 @@ export async function getServerSideProps({ req }: any) {
   }
 }
 
+const deleteUrlStorage = () => {
+  localStorage.clear();
+  if (document.cookie) {
+    const date = new Date();
+    date.setDate(date.getDate() + 1);
+    document.cookie = `url=/items/order_confirm;max-age=0;path=/;expires=${date};`;
+    console.log('ex');
+  }
+};
+
 const OrderConfirm = ({ items }: any) => {
   return (
     <>
-    <Layout />
+      <Layout />
       <div>
         <ItemConfirm item={items}></ItemConfirm>
       </div>
       <div>
         <Checkout></Checkout>
       </div>
-      <button>
+      <button onClick={() => deleteUrlStorage()}>
         <Link href="/items/order_checkouted">
           <a>この内容で注文する</a>
         </Link>
