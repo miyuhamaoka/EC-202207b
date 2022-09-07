@@ -17,20 +17,21 @@ const TimeAlert = () => {
   // console.log(diffTime);
 
   return (
-    <>
+    <div>
       <label>
         配達日時：
         {!time && <span>配達日時を入力して下さい</span>}
         {diffTime <= 3 && (
           <span>今から3時間後の日時をご入力ください</span>
         )}
+        <br></br>
         <input
           type="datetime-local"
           value={time}
           onChange={onChangeTime}
         />
       </label>
-    </>
+    </div>
   );
 };
 

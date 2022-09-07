@@ -172,13 +172,13 @@
       "zipcode": "123-456",
       "address": "東京",
       "telephone": "090-1234-5678",
-      "logined": "false"
+      "logined": true
     },
     {
       "id": 1,
       "name": "楽子",
       "email": "rakus@sumple.com",
-      "password": "rakus00",
+      "password": "raku0",
       "zipcode": "123-456",
       "address": "東京",
       "telephone": "090-1234-5678",
@@ -193,6 +193,7 @@
       "address": "東京",
       "telephone": "090-1234-5678",
       "logined": true
+    }
   ],
   "orderItems": [
     {
@@ -336,10 +337,37 @@
       }
     }
   ],
-  "orderItems": [],
   "cartItems": [
     {
-      "userId": 2,
+      "id": 1,
+      "userId": 1,
+      "items": [
+        {
+          "id": 36,
+          "type": "coffee",
+          "name": "エスプレッソ",
+          "description": "キャラメルのような甘く力強い味とナッツを感じさせる後味。スターバックスのすべてのエスプレッソ ビバレッジに使われているエスプレッソです。どうぞ、お早めにお召し上がりください。",
+          "price": 310,
+          "image_path": "/16.jpg",
+          "deleted": false,
+          "quantity": "3",
+          "subtotal": 930
+        },
+        {
+          "id": 24,
+          "type": "coffee",
+          "name": "チョコクッキー",
+          "description": "ソフトな食感のクッキー生地には、小麦の香ばしさが感じられるよう全粒粉を入れ、砂糖の一部にはブラウンシュガーを使い、コクのある甘さをプラスしています。風味豊かなスターバックスオリジナルのチョコレートチャンクがごろごろ入っていて、どこを食べてもチョコレートの味わいを存分に楽しめます。ショートサイズのマグカップの上に乗せられるくらいのサイズは、コーヒーと一緒に楽しむのにもぴったりです。",
+          "price": 190,
+          "image_path": "/4.jpg",
+          "deleted": false,
+          "quantity": 1,
+          "subtotal": 190
+        }
+      ]
+    },
+    {
+      "userId": 0,
       "items": [
         {
           "id": 23,
@@ -351,38 +379,12 @@
           "deleted": false,
           "quantity": 1,
           "subtotal": 250
-        },
-        {
-          "id": 27,
-          "type": "coffee",
-          "name": "カプチーノ",
-          "description": "リッチなエスプレッソに一気にミルクを注ぐことで、一口飲んだときからコーヒー感が感じられるビバレッジです。ベルベットのようにきめ細かいフォームミルクをお楽しみください。",
-          "price": 340,
-          "image_path": "/7.jpg",
-          "deleted": false,
-          "quantity": 1,
-          "subtotal": 340
         }
-      ]
-  ],
-  "order": [
-    {
-      "name": "typicode"
-    },
-    {
-      "id": 25,
-      "quantity": 1,
-      "item": {
-        "id": 25,
-        "type": "coffee",
-        "name": "カフェモカ",
-        "description": "エスプレッソにほろ苦いチョコレートシロップとミルクを加え、ホットビバレッジにはホイップクリームをトッピング。ちょっとした贅沢を楽しみたい方におすすめです。",
-        "price": 400,
-        "image_path": "/img_coffee/5.jpg",
-        "deleted": false
-      }
+      ],
+      "id": 2
     }
   ],
+  "order": [],
   "options": [
     {
       "id": 1,
