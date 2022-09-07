@@ -6,24 +6,29 @@ import ItemConfirm from '../../components/item_confirm';
 import Layout from '../../components/layout';
 
 export async function getServerSideProps({ req }: any) {
-  console.log('req', req.cookies.id);
+  // console.log('req', req.cookies.id);
   const res = await fetch(
     `http://localhost:8000/cartItems?userId=${req.cookies.id}`
   );
   const data = await res.json();
   const items = data[0].items;
-  console.log('data', items);
+  // console.log('data', items);
+
+  const userRes = await fetch(`http://localhost:8000/users/${req.cookies.id}`);
+  const user = await userRes.json();
 
   if (!data) {
     return { notFound: true };
   } else {
     return {
-      props: { items },
+      props: { items, user },
     };
   }
 }
 
-const OrderConfirm = ({ items }: any) => {
+
+
+const OrderConfirm = ({ items , user }: any) => {
   return (
     <>
     <Layout />
@@ -31,7 +36,7 @@ const OrderConfirm = ({ items }: any) => {
         <ItemConfirm item={items}></ItemConfirm>
       </div>
       <div>
-        <Checkout></Checkout>
+        <Checkout user={user}></Checkout>
       </div>
       <button>
         <Link href="/items/order_checkouted">
