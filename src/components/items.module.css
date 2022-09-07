@@ -1,10 +1,16 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap');
+
+.stylebody{
+  font-family: 'Kosugi Maru', sans-serif;
+}
+
 .searchForm{
   box-sizing: border-box;
   padding: 10px 0 0 35px;
 }
 .searchForm input[type="text"]{
-  background: #f4dcbc;
+  background: #ffe5c4;
   border: none;
   height: 2.0em;
   padding: 20px;
@@ -17,10 +23,19 @@
 .searchForm button[type="button"]{
   cursor: pointer;
   border: none;
-  background: #e0a14e;
+  background: #edac56;
   color: #fff;
   outline : none;
   padding: 9px;
+  margin-left:11px ;
+}
+.searchForm button[type="reset"]{
+  cursor: pointer;
+  border: none;
+  background: #7899ed;
+  color: #fff;
+  outline : none;
+  padding: 8px 5px 8px 5px;
   margin-left:11px ;
 }
 .searchForm ::-webkit-input-placeholder {
@@ -33,6 +48,7 @@
   padding: 0.8rem 0 0 2rem;
   display: block;
   width: 200px;
+  font-family: 'Kosugi Maru', sans-serif;
 }
 
 .itemWrapper{
@@ -57,6 +73,7 @@
   font-size: 15px;
   font-weight: bold;
   display: block;
+  font-family: 'Kosugi Maru', sans-serif;
 
 }
 
@@ -68,3 +85,139 @@
   border-bottom: 1px solid #f0a169;
   content: '';
 }
+
+/* id.tsx */
+
+.body{
+  font-family: 'Kosugi Maru', sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  padding: 2%;
+
+}
+
+.h1{
+  margin: 0 auto;
+  text-align: center;
+  font-size: 30px;
+  font-weight: normal;
+  /* padding: 40px; */
+  color: rgb(139, 140, 145);
+  margin: 1em auto;
+  padding: 1em;
+  width: 90%;
+  border: 5px double #8491c3; /*太さ・線種・色*/
+  color: rgb(114, 115, 117); /* 文字色 */
+  background-color: #fff; /* 背景色 */
+  border-radius: 1px; /*角の丸み*/
+   
+}
+
+
+.description{
+font-size: 18px;
+line-height: 1.7;
+width: 600px;
+overflow-wrap:  break-word;
+margin: 0 auto;
+margin-bottom: 40px;
+margin-top: 40px;
+}
+
+.left{
+  padding-right: 3%;
+  /* background-color: rgb(255, 248, 223); */
+}
+
+.right{
+  padding-top: 30px;
+  padding-left: 3%;
+}
+
+.h3{
+  font-size: 23px;
+  color: rgb(114, 115, 117);
+}
+
+.p{
+  font-size: 16px;
+}
+
+.p span{
+  color:red;
+}
+
+.checkbox{
+  padding: 1%;
+  text-align: left;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+
+.price{
+  padding: 5%;
+  font-size: 15px;
+}
+
+.price span{
+  font-size: 25px;
+}
+
+.form{
+  font-size: 15px;
+}
+
+.total{
+  font-size: 15px;
+  margin-top: 150px;
+  margin-bottom: 50px;
+}
+.total span{
+  font-size: 34px;
+}
+
+.select{
+  font-size: 20px;
+  margin-top: 20px;
+  
+}
+
+.btn{
+  width:180px;
+  display: block;
+  height: auto;
+  padding:15px;
+  color:#fff;
+  background:#f0952e;
+  border:none;
+  border-radius:3px;
+  outline: none;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  margin:auto;
+  box-shadow: 0px 1px 4px rgb(61, 66, 9);
+  -moz-box-shadow: 0px 1px 4px rgb(81, 70, 18);
+  -webkit-box-shadow: 0px 1px 4px rgb(76, 78, 16);
+  margin-bottom: 50px;
+
+}
+
+.btn:hover{
+  background:rgb(79, 92, 175);
+  color: white;
+  border:none;
+}
+
+.op{
+  margin-top: 30px;
+  border: 1.5px solid rgb(17, 99, 138);
+  padding: 2%;
+  padding-bottom: 10px;
+}
+
+
+
