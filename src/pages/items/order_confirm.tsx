@@ -1,6 +1,6 @@
 
 import Checkout from '../../components/checkout';
-import Link from 'next/Link';
+import Link from 'next/link';
 import Head from 'next/head';
 import Image from 'next/image';
 

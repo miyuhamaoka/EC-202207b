@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Link from 'next/Link';
+import Link from 'next/link';
 import Items from '../../components/menuList';
 import Layout from '../../components/layout';
 import ItemlistLayout from '../../components/itemlistlayout';
@@ -26,16 +26,16 @@ export default function Home() {
       </Head>
 
     <ItemlistLayout />
+    <div className={styles.stylebody}></div>
     {cookiesArray.map((cookie)=>{
       const cookieArray = cookie.split('=');
       if ( cookieArray[0] === ' name') {
         return(
           // eslint-disable-next-line react/jsx-key
-          <p>{`こんにちは${cookieArray.slice(1)}`}さん</p>
+          <p className={styles.hello}>{`こんにちは${cookieArray.slice(1)}`}さん</p>
           )
         }
       })}
-   
       <div>
         <Items></Items>
       </div>
