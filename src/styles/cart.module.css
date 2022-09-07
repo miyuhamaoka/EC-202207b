@@ -1,0 +1,52 @@
+.cart {
+  text-align: center;
+}
+
+.cart th {
+  padding: 16px;
+  border-bottom: 1px solid rgb(98, 92, 92);
+}
+
+.cart td {
+  padding: 16px;
+  border-bottom: 1px solid rgb(98, 92, 92);
+}
+
+.cartBtn {
+  width:180px;
+  display: block;
+  height: auto;
+  padding:15px;
+  color:#fff;
+  background:#f0952e;
+  border:none;
+  border-radius:3px;
+  outline: none;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  margin:auto;
+  box-shadow: 0px 1px 4px rgb(61, 66, 9);
+  -moz-box-shadow: 0px 1px 4px rgb(81, 70, 18);
+  -webkit-box-shadow: 0px 1px 4px rgb(76, 78, 16);
+  margin-bottom: 50px;
+  cursor: pointer;
+}
+
+.deleteBtn {
+  margin: 16px;
+  width: 64px;
+  height: 40px;
+  border-radius: 4px;
+  background: #e0a14e;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.cart button:hover {
+  background:rgb(79, 92, 175);
+  color: white;
+  border:none;
+}
