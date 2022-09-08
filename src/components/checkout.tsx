@@ -118,7 +118,7 @@ export default function Checkout({
             配達日時：
             {!time && <span>配達日時を入力して下さい</span>}
             {diffTime <= 3 && (
-              <span>今から3時間後の日時をご入力ください</span>
+              <span>今から3時間後以降の日時をご入力ください</span>
             )}
           </div>
           <div>
