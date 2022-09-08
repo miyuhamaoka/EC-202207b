@@ -15,8 +15,8 @@ import { bool } from 'yup';
 
 export async function getStaticPaths() {
   const res = await fetch('http://localhost:8000/items');
-  const number = await res.json();//items
-  const paths = number.map((num/*item*/: any) => {
+  const number = await res.json(); //items
+  const paths = number.map((num: /*item*/ any) => {
     return { params: { id: num.id.toString() } };
   });
   return {
@@ -27,7 +27,7 @@ export async function getStaticPaths() {
 
 // HTMLを生成するときに取ってきている。HTMLからとってくる
 export async function getStaticProps({ params }: any) {
-  console.log("params.id",params.id)
+  console.log('params.id', params.id);
   const res = await fetch(`http://localhost:8000/items/${params.id}`);
   const detail = await res.json();
   const response = await fetch(`http://localhost:8000/options/`);
@@ -50,16 +50,13 @@ const ItemData = ({
   detail: any;
   options: Option[];
 }) => {
-  const [checkedOp, setCheckedOp]: any = useState([]);
   const [num, setNum] = useState(1);
+  const [checkedOp, setCheckedOp] = useState<Option[]>([]);
   const router = useRouter();
 
-  if(router.isFallback){
-    return(
-      <p>お探しのページは存在しません</p>
-    )
+  if (router.isFallback) {
+    return <p>お探しのページは存在しません</p>;
   }
-
   const cookie = () => {
     if (typeof document !== 'undefined') {
       const cookies = document.cookie;
@@ -70,11 +67,9 @@ const ItemData = ({
     }
   };
   // console.log('cookie', cookie());
-if(!detail){
-console.log("detail",detail);
-}
-let total = num * detail.price;
-  
+  // if (!detail) {
+  //   console.log('detail', detail);
+  // }
   const Submit = async () => {
     const res = await fetch(
       `http://localhost:8000/cartItems?userId=${cookie()}`
@@ -102,14 +97,7 @@ let total = num * detail.price;
               priceL: detail.priceL,
               quantity: num,
               subtotal: num * detail.price,
-            },
-          ],
-          options: [
-            {
-              id: options[0].id,
-              name: options[0].name,
-              price: options[0].price,
-              checked: options[0].checked,
+              options: checkedOp,
             },
           ],
         }),
@@ -133,14 +121,7 @@ let total = num * detail.price;
               priceL: detail.priceL,
               quantity: num,
               subtotal: num * detail.price,
-              options:[
-                {
-                  id: options[0].id,
-                  name: options[0].name,
-                  price: options[0].price,
-                  checked: options[0].checked,
-                },
-              ],
+              options: checkedOp,
             },
           ],
         }),
@@ -148,16 +129,22 @@ let total = num * detail.price;
     }
   };
 
-  // const [opData, setOpData] = useState(false);
+  let total = num * detail.price;
+  // let optotal = num * detail.price + options.price;
 
-
-  const handleDone: any = (e: any) => {
-    setCheckedOp();
-    if (options[0].checked === true) {
-      total += options[0].price;
+  const handleDone: any = (e: any, op: Option) => {
+    console.log("e.target.checked",e.target.checked)
+    if (e.target.checked === false) {
+      // チェックが外れたらcheckedOpから取り除く
+      setCheckedOp(
+        checkedOp.filter((option: Option) => op.id !== option.id)
+      );
+    } else {
+      // チェックがついたらcheckedOpに加える
+      setCheckedOp([...checkedOp, op]);
     }
+
   };
-  // console.log(total);
 
   return (
     <>
@@ -208,8 +195,12 @@ let total = num * detail.price;
                   <div className={styles.checkbox} key={op.id}>
                     <input
                       type="checkbox"
-                      value={op.price}
-                      onChange={handleDone}
+                      id="checkbox"
+                      value={op.id}
+                      onChange={(e) =>
+                        handleDone(e,op)
+                      }
+                      // checked={}
                     />
                     <span className={styles.tac}>{op.name}</span>
                   </div>
