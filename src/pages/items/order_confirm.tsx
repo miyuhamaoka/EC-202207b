@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Head from 'next/head';
 import Image from 'next/image';
 import ItemConfirm from '../../components/item_confirm';
+import Layout from '../../components/layout';
+import Router from 'next/router';
 import Layout from '../../components/itemlistlayout';
 import { useState } from 'react';
 import Router from 'next/router';
@@ -30,6 +32,7 @@ export async function getServerSideProps({ req }: any) {
     };
   }
 }
+
 
 const OrderConfirm = ({ items, user }: any) => {
   const [name, setName] = useState(user.name);
@@ -122,6 +125,11 @@ const OrderConfirm = ({ items, user }: any) => {
       });
 
       console.log(result);
+     localStorage.clear();
+     if (document.cookie) {
+    const date = new Date();
+    date.setDate(date.getDate() + 1);
+    document.cookie = `url=/items/order_confirm;max-age=0;path=/;expires=${date};`;
       Router.push('/items/order_checkouted');
     }
   };

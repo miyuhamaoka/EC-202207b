@@ -166,16 +166,6 @@
   "users": [
     {
       "id": 1,
-      "name": "楽々　楽子",
-      "email": "rakus@sumple.com",
-      "password": "rakus00",
-      "zipcode": "123-456",
-      "address": "東京",
-      "telephone": "090-1234-5678",
-      "logined": true
-    },
-    {
-      "id": 1,
       "name": "楽子",
       "email": "rakus@sumple.com",
       "password": "raku0",
@@ -187,7 +177,7 @@
     {
       "id": 2,
       "name": "楽男",
-      "email": "rakus@sumple.com",
+      "email": "rakus２@sumple.com",
       "password": "raku0000",
       "zipcode": "123-456",
       "address": "東京",
@@ -365,23 +355,6 @@
           "subtotal": 190
         }
       ]
-    },
-    {
-      "userId": 0,
-      "items": [
-        {
-          "id": 23,
-          "type": "coffee",
-          "name": "Specialキャラメルドーナッツ",
-          "description": "ドーナツ生地の中に、なめらかで風味豊かなキャラメルフィリングを入れ、仕上げにキャラメルのビター感と香ばしさが楽しめるキャラメルコーティングをかけました。",
-          "price": 250,
-          "image_path": "/3.jpg",
-          "deleted": false,
-          "quantity": 1,
-          "subtotal": 250
-        }
-      ],
-      "id": 2
     }
   ],
   "order": [],

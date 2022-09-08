@@ -17,12 +17,10 @@ export default function Home() {
       setCookiesArray(array)
     }
   },[])
-
   return (
     <>
       <Head>
         <title>RakurakuCoffee</title>
-        <a rel="icon" href="favicon.ico" />
       </Head>
 
     <ItemlistLayout />
@@ -31,7 +29,7 @@ export default function Home() {
       if ( cookieArray[0] === ' name') {
         return(
           // eslint-disable-next-line react/jsx-key
-          <p>{`こんにちは${cookieArray.slice(1)}`}さん</p>
+          <p key={cookiesArray[0]}>{`こんにちは${cookieArray.slice(1)}`}さん</p>
           )
         }
       })}
