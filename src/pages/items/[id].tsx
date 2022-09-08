@@ -42,6 +42,12 @@ const ItemData = ({
   options: Option[];
 }) => {
   const [checkedOp, setCheckedOp] = useState<Option[]>([]);
+  const [num, setNum] = useState(1);
+  const router = useRouter();
+  if (router.isFallback) {
+    return <p>お探しのページは存在しません</p>;
+  } else {
+ 
   const cookie = () => {
     if (typeof document !== 'undefined') {
       if (document.cookie) {
@@ -55,17 +61,14 @@ const ItemData = ({
       }
     }
   };
-  const [num, setNum] = useState(1);
   let optionPrice = checkedOp.map((option: Option) => option.price);
-
   let optionTotal = optionPrice.reduce(
     (a: number, b: number) => a + b,
     0
   );
-
   let total = num * detail.price + optionTotal;
 
-  const router = useRouter();
+
   const direct = () => {
     if (cookie() !== undefined) {
       router.push(`/items/cart?userId=${cookie()}`);
@@ -276,6 +279,7 @@ const ItemData = ({
       </div>
     </>
   );
+            }
 };
 
 export default ItemData;

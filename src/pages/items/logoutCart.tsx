@@ -44,30 +44,39 @@ const LogoutCart = () => {
   };
 
   if (logoutCartItems.length === 0) {
-    return <p>カートにアイテムがありません</p>;
+    return (
+      <>
+        <Head>
+          <title>ショッピングカート（未ログイン）</title>
+        </Head>
+        <Layout />
+        <p>カートにアイテムがありません</p>
+      </>
+    );
   } else {
     return (
       <>
-      <Head>
-        <title>ショッピングカート（未ログイン）</title>
-      </Head>
-      <Layout />
+        <Head>
+          <title>ショッピングカート（未ログイン）</title>
+        </Head>
+        <Layout />
+        <div className={cartStyle.tbody}>
         <h1>ショッピングカート</h1>
         <h2>***ログインが必要です***</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>商品名</th>
-              <th>価格（税抜）</th>
-              <th>数量</th>
-              <th>小計</th>
-              <th>削除</th>
+        <table className={cartStyle.table}>
+          <thead className={cartStyle.thead}>
+            <tr className={cartStyle.tr}>
+              <th className={cartStyle.th}>商品名</th>
+              <th className={cartStyle.th}>価格（税抜）</th>
+              <th className={cartStyle.th}>数量</th>
+              <th className={cartStyle.th}>小計</th>
+              <th className={cartStyle.th}>削除</th>
             </tr>
           </thead>
           <tbody>
             {logoutCartItems.map((item: any, index) => (
-              <tr key={item.id}>
-                <td>
+              <tr key={item.id} className={cartStyle.tr}>
+                <td className={cartStyle.th}>
                   <Image
                     src={item.image_path}
                     width={100}
@@ -76,15 +85,24 @@ const LogoutCart = () => {
                   />
                   {item.name}
                 </td>
-                <td>{item.price}円</td>
-                <td>{item.quantity}個</td>
-                <td>{item.subtotal}円</td>
+                <td className={cartStyle.th}>{item.price}円</td>
+                <td className={cartStyle.th}>{item.quantity}個</td>
+                <td className={cartStyle.th}>
+                      {item.options.map((option: any) => (
+                        <>
+                          <p key={option.id}>{option.name}</p>
+                          <span>{option.price}円</span>
+                        </>
+                      ))}
+                    </td>
+                <td className={cartStyle.th}>{item.subtotal}円</td>
                 <td>
                   {
                     <button
                       type="button"
                       onMouseDown={() => onClickDelete(index)}
                       onClick={() => location.reload()}
+                      className={cartStyle.dbtn}
                     >
                       削除
                     </button>
@@ -94,6 +112,7 @@ const LogoutCart = () => {
             ))}
           </tbody>
         </table>
+        <div  className={cartStyle.price}>
         <h3>
           消費税:{Math.round(logoutTotal * 0.08).toLocaleString()}円
         </h3>
@@ -102,16 +121,18 @@ const LogoutCart = () => {
           {Math.round(logoutTotal * 1.08).toLocaleString()}
           円（税込）
         </h2>
-        <br />
+        </div>
         <button
           type="button"
           onClick={() => {
             judgeCookie();
             router.push('/users/login');
           }}
+          className={cartStyle.btn}
         >
           ログイン画面に進む
         </button>
+        </div>
       </>
     );
   }
