@@ -28,7 +28,6 @@ export async function getServerSideProps({ req }: any) {
   }
 }
 
-
 const OrderConfirm = ({ items, user }: any) => {
   const [name, setName] = useState(user.name);
   const onChangeName = (e: any) => setName(e.target.value);
@@ -82,7 +81,7 @@ const OrderConfirm = ({ items, user }: any) => {
       ) ||
       !zipcode.match(/^\d{3}-\d{4}$/) ||
       !tel.match(/^\d{2,4}-\d{3,4}-\d{4}$/) ||
-      diffTime <= 3
+      diffTime < 3
     ) {
       alert('入力内容に誤りがあります');
       return;
@@ -120,15 +119,15 @@ const OrderConfirm = ({ items, user }: any) => {
       });
 
       console.log(result);
-     localStorage.clear();
-     if (document.cookie) {
-    const date = new Date();
-    date.setDate(date.getDate() + 1);
-    document.cookie = `url=/items/order_confirm;max-age=0;path=/;expires=${date};`;
-      Router.push('/items/order_checkouted');
+      localStorage.clear();
+      if (document.cookie) {
+        const date = new Date();
+        date.setDate(date.getDate() + 1);
+        document.cookie = `url=/items/order_confirm;max-age=0;path=/;expires=${date};`;
+        Router.push('/items/order_checkouted');
+      }
     }
   };
-}
 
   return (
     <>

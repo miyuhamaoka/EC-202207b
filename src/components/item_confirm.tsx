@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import style from '../styles/item_confirm.module.css';
+import { Option } from '../types';
 
 const ItemConfirm = (props: any) => {
   const itemtotal = props.item.map((e: any) => e.subtotal);
@@ -20,12 +21,12 @@ const ItemConfirm = (props: any) => {
               <th>商品画像</th>
               <th>価格</th>
               <th>数量</th>
+              <th>オプション</th>
               <th>小計</th>
             </tr>
           </thead>
           <tbody>
             {props.item.map((n: any) => {
-              const subtotal = n.price * n.quantity;
               return (
                 <tr key={n.id}>
                   <td>{n.name}</td>
@@ -39,7 +40,17 @@ const ItemConfirm = (props: any) => {
                   </td>
                   <td>{n.price}円</td>
                   <td>{n.quantity}個</td>
-                  <td>{subtotal}円</td>
+                  <td>
+                    {n.options.map((option: Option) => {
+                      return (
+                        <>
+                          <p key={option.id}>{option.name}</p>
+                          <p>{option.price}円</p>
+                        </>
+                      );
+                    })}
+                  </td>
+                  <td>{n.subtotal}円</td>
                 </tr>
               );
             })}
