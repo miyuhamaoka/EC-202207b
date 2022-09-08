@@ -120,7 +120,7 @@ const ItemData = ({
               priceM: detail.priceM,
               priceL: detail.priceL,
               quantity: num,
-              subtotal: num * detail.price,
+              subtotal: num * detail.price + optionTotal,
               options: checkedOp,
             },
           ],
@@ -128,8 +128,11 @@ const ItemData = ({
       });
     }
   };
+  let optionPrice = checkedOp.map((option: Option) => option.price);
 
-  let total = num * detail.price;
+  let optionTotal = optionPrice.reduce((a:number, b:number) => a + b, 0);
+
+  let total = num * detail.price + optionTotal;
   // let optotal = num * detail.price + options.price;
 
   const handleDone: any = (e: any, op: Option) => {
