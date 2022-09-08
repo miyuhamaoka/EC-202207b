@@ -6,7 +6,8 @@ import Router from 'next/router';
 import { CartItem } from '../../types';
 import Layout from '../../components/itemlistlayout';
 import Image from 'next/image';
-import style from '../../styles/cart.module.css';
+import cartStyle from '../../styles/cart.module.css';
+
 
 export async function getServerSideProps({ query }: any) {
   // console.log(
@@ -70,7 +71,12 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
   };
 
   //消費税と商品合計に使用する価格の合計を取得 (商品無くなったら0がセットされる)
+
+
+
+
   const itemPrice = cartItem.items.map((e: any) => e.subtotal);
+
   const total = itemPrice.reduce((a: number, b: number) => a + b, 0);
 
   //商品の表示
@@ -79,63 +85,86 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
     if (cartItem.items.length > 0) {
       return (
         <>
-          <table align="center">
-            <thead>
-              <tr>
-                <th>商品名</th>
-                <th>価格（税抜）</th>
-                <th>数量</th>
-                <th>小計</th>
-                <td></td>
-              </tr>
-            </thead>
-            <tbody>
-              {cartItem.items.map((item: any) => (
-                <tr key={item.id}>
-                  <td>
-                    <Image
-                      src={item.image_path}
-                      width={100}
-                      height={100}
-                      alt={item.name}
-                    />
-                    <p>{item.name}</p>
-                  </td>
-                  <td>{item.price}円</td>
-                  <td>{item.quantity}個</td>
-                  <td>{item.subtotal}円</td>
-                  <td>
-                    <button onClick={() => onClickDelete(item.id)} className={style.deleteBtn}>
-                      削除
-                    </button>
-                  </td>
+          <div className={cartStyle.tbody}>
+            <table className={cartStyle.table}>
+              <thead className={cartStyle.thead}>
+                <tr className={cartStyle.tr}>
+                  <th className={cartStyle.th}>商品名</th>
+                  <th className={cartStyle.th}>価格（税抜）</th>
+                  <th className={cartStyle.th}>数量</th>
+                  <th className={cartStyle.th}>オプション</th>
+                  <th className={cartStyle.th}>小計</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-          <h3>消費税:{Math.round(total * 0.08)}円</h3>
-          <h2>ご注文金額合計:{Math.round(total * 1.08)}円（税込）</h2>
+              </thead>
+              <tbody>
+                {cartItem.items.map((item: any) => (
+                  <tr key={item.id} className={cartStyle.tr}>
+                    <td className={cartStyle.th}>
+                      <Image
+                        src={item.image_path}
+                        width={200}
+                        height={200}
+                        alt={item.name}
+                      />
+                      <p>{item.name}</p>
+                    </td>
+                    <td className={cartStyle.th}>{item.price}円</td>
+                    <td className={cartStyle.th}>
+                      {item.quantity}個
+                    </td>
+                    <td className={cartStyle.th}>
+                      {item.options.map((option: any) => (
+                        <>
+                          <p key={option.id}>{option.name}</p>
+                          <span>{option.price}円</span>
+                        </>
+                      ))}
+                    </td>
+                    <td className={cartStyle.th}>
+                      {item.subtotal}円
+                    </td>
+                    <td>
+                      <button
+                        className={cartStyle.dbtn}
+                        onClick={() => onClickDelete(item.id)}
+                      >
+                        削除
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <div className={cartStyle.price}>
+              <h3>消費税:{Math.round(total * 0.08)}円</h3>
+              <h2>
+                ご注文金額合計:{Math.round(total * 1.08)}円（税込）
+              </h2>
+            </div>
 
-          <Link href="/items/order_confirm">
-            <button type="button" className={style.cartBtn}>注文に進む</button>
-          </Link>
+            <Link href="/items/order_confirm">
+              <button className={cartStyle.btn} type="button">
+                注文に進む
+              </button>
+            </Link>
+          </div>
         </>
       );
     } else {
       return <p>カートに商品がありません</p>;
     }
   }
+
+
+
   return (
     <>
       <Head>
         <title>ショッピングカート</title>
       </Head>
       <Layout />
-      <section className={style.cart}>
-        <h1>ショッピングカート</h1>
-
-        <Render />
-      </section>
+      <h1 className={cartStyle.h1}>ショッピングカート</h1>
+      <Render />
     </>
   );
 };

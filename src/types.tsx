@@ -55,14 +55,27 @@ export type CartItem = {
 };
 
 export type Option = {
+<<<<<<< HEAD
+   id: number;
+   name: string;
+   price: number;
+   checked:boolean;
+}
+=======
   id: number;
   name: string;
   //  price: number
 };
+>>>>>>> main
 
 export type OrderOption = {
   id: number;
   optionId: number;
   cartItemID: number;
   option: Option;
+<<<<<<< HEAD
+}
+
+=======
 };
+>>>>>>> main

@@ -1,7 +1,6 @@
 import { SyntheticEvent, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-// import fetch from 'unfetch';
 import { useRouter } from 'next/router';
 import loginStyle from '../../styles/login.module.css';
 import Image from 'next/image';
@@ -94,6 +93,7 @@ export default function Login() {
     setIsRevealPassword((prevState) => !prevState);
   };
 
+
   return (
     <>
     <Head>
@@ -145,7 +145,7 @@ export default function Login() {
             <button className={loginStyle.loginbtn}>ログイン</button>
           </div>
         </form>
-        <Link href="./register">
+        <Link href="/users/register">
           <a className={loginStyle.userregister}>
             ユーザ登録はこちら
           </a>

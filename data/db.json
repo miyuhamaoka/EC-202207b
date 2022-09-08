@@ -168,7 +168,7 @@
       "id": 1,
       "name": "楽子",
       "email": "rakus@sumple.com",
-      "password": "raku0",
+      "password": "rakus00",
       "zipcode": "123-456",
       "address": "東京",
       "telephone": "090-1234-5678",
@@ -327,51 +327,44 @@
       }
     }
   ],
-  "cartItems": [
-    {
-      "id": 1,
-      "userId": 1,
-      "items": [
-        {
-          "id": 36,
-          "type": "coffee",
-          "name": "エスプレッソ",
-          "description": "キャラメルのような甘く力強い味とナッツを感じさせる後味。スターバックスのすべてのエスプレッソ ビバレッジに使われているエスプレッソです。どうぞ、お早めにお召し上がりください。",
-          "price": 310,
-          "image_path": "/16.jpg",
-          "deleted": false,
-          "quantity": "3",
-          "subtotal": 930
-        },
-        {
-          "id": 24,
-          "type": "coffee",
-          "name": "チョコクッキー",
-          "description": "ソフトな食感のクッキー生地には、小麦の香ばしさが感じられるよう全粒粉を入れ、砂糖の一部にはブラウンシュガーを使い、コクのある甘さをプラスしています。風味豊かなスターバックスオリジナルのチョコレートチャンクがごろごろ入っていて、どこを食べてもチョコレートの味わいを存分に楽しめます。ショートサイズのマグカップの上に乗せられるくらいのサイズは、コーヒーと一緒に楽しむのにもぴったりです。",
-          "price": 190,
-          "image_path": "/4.jpg",
-          "deleted": false,
-          "quantity": 1,
-          "subtotal": 190
-        }
-      ]
-    }
-  ],
+
+  "cartItems": [],
   "order": [],
+
   "options": [
     {
       "id": 1,
       "name": "おしぼり",
-      "price": 100
+      "price": 0
     },
     {
       "id": 2,
       "name": "ストロー",
-      "price": 100
+      "price": 0
     },
     {
       "id": 3,
       "name": "紙袋",
+      "price": 0
+    },
+    {
+      "id": 4,
+      "name": "スプーン",
+      "price": 0
+    },
+    {
+      "id": 5,
+      "name": "フォーク",
+      "price": 0
+    },
+    {
+      "id": 6,
+      "name": "除菌ウェットティッシュ",
+      "price": 100
+    },
+    {
+      "id": 7,
+      "name": "保冷剤",
       "price": 100
     }
   ]

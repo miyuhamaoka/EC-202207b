@@ -24,16 +24,16 @@ export default function Home() {
       </Head>
 
     <ItemlistLayout />
+    <div className={styles.stylebody}></div>
     {cookiesArray.map((cookie)=>{
       const cookieArray = cookie.split('=');
       if ( cookieArray[0] === ' name') {
         return(
           // eslint-disable-next-line react/jsx-key
-          <p key={cookiesArray[0]}>{`こんにちは${cookieArray.slice(1)}`}さん</p>
+          <p key={cookiesArray[0]} className={styles.hello}>{`こんにちは${cookieArray.slice(1)}`}さん</p>
           )
         }
       })}
-   
       <div>
         <Items></Items>
       </div>
