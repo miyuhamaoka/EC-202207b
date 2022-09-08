@@ -2,7 +2,8 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import Layout from '../../components/layout';
+import Layout from '../../components/itemlistlayout';
+import style from '../../styles/item_detail.module.css'
 
 export async function getStaticPaths() {
   const res = await fetch('http://localhost:8000/items');
@@ -171,8 +172,8 @@ const ItemData = ({ detail }: any) => {
       <Head>
         <title>商品詳細</title>
       </Head>
-      <div>
-        <Layout></Layout>
+      <Layout></Layout>
+      <div className={style.itemDetail}>
         <h1>{detail.name}</h1>
         <p>{detail.description}</p>
         <Image
@@ -183,7 +184,7 @@ const ItemData = ({ detail }: any) => {
         />
         <p>金額：{detail.price}円</p>
       </div>
-      <form method="post">
+      <form method="post" className={style.itemDetailForm}>
         <p>
           数量：
           <select
@@ -198,7 +199,7 @@ const ItemData = ({ detail }: any) => {
           </select>{' '}
           個
         </p>
-        <p>この商品の金額：{total}円</p>
+        <p className={style.total}>この商品の金額：{total}円</p>
         <button
           type="button"
           onMouseDown={() => Submit()}

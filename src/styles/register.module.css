@@ -46,7 +46,9 @@
 
 .registerForm button:hover{
   cursor: pointer;
-  opacity: .7;
+  background:rgb(79, 92, 175);
+  color: white;
+  border:none;
 }
 
 .inputPass {

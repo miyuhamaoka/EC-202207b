@@ -37,7 +37,7 @@ const ItemlistLayout = ({users}:any) => {
         </div>
         <ul className={layoutStyle.link}>
           <li>
-            <Link href='items/cart'>
+            <Link href='../items/cart'>
               <a>ショッピングカート</a>
             </Link>
           </li>

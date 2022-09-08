@@ -167,8 +167,8 @@
     {
       "id": 1,
       "name": "楽子",
-      "email": "rakus1@sumple.com",
-      "password": "rakus00",
+      "email": "rakus@sumple.com",
+      "password": "raku0",
       "zipcode": "123-456",
       "address": "東京",
       "telephone": "090-1234-5678",
@@ -177,7 +177,7 @@
     {
       "id": 2,
       "name": "楽男",
-      "email": "rakus@sumple.com",
+      "email": "rakus２@sumple.com",
       "password": "raku0000",
       "zipcode": "123-456",
       "address": "東京",
@@ -329,36 +329,20 @@
   ],
   "cartItems": [
     {
-      "userId": 2,
-      "items": [
-        {
-          "id": 26,
-          "type": "coffee",
-          "name": "カフェラテ",
-          "description": "最も人気のあるエスプレッソ ビバレッジ。リッチなエスプレッソにスチームミルクを注ぎ、フォームミルクを丁寧にトッピングしました。ミルキーな味わいで気持ちを温かくしてくれます。",
-          "price": 340,
-          "image_path": "/6.jpg",
-          "deleted": false,
-          "quantity": 1,
-          "subtotal": 340
-        },
-        {
-          "id": 32,
-          "type": "coffee",
-          "name": "抹茶クリームフラペチーノ",
-          "description": "世界中で様々な形で飲用されている抹茶ですが、スターバックスではミルクと甘みを加えて氷でブレンドしたリフレッシングなフラペチーノ®に仕上げました。",
-          "price": 490,
-          "image_path": "/12.jpg",
-          "deleted": false,
-          "quantity": "5",
-          "subtotal": 2450
-        }
-      ],
-      "id": 1
-    },
-    {
+      "id": 1,
       "userId": 1,
       "items": [
+        {
+          "id": 36,
+          "type": "coffee",
+          "name": "エスプレッソ",
+          "description": "キャラメルのような甘く力強い味とナッツを感じさせる後味。スターバックスのすべてのエスプレッソ ビバレッジに使われているエスプレッソです。どうぞ、お早めにお召し上がりください。",
+          "price": 310,
+          "image_path": "/16.jpg",
+          "deleted": false,
+          "quantity": "3",
+          "subtotal": 930
+        },
         {
           "id": 24,
           "type": "coffee",
@@ -369,66 +353,11 @@
           "deleted": false,
           "quantity": 1,
           "subtotal": 190
-        },
-        {
-          "id": 23,
-          "type": "coffee",
-          "name": "Specialキャラメルドーナッツ",
-          "description": "ドーナツ生地の中に、なめらかで風味豊かなキャラメルフィリングを入れ、仕上げにキャラメルのビター感と香ばしさが楽しめるキャラメルコーティングをかけました。",
-          "price": 250,
-          "image_path": "/3.jpg",
-          "deleted": false,
-          "quantity": 1,
-          "subtotal": 250
-        },
-        {
-          "id": 36,
-          "type": "coffee",
-          "name": "エスプレッソ",
-          "description": "キャラメルのような甘く力強い味とナッツを感じさせる後味。スターバックスのすべてのエスプレッソ ビバレッジに使われているエスプレッソです。どうぞ、お早めにお召し上がりください。",
-          "price": 310,
-          "image_path": "/16.jpg",
-          "deleted": false,
-          "quantity": "4",
-          "subtotal": 1240
-        },
-        {
-          "id": 28,
-          "type": "coffee",
-          "name": "キャラメルマキアート",
-          "description": "バニラシロップとスチームミルクのコンビネーションになめらかなフォームミルクをたっぷりのせ、その上からエスプレッソを注いでアクセントを付けました。仕上げにオリジナルキャラメルソースをトッピングしています。",
-          "price": 390,
-          "image_path": "/8.jpg",
-          "deleted": false,
-          "quantity": 1,
-          "subtotal": 390
-        },
-        {
-          "id": 22,
-          "type": "coffee",
-          "name": "エスプレッソフラペチーノ",
-          "description": "ひと口目に感じるエスプレッソは「リストレット」という方法で抽出した力強い香りと優しい苦味を、ふた口目は全体を混ぜて、こだわりのクリームから来るアフォガートのような味わいをお楽しみください。リフレッシュしたい時や、ほっとひと息つきたい時にも、何度でも飲みたくなるフラペチーノ®です。",
-          "price": 530,
-          "image_path": "/2.jpg",
-          "deleted": false,
-          "quantity": "2",
-          "subtotal": 1060
-        },
-        {
-          "id": 30,
-          "type": "coffee",
-          "name": "バニラ クリーム フラペチーノ",
-          "description": "ミルクとバニラシロップを氷とブレンドし、ホイップクリームをトッピングした、クリーミーな味わいのフローズン ビバレッジ。真っ白な見た目も爽やかです。ミルクとバニラシロップというシンプルな組み合わせはいろいろなカスタマイズとも好相性。",
-          "price": 490,
-          "image_path": "/10.jpg",
-          "deleted": false,
-          "quantity": 1,
-          "subtotal": 490
         }
-      ],
-      "id": 2
+      ]
     }
   ],
+  "order": [],
   "options": [
     {
       "id": 1,
