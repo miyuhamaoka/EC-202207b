@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import ItemConfirm from '../../components/item_confirm';
 import Layout from '../../components/layout';
+import Router from 'next/router';
 
 export async function getServerSideProps({ req }: any) {
   console.log('req', req.cookies.id);
@@ -29,7 +30,7 @@ const deleteUrlStorage = () => {
     const date = new Date();
     date.setDate(date.getDate() + 1);
     document.cookie = `url=/items/order_confirm;max-age=0;path=/;expires=${date};`;
-    console.log('ex');
+    Router.push('/items/order_checkouted')
   }
 };
 
@@ -44,9 +45,7 @@ const OrderConfirm = ({ items }: any) => {
         <Checkout></Checkout>
       </div>
       <button onClick={() => deleteUrlStorage()}>
-        <Link href="/items/order_checkouted">
-          <a>この内容で注文する</a>
-        </Link>
+          この内容で注文する
       </button>
     </>
   );

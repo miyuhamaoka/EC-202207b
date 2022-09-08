@@ -2,6 +2,9 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import Layout from '../../components/layout';
+import Head from 'next/head';
+import layoutStyle from '../../styles/layout.module.css';
 
 const LogoutCart = () => {
   const router = useRouter();
@@ -45,8 +48,12 @@ const LogoutCart = () => {
   } else {
     return (
       <>
-        <h1>カート商品</h1>
-        <h2>ログインが必要です</h2>
+      <Head>
+        <title>ショッピングカート（未ログイン）</title>
+      </Head>
+      <Layout />
+        <h1>ショッピングカート</h1>
+        <h2 id={layoutStyle.loginneed}>***ログインが必要です***</h2>
         <table>
           <thead>
             <tr>
@@ -103,7 +110,7 @@ const LogoutCart = () => {
             router.push('/users/login');
           }}
         >
-          ログインに進む
+          ログイン画面に進む
         </button>
       </>
     );

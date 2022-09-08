@@ -352,17 +352,6 @@
           "deleted": false,
           "quantity": "5",
           "subtotal": 2450
-        },
-        {
-          "id": 27,
-          "type": "coffee",
-          "name": "カプチーノ",
-          "description": "リッチなエスプレッソに一気にミルクを注ぐことで、一口飲んだときからコーヒー感が感じられるビバレッジです。ベルベットのようにきめ細かいフォームミルクをお楽しみください。",
-          "price": 340,
-          "image_path": "/7.jpg",
-          "deleted": false,
-          "quantity": 1,
-          "subtotal": 340
         }
       ],
       "id": 1
@@ -424,6 +413,17 @@
           "deleted": false,
           "quantity": "2",
           "subtotal": 1060
+        },
+        {
+          "id": 30,
+          "type": "coffee",
+          "name": "バニラ クリーム フラペチーノ",
+          "description": "ミルクとバニラシロップを氷とブレンドし、ホイップクリームをトッピングした、クリーミーな味わいのフローズン ビバレッジ。真っ白な見た目も爽やかです。ミルクとバニラシロップというシンプルな組み合わせはいろいろなカスタマイズとも好相性。",
+          "price": 490,
+          "image_path": "/10.jpg",
+          "deleted": false,
+          "quantity": 1,
+          "subtotal": 490
         }
       ],
       "id": 2
