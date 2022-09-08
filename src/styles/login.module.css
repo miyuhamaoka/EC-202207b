@@ -18,6 +18,7 @@
 
 .lavel{
   padding-bottom: 2%;
+  position: relative;
 }
 
 .loginbtn{
@@ -79,4 +80,10 @@
 .button:hover{
   background:#f79e10;
   color:white;
+}
+
+.eyeBtn {
+  position: absolute;
+  top: 14px;
+  right: 20px;
 }

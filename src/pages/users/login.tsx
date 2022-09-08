@@ -1,5 +1,5 @@
 import { SyntheticEvent, useState } from 'react';
-
+import Head from 'next/head';
 import Link from 'next/link';
 // import fetch from 'unfetch';
 import { useRouter } from 'next/router';
@@ -50,8 +50,21 @@ export default function Login() {
     }
   }
 
+  const [isRevealPassword, setIsRevealPassword] = useState(false);
+
+  const togglePassword = () => {
+    setIsRevealPassword((prevState) => !prevState);
+  };
+
   return (
     <>
+    <Head>
+        <title>ログイン</title>
+        <link
+          href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+          rel="stylesheet"
+        ></link>
+      </Head>
       <Layout />
       <div className={loginStyle.primary}>
         <form
@@ -74,12 +87,22 @@ export default function Login() {
             <div className={loginStyle.lavel}>
               <input
                 className={loginStyle.forminput}
-                type="password"
+                type={isRevealPassword ? 'text' : 'password'}
                 placeholder="Password"
                 name="pass"
                 id="password"
                 onChange={(e) => handleChange(e)}
               />
+              <div
+                onClick={togglePassword}
+                className={loginStyle.eyeBtn}
+              >
+                {isRevealPassword ? (
+                  <i className="fas fa-eye" />
+                ) : (
+                  <i className="fas fa-eye-slash" />
+                )}
+              </div>
             </div>
             <button className={loginStyle.loginbtn}>ログイン</button>
           </div>

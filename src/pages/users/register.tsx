@@ -124,7 +124,7 @@ const Register = ({ users }: Users) => {
     return;
   }
 
-  // パスワード非表示設定
+  // パスワード表示/非表示設定
 
   const [isRevealPassword, setIsRevealPassword] = useState(false);
 
