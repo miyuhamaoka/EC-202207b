@@ -1,10 +1,5 @@
 import Checkout from '../../components/checkout';
-import Link from 'next/link';
-import Head from 'next/head';
-import Image from 'next/image';
 import ItemConfirm from '../../components/item_confirm';
-import Layout from '../../components/layout';
-import Router from 'next/router';
 import Layout from '../../components/itemlistlayout';
 import { useState } from 'react';
 import Router from 'next/router';
@@ -133,6 +128,7 @@ const OrderConfirm = ({ items, user }: any) => {
       Router.push('/items/order_checkouted');
     }
   };
+}
 
   return (
     <>

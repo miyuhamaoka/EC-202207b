@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import Layout from '../../components/layout';
 import Head from 'next/head';
-import layoutStyle from '../../styles/layout.module.css';
+import cartStyle from '../../styles/cart.module.css';
 
 const LogoutCart = () => {
   const router = useRouter();
@@ -53,7 +53,7 @@ const LogoutCart = () => {
       </Head>
       <Layout />
         <h1>ショッピングカート</h1>
-        <h2 id={layoutStyle.loginneed}>***ログインが必要です***</h2>
+        <h2>***ログインが必要です***</h2>
         <table>
           <thead>
             <tr>
