@@ -17,9 +17,10 @@ export const Logout = () => {
   };
   return (
     <>
-      <Link href="/users/login" onClick={onclickHundle}>
-        <a>ログアウト</a>
-      </Link>
+    <Link  href="/users/login">
+      <a onClick={onclickHundle}>ログアウト
+      </a>
+    </Link>
     </>
   );
 };

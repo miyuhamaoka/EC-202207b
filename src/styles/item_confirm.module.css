@@ -1,0 +1,65 @@
+.confirm {
+  text-align: center;
+}
+.container {
+  margin: 16px auto;
+  /* border: 1px solid; */
+}
+
+.container table {
+  border-spacing: 0px;
+}
+
+.container th {
+  padding: 16px;
+  border-bottom: 1px solid rgb(98, 92, 92);
+}
+
+.container td {
+  padding: 16px;
+  border-bottom: 1px solid rgb(98, 92, 92);
+}
+
+.price {
+  padding: 8px;
+}
+
+.price p {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.destinationForm {
+  padding-bottom: 24px;
+}
+
+.destinationForm div {
+  margin-top: 8px;
+}
+
+.destinationForm div > input {
+  width: 250px;
+}
+
+.destinationForm span {
+  color: red;
+}
+
+.confirm button {
+  margin: 16px;
+  width: 320px;
+  height: 40px;
+  border-radius: 10px;
+  background: #e0a14e;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.confirm button:hover {
+  cursor: pointer;
+  background:rgb(79, 92, 175);
+  color: white;
+  border:none;
+}

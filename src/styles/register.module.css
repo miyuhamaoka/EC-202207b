@@ -1,5 +1,5 @@
 .registerForm {
-  /* background:#eee; */
+  /* background:#000000; */
   border-radius: 4px;
   margin: 16px auto 0;
   width: 60%;
@@ -9,6 +9,8 @@
 
 .registerForm fieldset {
   border: none;
+  margin: 0 auto;
+  width: 650px;
 }
 
 .registerForm legend {
@@ -16,7 +18,7 @@
 }
 
 .registerForm input {
-  width: 95%;
+  width: 650px;
   height: 24px;
   border: 1px solid rgba(203, 203, 209, 0.9);
   border-radius: 4px;
@@ -29,13 +31,14 @@
 .registerForm fieldset>div {
   margin-top: 12px;
   font-size: 14px;
+  width: 650px;
 }
 
 .registerForm button{
   color: white;
   height: 28px;
   border-radius: 4px;
-  background: #1976d2;
+  background: #e0a14e;
   border: none;
   margin-bottom: 4px;
   margin-right: 16px;
@@ -43,5 +46,19 @@
 
 .registerForm button:hover{
   cursor: pointer;
-  opacity: .7;
+  background:rgb(79, 92, 175);
+  color: white;
+  border:none;
+}
+
+.inputPass {
+  position: relative;
+}
+
+.revealPass {
+  color: black;
+  left: auto;
+  position: absolute;
+  top: 4px;
+  right: 18px;
 }

@@ -1,9 +1,10 @@
 import Head from 'next/head';
 import Router from 'next/router';
 import React, { useState } from 'react';
-import Layout from '../../components/layout';
 import { User } from '../../types';
 import register from '../../styles/register.module.css';
+import ItemlistLayout from '../../components/itemlistlayout';
+import TimeAlert from '../../components/time_alert';
 
 // ユーザ情報を取得
 export const getStaticProps = async () => {
@@ -11,13 +12,13 @@ export const getStaticProps = async () => {
   const users = await res.json();
 
   return {
-    props: { users }
+    props: { users },
   };
 };
 
 // ユーザーのかたまりを型ガード
 type Users = {
-  users: User[]
+  users: User[];
 };
 
 const Register = ({ users }: Users) => {
@@ -46,80 +47,39 @@ const Register = ({ users }: Users) => {
   const onChangeConfirmationPassword = (e: any) =>
     setConfirmationPassword(e.target.value);
 
-    // 登録情報を送信
+  // 登録情報を送信
   async function postEvent(e: any) {
-
     // 無効な入力値で送信されないために初めにキャンセルする
     e.preventDefault();
 
-    // 入力値を制御
-    const zipcodePattern = /^[0-9]{3}-[0-9]{4}$/;
-    const telephonePattern = /^\d{2,4}-\d{3,4}-\d{4}$/;
-    const emailPattern = /.+@.+\..+/;
-
     // 登録済みのメールアドレスを取得し、重複してないかチェック
-    function userEmails ({ users }: Users) {
-      const emailArr = users.map((user: User) => user.email)
+    function userEmails({ users }: Users) {
+      const emailArr = users.map((user: User) => user.email);
       return emailArr.includes(email);
-    };
+    }
 
-    if (!name) {
-      alert('名前を入力して下さい');
+    if (
+      !name ||
+      !email ||
+      !email.match(/.+@.+\..+/) ||
+      !zipcode ||
+      !zipcode.match(/^[0-9]{3}-[0-9]{4}$/) ||
+      !zipcode.match(/-/) ||
+      !address ||
+      !phoneNumber ||
+      !phoneNumber.match(/^\d{2,4}-\d{3,4}-\d{4}$/) ||
+      !phoneNumber.match(/-/) ||
+      !password ||
+      !(8 < password.length && password.length < 16) ||
+      !confirmationPassword ||
+      password === confirmationPassword
+    ) {
+      alert('入力エラーがあります');
       return;
-    }
-    else if (!email) {
-      alert('メールアドレスを入力して下さい');
-      return;
-    }
-    else if (userEmails({ users })) {
+    } else if (userEmails({ users })) {
       alert('そのメールアドレスはすでに使われています');
       return;
-    }
-    else if (!emailPattern.test(email)) {
-      alert('メールアドレスの形式が不正です');
-      return;
-    }
-    else if (!zipcode) {
-      alert('郵便番号を入力して下さい');
-      return;
-    }
-    else if (!zipcodePattern.test(zipcode)) {
-      alert('郵便番号はXXX-XXXXの形式で入力してください');
-      return;
-    }
-    else if (!address) {
-      alert('住所を入力して下さい');
-      return;
-    }
-    else if (!phoneNumber) {
-      alert('電話番号を入力して下さい');
-      return;
-    }
-    else if (!telephonePattern.test(phoneNumber)) {
-      alert('電話番号はXXXX-XXXX-XXXXの形式で入力してください');
-      return;
-    }
-    else if (!password) {
-      alert('パスワードを入力して下さい');
-      return;
-    }
-    else if (16 < password.length) {
-      alert('パスワードは８文字以上１６文字以内で設定してください');
-      return;
-    }
-    else if (password.length < 8) {
-      alert('パスワードは８文字以上１６文字以内で設定してください');
-      return;
-    }
-    else if (!confirmationPassword) {
-      alert('確認用パスワードを入力して下さい');
-      return;
-    }
-    else if (password !== confirmationPassword) {
-      alert('パスワードと確認用パスワードが不一致です');
-      return;
-    }
-    else {
+    } else {
       const postParam: User = {
         name: name,
         email: email,
@@ -129,7 +89,7 @@ const Register = ({ users }: Users) => {
         address: address,
         telephone: phoneNumber,
         id: 0,
-        logined: false
+        logined: false,
       };
 
       const parameter = {
@@ -150,7 +110,7 @@ const Register = ({ users }: Users) => {
       console.log(result);
       Router.push('/users/login');
     }
-  };
+  }
 
   // フォームの入力値をクリアにする
   function clearFormAll() {
@@ -162,20 +122,38 @@ const Register = ({ users }: Users) => {
     setPassword('');
     setConfirmationPassword('');
     return;
+  }
+
+  // パスワード表示/非表示設定
+
+  const [isRevealPassword, setIsRevealPassword] = useState(false);
+
+  const togglePassword = () => {
+    setIsRevealPassword((prevState) => !prevState);
   };
 
   return (
     <section>
       <Head>
         <title>ユーザ登録</title>
+        <link
+          href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+          rel="stylesheet"
+        ></link>
       </Head>
-      <Layout></Layout>
-      <form method="post" action="#" onSubmit={postEvent} className={register.registerForm}>
+      <ItemlistLayout />
+      <form
+        method="post"
+        action="#"
+        onSubmit={postEvent}
+        className={register.registerForm}
+      >
         <fieldset>
           <legend>ユーザ登録</legend>
           <div>
             <label htmlFor="name">
-              名前:<span>名前を入力してください</span>
+              名前:
+              {!name && <span>名前を入力してください</span>}
             </label>
             <div>
               <input
@@ -191,7 +169,12 @@ const Register = ({ users }: Users) => {
           <div>
             <label htmlFor="email">
               メールアドレス:
-              <span>メールアドレスを入力してください</span>
+              {!email && (
+                <span>メールアドレスを入力してください</span>
+              )}
+              {!email.match(/.+@.+\..+/) && email.length >= 1 && (
+                <span>メールアドレスの形式が不正です</span>
+              )}
             </label>
             <div>
               <input
@@ -206,7 +189,17 @@ const Register = ({ users }: Users) => {
           </div>
           <div>
             <label htmlFor="zipcode">
-              郵便番号:<span>郵便番号を入力してください</span>
+              郵便番号:
+              {!zipcode && <span>郵便番号を入力してください</span>}
+              {!zipcode.match(/^[0-9]{3}-[0-9]{4}$/) &&
+                zipcode.length >= 1 && (
+                  <span>
+                    郵便番号はXXX-XXXXの形式で入力してください
+                  </span>
+                )}
+              {!zipcode.match(/-/) && zipcode.length >= 1 && (
+                <span> / -(ハイフン)を入力してください</span>
+              )}
             </label>
             <div>
               <input
@@ -221,7 +214,8 @@ const Register = ({ users }: Users) => {
           </div>
           <div>
             <label htmlFor="address">
-              住所:<span>住所を入力してください</span>
+              住所:
+              {!address && <span>住所を入力してください</span>}
             </label>
             <div>
               <input
@@ -236,11 +230,23 @@ const Register = ({ users }: Users) => {
           </div>
           <div>
             <label htmlFor="phoneNumber">
-              電話番号:<span>電話番号を入力してください</span>
+              電話番号:
+              {!phoneNumber && (
+                <span>電話番号を入力してください</span>
+              )}
+              {!phoneNumber.match(/^\d{2,4}-\d{3,4}-\d{4}$/) &&
+                phoneNumber.length >= 1 && (
+                  <span>
+                    電話番号はXXXX-XXXX-XXXXの形式で入力してください
+                  </span>
+                )}
+              {!phoneNumber.match(/-/) && phoneNumber.length >= 1 && (
+                <span> / -(ハイフン)を入力してください</span>
+              )}
             </label>
             <div>
               <input
-                type="text"
+                type="tel"
                 name="phoneNumber"
                 placeholder="Number"
                 id="phoneNumber"
@@ -251,38 +257,79 @@ const Register = ({ users }: Users) => {
           </div>
           <div>
             <label htmlFor="password">
-              パスワード:<span>パスワードを入力してください</span>
+              パスワード:
+              {!password && <span>パスワードを入力してください</span>}
+              {password.length < 8 && password.length >= 1 && (
+                <span>
+                  パスワードは８文字以上１６文字以内で設定してください
+                </span>
+              )}
+              {password.length > 16 && (
+                <span>
+                  パスワードは８文字以上１６文字以内で設定してください
+                </span>
+              )}
             </label>
-            <div>
+            <div className={register.inputPass}>
               <input
-                type="text"
+                type={isRevealPassword ? 'text' : 'password'}
                 name="password"
                 placeholder="Password"
                 id="password"
                 value={password}
                 onChange={onChangePassword}
               />
+              <div
+                onClick={togglePassword}
+                className={register.revealPass}
+              >
+                {isRevealPassword ? (
+                  <i className="fas fa-eye" />
+                ) : (
+                  <i className="fas fa-eye-slash" />
+                )}
+              </div>
             </div>
           </div>
           <div>
             <label htmlFor="confirmationPassword">
               確認用パスワード:
-              <span>確認用パスワードを入力してください</span>
+              {!confirmationPassword && (
+                <span>確認用パスワードを入力してください</span>
+              )}
+              {password !== confirmationPassword &&
+                confirmationPassword.length >= 1 && (
+                  <span>
+                    パスワードと確認用パスワードが不一致です
+                  </span>
+                )}
             </label>
-            <div>
+            <div className={register.inputPass}>
               <input
-                type="text"
+                type={isRevealPassword ? 'text' : 'password'}
                 name="confirmationPassword"
                 placeholder="Confirmation Password"
                 id="confirmationPassword"
                 value={confirmationPassword}
                 onChange={onChangeConfirmationPassword}
               />
+              <div
+                onClick={togglePassword}
+                className={register.revealPass}
+              >
+                {isRevealPassword ? (
+                  <i className="fas fa-eye" />
+                ) : (
+                  <i className="fas fa-eye-slash" />
+                )}
+              </div>
             </div>
           </div>
           <div>
             <button type="submit">登録</button>
-            <button type="reset" onClick={clearFormAll}>クリア</button>
+            <button type="reset" onClick={clearFormAll}>
+              クリア
+            </button>
           </div>
         </fieldset>
       </form>

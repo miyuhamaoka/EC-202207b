@@ -4,9 +4,10 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
 import { CartItem } from '../../types';
-import Layout from '../../components/layout';
+import Layout from '../../components/itemlistlayout';
 import Image from 'next/image';
 import cartStyle from '../../styles/cart.module.css';
+
 
 export async function getServerSideProps({ query }: any) {
   // console.log(
@@ -70,7 +71,9 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
   };
 
   //消費税と商品合計に使用する価格の合計を取得 (商品無くなったら0がセットされる)
-  const itemPrice = cartItem.items.map((e: any) => e.price);
+
+  const itemPrice = cartItem.items.map((e: any) => e.subtotal);
+
   const total = itemPrice.reduce((a: number, b: number) => a + b, 0);
 
   //商品の表示
@@ -131,6 +134,8 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
     }
   }
 
+
+
   return (
     <>
       <Head>
@@ -138,7 +143,6 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
       </Head>
       <Layout />
       <h1 className={cartStyle.h1}>ショッピングカート</h1>
-
       <Render />
     </>
   );

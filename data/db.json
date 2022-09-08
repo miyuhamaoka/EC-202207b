@@ -177,7 +177,7 @@
     {
       "id": 2,
       "name": "楽男",
-      "email": "rakus@sumple.com",
+      "email": "rakus２@sumple.com",
       "password": "raku0000",
       "zipcode": "123-456",
       "address": "東京",
@@ -327,53 +327,8 @@
       }
     }
   ],
-  "cartItems": [
-    {
-      "userId": 2,
-      "items": [
-        {
-          "id": 23,
-          "type": "coffee",
-          "name": "Specialキャラメルドーナッツ",
-          "description": "ドーナツ生地の中に、なめらかで風味豊かなキャラメルフィリングを入れ、仕上げにキャラメルのビター感と香ばしさが楽しめるキャラメルコーティングをかけました。",
-          "price": 250,
-          "image_path": "/3.jpg",
-          "deleted": false,
-          "quantity": 1,
-          "subtotal": 250
-        },
-        {
-          "id": 27,
-          "type": "coffee",
-          "name": "カプチーノ",
-          "description": "リッチなエスプレッソに一気にミルクを注ぐことで、一口飲んだときからコーヒー感が感じられるビバレッジです。ベルベットのようにきめ細かいフォームミルクをお楽しみください。",
-          "price": 340,
-          "image_path": "/7.jpg",
-          "deleted": false,
-          "quantity": 1,
-          "subtotal": 340
-        }
-      ]
-    }
-  ],
-  "order": [
-    {
-      "name": "typicode"
-    },
-    {
-      "id": 25,
-      "quantity": 1,
-      "item": {
-        "id": 25,
-        "type": "coffee",
-        "name": "カフェモカ",
-        "description": "エスプレッソにほろ苦いチョコレートシロップとミルクを加え、ホットビバレッジにはホイップクリームをトッピング。ちょっとした贅沢を楽しみたい方におすすめです。",
-        "price": 400,
-        "image_path": "/img_coffee/5.jpg",
-        "deleted": false
-      }
-    }
-  ],
+  "cartItems": [],
+  "order": [],
   "options": [
     {
       "id": 1,
