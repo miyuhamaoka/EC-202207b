@@ -96,7 +96,7 @@ const ItemData = ({
               priceM: detail.priceM,
               priceL: detail.priceL,
               quantity: num,
-              subtotal: num * detail.price,
+              subtotal: num * detail.price + optionTotal,
               options: checkedOp,
             },
           ],

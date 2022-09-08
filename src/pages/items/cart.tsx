@@ -70,7 +70,7 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
   };
 
   //消費税と商品合計に使用する価格の合計を取得 (商品無くなったら0がセットされる)
-  const itemPrice = cartItem.items.map((e: any) => e.price);
+  const itemPrice = cartItem.items.map((e: any) => e.subtotal);
   const total = itemPrice.reduce((a: number, b: number) => a + b, 0);
 
   //商品の表示
@@ -86,6 +86,7 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
                   <th className={cartStyle.th}>商品名</th>
                   <th className={cartStyle.th}>価格（税抜）</th>
                   <th className={cartStyle.th}>数量</th>
+                  <th className={cartStyle.th}>オプション</th>
                   <th className={cartStyle.th}>小計</th>
                 </tr>
               </thead>
@@ -102,10 +103,25 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
                       <p>{item.name}</p>
                     </td>
                     <td className={cartStyle.th}>{item.price}円</td>
-                    <td className={cartStyle.th}>{item.quantity}個</td>
-                    <td className={cartStyle.th}>{item.price}円</td>
+                    <td className={cartStyle.th}>
+                      {item.quantity}個
+                    </td>
+                    <td className={cartStyle.th}>
+                      {item.options.map((option: any) => (
+                        <>
+                          <p key={option.id}>{option.name}</p>
+                          <span>{option.price}円</span>
+                        </>
+                      ))}
+                    </td>
+                    <td className={cartStyle.th}>
+                      {item.subtotal}円
+                    </td>
                     <td>
-                      <button className={cartStyle.dbtn} onClick={() => onClickDelete(item.id)}>
+                      <button
+                        className={cartStyle.dbtn}
+                        onClick={() => onClickDelete(item.id)}
+                      >
                         削除
                       </button>
                     </td>
@@ -114,14 +130,16 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
               </tbody>
             </table>
             <div className={cartStyle.price}>
-            <h3>消費税:{Math.round(total * 0.08)}円</h3>
-            <h2>
-              ご注文金額合計:{Math.round(total * 1.08)}円（税込）
-            </h2>
+              <h3>消費税:{Math.round(total * 0.08)}円</h3>
+              <h2>
+                ご注文金額合計:{Math.round(total * 1.08)}円（税込）
+              </h2>
             </div>
 
             <Link href="/items/order_confirm">
-              <button className={cartStyle.btn} type="button">注文に進む</button>
+              <button className={cartStyle.btn} type="button">
+                注文に進む
+              </button>
             </Link>
           </div>
         </>
@@ -145,11 +163,3 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
 };
 
 export default CartPage;
-
-
-
-
-
-
-
-

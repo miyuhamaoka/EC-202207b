@@ -329,8 +329,31 @@
   ],
   "cartItems": [
     {
-      "userId": 2,
+      "userId": 1,
       "items": [
+        {
+          "id": 24,
+          "type": "coffee",
+          "name": "チョコクッキー",
+          "description": "ソフトな食感のクッキー生地には、小麦の香ばしさが感じられるよう全粒粉を入れ、砂糖の一部にはブラウンシュガーを使い、コクのある甘さをプラスしています。風味豊かなスターバックスオリジナルのチョコレートチャンクがごろごろ入っていて、どこを食べてもチョコレートの味わいを存分に楽しめます。ショートサイズのマグカップの上に乗せられるくらいのサイズは、コーヒーと一緒に楽しむのにもぴったりです。",
+          "price": 190,
+          "image_path": "/4.jpg",
+          "deleted": false,
+          "quantity": 1,
+          "subtotal": 390,
+          "options": [
+            {
+              "id": 6,
+              "name": "除菌ウェットティッシュ",
+              "price": 100
+            },
+            {
+              "id": 7,
+              "name": "保冷剤",
+              "price": 100
+            }
+          ]
+        },
         {
           "id": 23,
           "type": "coffee",
@@ -339,21 +362,28 @@
           "price": 250,
           "image_path": "/3.jpg",
           "deleted": false,
-          "quantity": 1,
-          "subtotal": 250
-        },
-        {
-          "id": 27,
-          "type": "coffee",
-          "name": "カプチーノ",
-          "description": "リッチなエスプレッソに一気にミルクを注ぐことで、一口飲んだときからコーヒー感が感じられるビバレッジです。ベルベットのようにきめ細かいフォームミルクをお楽しみください。",
-          "price": 340,
-          "image_path": "/7.jpg",
-          "deleted": false,
-          "quantity": 1,
-          "subtotal": 340
+          "quantity": "2",
+          "subtotal": 600,
+          "options": [
+            {
+              "id": 2,
+              "name": "ストロー",
+              "price": 0
+            },
+            {
+              "id": 3,
+              "name": "紙袋",
+              "price": 0
+            },
+            {
+              "id": 7,
+              "name": "保冷剤",
+              "price": 100
+            }
+          ]
         }
-      ]
+      ],
+      "id": 1
     }
   ],
   "order": [
