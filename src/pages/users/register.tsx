@@ -70,9 +70,10 @@ const Register = ({ users }: Users) => {
       !phoneNumber.match(/^\d{2,4}-\d{3,4}-\d{4}$/) ||
       !phoneNumber.match(/-/) ||
       !password ||
-      !(8 < password.length && password.length < 16) ||
+      password.length < 8 ||
+      password.length > 16 ||
       !confirmationPassword ||
-      password === confirmationPassword
+      password !== confirmationPassword
     ) {
       alert('入力エラーがあります');
       return;
