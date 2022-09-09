@@ -36,6 +36,7 @@ const combine = async () => {
 
 export default function Login() {
   const [data, setData] = useState({ mail: '', pass: '' });
+  const [isError, setIsError] = useState(false);
   const handleChange = (e: any) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
@@ -83,7 +84,8 @@ export default function Login() {
           })
       );
     } else {
-      alert('入力内容の確認をしてください');
+      // alert('入力内容の確認をしてください');
+      setIsError(true)
     }
   }
 
@@ -109,6 +111,7 @@ export default function Login() {
           className={loginStyle.contactform}
           onSubmit={(e) => OnCkickHandle(e)}
         >
+          {isError && <p style={{color:"red"}}>入力内容の確認をしてください</p>}
           <h2>ログイン</h2>
           <div>
             <div className={loginStyle.lavel}>
