@@ -69,8 +69,8 @@ const LogoutCart = () => {
               <th className={cartStyle.th}>商品名</th>
               <th className={cartStyle.th}>価格（税抜）</th>
               <th className={cartStyle.th}>数量</th>
+              <th className={cartStyle.th}>オプション</th>
               <th className={cartStyle.th}>小計</th>
-              <th className={cartStyle.th}>削除</th>
             </tr>
           </thead>
           <tbody>
