@@ -27,7 +27,7 @@
   height: auto;
   padding:15px;
   color:#fff;
-  background:#f0952e;
+  background:#edac56;
   border:none;
   border-radius:3px;
   outline: none;
@@ -43,8 +43,8 @@
 }
 
 .loginbtn:hover{
-  background:rgb(79, 92, 175);
-  color: white;
+  background:#f39213;
+  color: black;
   border:none;
 }
 

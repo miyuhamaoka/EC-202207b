@@ -332,6 +332,18 @@
       "userId": 1,
       "items": [
         {
+          "id": 25,
+          "type": "coffee",
+          "name": "カフェモカ",
+          "description": "エスプレッソにほろ苦いチョコレートシロップとミルクを加え、ホットビバレッジにはホイップクリームをトッピング。ちょっとした贅沢を楽しみたい方におすすめです。",
+          "price": 400,
+          "image_path": "/5.jpg",
+          "deleted": false,
+          "quantity": 1,
+          "subtotal": 400,
+          "options": []
+        },
+        {
           "id": 22,
           "type": "coffee",
           "name": "エスプレッソフラペチーノ",
@@ -339,41 +351,13 @@
           "price": 530,
           "image_path": "/2.jpg",
           "deleted": false,
-          "quantity": "2",
-          "subtotal": 1160,
+          "quantity": 1,
+          "subtotal": 630,
           "options": [
             {
-              "id": 1,
-              "name": "おしぼり",
-              "price": 0
-            },
-            {
-              "id": 6,
-              "name": "除菌ウェットティッシュ",
+              "id": 7,
+              "name": "保冷剤",
               "price": 100
-            }
-          ]
-        },
-        {
-          "id": 23,
-          "type": "coffee",
-          "name": "Specialキャラメルドーナッツ",
-          "description": "ドーナツ生地の中に、なめらかで風味豊かなキャラメルフィリングを入れ、仕上げにキャラメルのビター感と香ばしさが楽しめるキャラメルコーティングをかけました。",
-          "price": 250,
-          "image_path": "/3.jpg",
-          "deleted": false,
-          "quantity": "3",
-          "subtotal": 850,
-          "options": [
-            {
-              "id": 6,
-              "name": "除菌ウェットティッシュ",
-              "price": 100
-            },
-            {
-              "id": 5,
-              "name": "フォーク",
-              "price": 0
             }
           ]
         }
@@ -636,6 +620,172 @@
               "price": 0
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "status": 2,
+      "totalPrice": 480,
+      "orderDate": "2022-09-09T01:17:04.959Z",
+      "distenationName": "楽子",
+      "distenationEmail": "rakus@sumple.com",
+      "distenationZipcode": "123-4567",
+      "distenationAddress": "東京",
+      "distenationTel": "090-1234-5678",
+      "deliveryTime": "2022-09-14T10:17",
+      "paymentMethod": 2,
+      "user": {
+        "id": 1,
+        "name": "楽子",
+        "email": "rakus@sumple.com",
+        "password": "rakus00",
+        "zipcode": "123-456",
+        "address": "東京",
+        "telephone": "090-1234-5678",
+        "logined": true
+      },
+      "orderltemList": [
+        {
+          "id": 21,
+          "type": "coffee",
+          "name": "Gorgeous4サンド",
+          "description": "人気の定番具材「ハム」と「チキン」をセットにした食べごたえ抜群のサンドイッチです。",
+          "price": 480,
+          "image_path": "/1.jpg",
+          "deleted": false,
+          "quantity": 1,
+          "subtotal": 480,
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "status": 1,
+      "totalPrice": 4870,
+      "orderDate": "2022-09-14T08:30:46.052Z",
+      "distenationName": "楽子",
+      "distenationEmail": "rakus@sumple.com",
+      "distenationZipcode": "123-4567",
+      "distenationAddress": "東京",
+      "distenationTel": "090-1234-5678",
+      "deliveryTime": "2022-09-17T17:30",
+      "paymentMethod": 1,
+      "user": {
+        "id": 1,
+        "name": "楽子",
+        "email": "rakus@sumple.com",
+        "password": "rakus00",
+        "zipcode": "123-456",
+        "address": "東京",
+        "telephone": "090-1234-5678",
+        "logined": true
+      },
+      "orderltemList": [
+        {
+          "id": 25,
+          "type": "coffee",
+          "name": "カフェモカ",
+          "description": "エスプレッソにほろ苦いチョコレートシロップとミルクを加え、ホットビバレッジにはホイップクリームをトッピング。ちょっとした贅沢を楽しみたい方におすすめです。",
+          "price": 400,
+          "image_path": "/5.jpg",
+          "deleted": false,
+          "quantity": 1,
+          "subtotal": 400,
+          "options": []
+        },
+        {
+          "id": 21,
+          "type": "coffee",
+          "name": "Gorgeous4サンド",
+          "description": "人気の定番具材「ハム」と「チキン」をセットにした食べごたえ抜群のサンドイッチです。",
+          "price": 480,
+          "image_path": "/1.jpg",
+          "deleted": false,
+          "quantity": "3",
+          "subtotal": 1440,
+          "options": []
+        },
+        {
+          "id": 21,
+          "type": "coffee",
+          "name": "Gorgeous4サンド",
+          "description": "人気の定番具材「ハム」と「チキン」をセットにした食べごたえ抜群のサンドイッチです。",
+          "price": 480,
+          "image_path": "/1.jpg",
+          "deleted": false,
+          "quantity": 1,
+          "subtotal": 480,
+          "options": []
+        },
+        {
+          "id": 22,
+          "type": "coffee",
+          "name": "エスプレッソフラペチーノ",
+          "description": "ひと口目に感じるエスプレッソは「リストレット」という方法で抽出した力強い香りと優しい苦味を、ふた口目は全体を混ぜて、こだわりのクリームから来るアフォガートのような味わいをお楽しみください。リフレッシュしたい時や、ほっとひと息つきたい時にも、何度でも飲みたくなるフラペチーノ®です。",
+          "price": 530,
+          "image_path": "/2.jpg",
+          "deleted": false,
+          "quantity": 1,
+          "subtotal": 630,
+          "options": [
+            {
+              "id": 7,
+              "name": "保冷剤",
+              "price": 100
+            }
+          ]
+        },
+        {
+          "id": 21,
+          "type": "coffee",
+          "name": "Gorgeous4サンド",
+          "description": "人気の定番具材「ハム」と「チキン」をセットにした食べごたえ抜群のサンドイッチです。",
+          "price": 480,
+          "image_path": "/1.jpg",
+          "deleted": false,
+          "quantity": 1,
+          "subtotal": 480,
+          "options": []
+        },
+        {
+          "id": 21,
+          "type": "coffee",
+          "name": "Gorgeous4サンド",
+          "description": "人気の定番具材「ハム」と「チキン」をセットにした食べごたえ抜群のサンドイッチです。",
+          "price": 480,
+          "image_path": "/1.jpg",
+          "deleted": false,
+          "quantity": 1,
+          "subtotal": 480,
+          "options": []
+        },
+        {
+          "id": 21,
+          "type": "coffee",
+          "name": "Gorgeous4サンド",
+          "description": "人気の定番具材「ハム」と「チキン」をセットにした食べごたえ抜群のサンドイッチです。",
+          "price": 480,
+          "image_path": "/1.jpg",
+          "deleted": false,
+          "quantity": 1,
+          "subtotal": 480,
+          "options": []
+        },
+        {
+          "id": 21,
+          "type": "coffee",
+          "name": "Gorgeous4サンド",
+          "description": "人気の定番具材「ハム」と「チキン」をセットにした食べごたえ抜群のサンドイッチです。",
+          "price": 480,
+          "image_path": "/1.jpg",
+          "deleted": false,
+          "quantity": 1,
+          "subtotal": 480,
+          "options": []
         }
       ]
     }
