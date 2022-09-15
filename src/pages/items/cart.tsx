@@ -7,6 +7,7 @@ import { CartItem } from '../../types';
 import Layout from '../../components/itemlistlayout';
 import Image from 'next/image';
 import cartStyle from '../../styles/cart.module.css';
+import Styles from '../../components/items.module.css'
 
 
 export async function getServerSideProps({ query }: any) {
@@ -108,7 +109,7 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
                       />
                       <p>{item.name}</p>
                     </td>
-                    <td className={cartStyle.th}>{item.price}円</td>
+                    <td className={cartStyle.th}>{item.price.toLocaleString()}円</td>
                     <td className={cartStyle.th}>
                       {item.quantity}個
                     </td>
@@ -116,12 +117,12 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
                       {item.options.map((option: any) => (
                         <>
                           <p key={option.id}>{option.name}</p>
-                          <span>{option.price}円</span>
+                          <span>{option.price.toLocaleString()}円</span>
                         </>
                       ))}
                     </td>
                     <td className={cartStyle.th}>
-                      {item.subtotal}円
+                      {item.subtotal.toLocaleString()}円
                     </td>
                     <td>
                       <button
@@ -136,9 +137,9 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
               </tbody>
             </table>
             <div className={cartStyle.price}>
-              <h3>消費税:{Math.round(total * 0.08)}円</h3>
+              <h3>消費税:{Math.round(total * 0.08).toLocaleString()}円</h3>
               <h2>
-                ご注文金額合計:{Math.round(total * 1.08)}円（税込）
+                ご注文金額合計:{Math.round(total * 1.08).toLocaleString()}円（税込）
               </h2>
             </div>
 
@@ -163,7 +164,7 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
         <title>ショッピングカート</title>
       </Head>
       <Layout />
-      <h1 className={cartStyle.h1}>ショッピングカート</h1>
+      <h1 className={Styles.h1}>ショッピングカート</h1>
       <Render />
     </>
   );
