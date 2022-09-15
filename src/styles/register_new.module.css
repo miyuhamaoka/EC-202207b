@@ -1,0 +1,49 @@
+.registerForm {
+  border-radius: 4px;
+  margin: 16px auto 0;
+  width: 60%;
+  padding: 24px 0;
+}
+
+.registerForm fieldset {
+  border: none;
+  margin: 0 auto;
+  width: 390px;
+}
+
+.registerForm legend {
+  font-size: 22px;
+}
+
+.registerForm input {
+  width: 360px;
+  height: 32px;
+  border: 1px solid rgba(203, 203, 209, 0.9);
+  border-radius: 4px;
+}
+
+.nameForm {
+  display: flex;
+}
+
+.nameForm > div {
+  margin-right: 24px;
+}
+
+.nameForm input {
+  width: 100px;
+}
+
+.registerForm p {
+  color: red;
+  font-size: 14px;
+  margin: 0;
+}
+
+.uiForm {
+  margin-top: 20px;
+}
+
+.label {
+  font-weight: bold;
+}
