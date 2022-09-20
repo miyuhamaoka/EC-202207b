@@ -24,12 +24,10 @@ export type Order = {
   deliveryTime: Date;
   paymentMethod: number;
   user: User;
-  orderItemList: Orderitem;
+  orderltemList: Orderitem;
 };
 
 export type Orderitem = {
-  forEach(arg0: (f: any) => number): any;
-  map(): unknown;
   id: number;
   itemId: number;
   orderId: number;
