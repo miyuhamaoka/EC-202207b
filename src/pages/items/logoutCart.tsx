@@ -6,6 +6,7 @@ import Layout from '../../components/layout';
 import Head from 'next/head';
 import cartStyle from '../../styles/cart.module.css';
 import Styles from '../../components/items.module.css'
+import Reccomend from '../../components/reccomend';
 
 const LogoutCart = () => {
   const router = useRouter();
@@ -134,6 +135,7 @@ const LogoutCart = () => {
           ログイン画面に進む
         </button>
         </div>
+        <Reccomend />
       </>
     );
   }

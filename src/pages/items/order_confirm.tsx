@@ -101,7 +101,7 @@ const OrderConfirm = ({ items, user }: any) => {
         deliveryTime: time,
         paymentMethod: sta,
         user: user,
-        orderltemList: items,
+        orderItemList: items,
       };
 
       const parameter = {
