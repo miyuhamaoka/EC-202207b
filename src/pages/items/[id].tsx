@@ -52,6 +52,7 @@ const ItemData = ({
       <div>
       <Head><title>不明</title></Head>
     <p>お探しのページは存在しません</p>
+    <p>まもなく商品一覧ページに戻ります</p>
     </div>
     )
   } else {
