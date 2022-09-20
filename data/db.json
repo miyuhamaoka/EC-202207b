@@ -177,7 +177,7 @@
     {
       "id": 2,
       "name": "楽男",
-      "email": "rakus２@sumple.com",
+      "email": "rakus2@sumple.com",
       "password": "raku0000",
       "zipcode": "123-456",
       "address": "東京",
@@ -418,7 +418,7 @@
         "telephone": "090-1234-5678",
         "logined": true
       },
-      "orderltemList": [
+      "orderItemList": [
         {
           "id": 21,
           "type": "coffee",
@@ -490,7 +490,7 @@
         "telephone": "090-1234-5678",
         "logined": true
       },
-      "orderltemList": [
+      "orderItemList": [
         {
           "id": 21,
           "type": "coffee",
@@ -553,7 +553,7 @@
     },
     {
       "id": 3,
-      "userId": 1,
+      "userId": 2,
       "status": 1,
       "totalPrice": 2010,
       "orderDate": "2022-09-08T08:45:46.296Z",
@@ -574,7 +574,7 @@
         "telephone": "090-1234-5678",
         "logined": true
       },
-      "orderltemList": [
+      "orderItemList": [
         {
           "id": 22,
           "type": "coffee",
@@ -625,7 +625,7 @@
     },
     {
       "id": 4,
-      "userId": 1,
+      "userId": 2,
       "status": 2,
       "totalPrice": 480,
       "orderDate": "2022-09-09T01:17:04.959Z",
@@ -646,7 +646,7 @@
         "telephone": "090-1234-5678",
         "logined": true
       },
-      "orderltemList": [
+      "orderItemList": [
         {
           "id": 21,
           "type": "coffee",
@@ -684,7 +684,7 @@
         "telephone": "090-1234-5678",
         "logined": true
       },
-      "orderltemList": [
+      "orderItemList": [
         {
           "id": 25,
           "type": "coffee",
