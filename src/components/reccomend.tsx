@@ -34,7 +34,7 @@ const Reccomend = () => {
   });
   console.log('count', count);
 
-//一番購入回数の多い商品の取得
+// //一番購入回数の多い商品の取得
   const quantity = Object.values(count);
   const max = Math.max(...quantity);
   console.log('max', max);
@@ -48,7 +48,7 @@ const Reccomend = () => {
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
-  // フィルターで購入回数の多い商品のみ取得
+// フィルターで購入回数の多い商品のみ取得
   const reccomendItem = data.filter(
     (e: Item) => getId.filter((f) => f === e.id).length > 0
   );

@@ -47,6 +47,11 @@ const ItemlistLayout = ({users}:any) => {
             </Link>
           </li>
           <li>
+            <Link href='../items/orderHistory'>
+              <a>注文履歴</a>
+            </Link>
+          </li>
+          <li>
             <Link href='../users/login'>
               <a>ログイン</a>
             </Link>

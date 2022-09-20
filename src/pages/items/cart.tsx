@@ -8,7 +8,7 @@ import Layout from '../../components/itemlistlayout';
 import Image from 'next/image';
 import cartStyle from '../../styles/cart.module.css';
 import Styles from '../../components/items.module.css'
-
+import Reccomend from '../../components/reccomend';
 
 export async function getServerSideProps({ query }: any) {
   // console.log(
@@ -166,6 +166,7 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
       <Layout />
       <h1 className={Styles.h1}>ショッピングカート</h1>
       <Render />
+      <Reccomend />
     </>
   );
 };
