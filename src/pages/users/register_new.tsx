@@ -38,7 +38,7 @@ const Register = ({ users }: Users) => {
   };
 
   const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState<User>({});
+  const [formErrors, setFormErrors] = useState<User>();
   const [isSubmit, setIsSubmit] = useState(false);
 
   const router = useRouter();

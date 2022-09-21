@@ -81,7 +81,7 @@ const Register = ({ users }: Users) => {
       alert('そのメールアドレスはすでに使われています');
       return;
     } else {
-      const postParam: User = {
+      const postParam = {
         name: name,
         email: email,
         password: password,

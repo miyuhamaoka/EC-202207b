@@ -257,3 +257,18 @@ margin-top: 40px;
   padding: 2%;
   padding-bottom: 10px;
 }
+
+.thisPage{
+  color: #f39213;
+  text-decoration: underline;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.anotherPage{
+  border: none;
+  outline: none;
+  background: none;
+}
