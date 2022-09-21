@@ -183,6 +183,16 @@
       "address": "東京",
       "telephone": "090-1234-5678",
       "logined": true
+    },
+    {
+      "id": 3,
+      "name": "楽",
+      "email": "rakus3@sumple.com",
+      "password": "raku0000",
+      "zipcode": "123-456",
+      "address": "東京",
+      "telephone": "090-1234-5678",
+      "logined": true
     }
   ],
   "orderItems": [

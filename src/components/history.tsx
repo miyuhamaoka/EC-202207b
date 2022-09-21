@@ -5,6 +5,7 @@ import styles from '../components/items.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import Items from './menuList';
+import { number } from 'yup';
 
 const fetcher: (args: string) => Promise<any> = (...args) =>
   fetch(...args).then((res) => res.json());
@@ -35,6 +36,7 @@ const History = () => {
   );
   console.log('own', own);
 
+
   // {id: 1, userId: 1, status: 1, totalPrice: 2500, orderDate: '2022-09-08T07:24:28.306Z', …}
   //日付から文字列に変換する関数
   function getNowDateWithString() {
@@ -45,44 +47,52 @@ const History = () => {
     var result = y + '/' + m + '/' + d;
     return result;
   }
-  return (
-    <>
-      {own?.map((e: Order) => {
-        const date = new Date(e.orderDate);
-        return (
-          <div key={e.id}>
-            <hr />
-            <p>{date.toLocaleString()}</p>
-            <div className={styles.itemWrapper}>
-              {e.orderItemList.map((item: any): any => {
-                return (
-                  <div key={item.id} className={styles.card}>
-                    <div className={styles.item}>
-                      <Image
-                        src={item.image_path}
-                        alt={item.name}
-                        width={210}
-                        height={210}
-                      />
-                      <Link
-                        href={`http://localhost:3000/items/${item.id}`}
-                      >
-                        <a>
-                          <p className={styles.text}>{item.name}</p>
-                        </a>
-                      </Link>
-                      <p>価格: {item.price}円</p>
-                      <p>数量: {item.quantity}個</p>
+
+  if(own !== undefined && own.length === 0) {
+    return (<p>注文履歴がありません</p>)
+  } 
+  else {
+    return (
+      <>
+        {own?.map((e: Order) => {
+          const date = new Date(e.orderDate);
+          return (
+            <div key={e.id}>
+              <hr />
+              <p>{date.toLocaleString()}</p>
+              <div className={styles.itemWrapper}>
+                {e.orderItemList.map((item: any): any => {
+                  return (
+                    <div key={item.id} className={styles.card}>
+                      <div className={styles.item}>
+                        <Image
+                          src={item.image_path}
+                          alt={item.name}
+                          width={210}
+                          height={210}
+                        />
+                        <Link
+                          href={`http://localhost:3000/items/${item.id}`}
+                        >
+                          <a>
+                            <p className={styles.text}>{item.name}</p>
+                          </a>
+                        </Link>
+                        <p>価格: {item.price}円</p>
+                        <p>数量: {item.quantity}個</p>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        );
-      })}
-    </>
-  );
+          );
+        })}
+      </>
+    );
+  }
+
+
 };
 
 export default History;
