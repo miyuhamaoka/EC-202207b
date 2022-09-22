@@ -30,7 +30,7 @@ export async function getServerSideProps({ req }: any) {
 }
 
 const OrderConfirm = ({ items, user }: any) => {
-  const [name, setName] = useState(user.name);
+  const [name, setName] = useState(`${user.firstName} ${user.lastName}`);
   const onChangeName = (e: any) => setName(e.target.value);
 
   const [email, setEmail] = useState(user.email);
@@ -39,7 +39,7 @@ const OrderConfirm = ({ items, user }: any) => {
   const [zipcode, setZipcode] = useState(user.zipcode);
   const onChangeZipcode = (e: any) => setZipcode(e.target.value);
 
-  const [address, setAddress] = useState(user.address);
+  const [address, setAddress] = useState(`${user.prefecture}${user.city}${user.aza}${user.building}`);
   const onChangeAddress = (e: any) => setAddress(e.target.value);
 
   const [tel, setTel] = useState(user.telephone);

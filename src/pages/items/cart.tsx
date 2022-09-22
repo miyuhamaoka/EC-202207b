@@ -114,6 +114,7 @@ const CartPage = ({ cartItem }: { cartItem: CartItem }) => {
                       {item.quantity}個
                     </td>
                     <td className={cartStyle.th}>
+                      {item.options.length === 0 && (<p>なし</p>)}
                       {item.options.map((option: any) => (
                         <>
                           <p key={option.id}>{option.name}</p>
