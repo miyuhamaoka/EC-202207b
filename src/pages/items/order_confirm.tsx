@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Router from 'next/router';
 import style from '../../styles/item_confirm.module.css';
 
+
 export async function getServerSideProps({ req }: any) {
   // console.log('req', req.cookies.id);
   const res = await fetch(
@@ -100,7 +101,7 @@ const OrderConfirm = ({ items, user }: any) => {
         deliveryTime: time,
         paymentMethod: sta,
         user: user,
-        orderltemList: items,
+        orderItemList: items,
       };
 
       const parameter = {

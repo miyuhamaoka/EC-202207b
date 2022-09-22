@@ -46,8 +46,8 @@
 
 .registerForm button:hover{
   cursor: pointer;
-  background:rgb(79, 92, 175);
-  color: white;
+  background:#f39213;
+  color: black;
   border:none;
 }
 
