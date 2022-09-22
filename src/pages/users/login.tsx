@@ -148,7 +148,7 @@ export default function Login() {
             <button className={loginStyle.loginbtn}>ログイン</button>
           </div>
         </form>
-        <Link href="/users/register">
+        <Link href="/users/register_new">
           <a className={loginStyle.userregister}>
             ユーザ登録はこちら
           </a>

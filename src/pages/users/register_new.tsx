@@ -38,7 +38,8 @@ const Register = ({ users }: Users) => {
   };
 
   const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState<User>();
+  const [formErrors, setFormErrors] = useState<User>(initialValues);
+  const [addressErrors, setaddressErrors] = useState('');
   const [isSubmit, setIsSubmit] = useState(false);
 
   const router = useRouter();
@@ -151,6 +152,29 @@ const Register = ({ users }: Users) => {
     return;
   };
 
+  // 住所検索機能
+  const setAutoAdress = async () => {
+    const res = await fetch(
+      `https://zipcloud.ibsnet.co.jp/api/search?zipcode=${formValues.zipcode}`
+    );
+    const getAddress = await res.json();
+    if (getAddress.results === null) {
+      const message = '存在しない郵便番号です';
+      setaddressErrors(message);
+    } else {
+      const pre = getAddress.results[0].address1;
+      const city = getAddress.results[0].address2;
+      const aza = getAddress.results[0].address3;
+      setFormValues({
+        ...formValues,
+        prefecture: pre,
+        city: city,
+        aza: aza,
+      });
+      setaddressErrors('');
+    }
+  };
+
   return (
     <section>
       <ItemlistLayout></ItemlistLayout>
@@ -158,7 +182,9 @@ const Register = ({ users }: Users) => {
         <fieldset>
           <legend>ユーザー登録</legend>
           <div className={style.uiForm}>
-            <label htmlFor="firstName" className={style.label}>お名前</label>
+            <label htmlFor="firstName" className={style.label}>
+              お名前
+            </label>
             <div className={style.nameForm}>
               <div>
                 <span>(姓)</span>
@@ -188,7 +214,9 @@ const Register = ({ users }: Users) => {
           </div>
           <div className={style.uiForm}>
             <div>
-            <label htmlFor="email" className={style.label}>メールアドレス</label>
+              <label htmlFor="email" className={style.label}>
+                メールアドレス
+              </label>
             </div>
             <input
               type="text"
@@ -202,7 +230,15 @@ const Register = ({ users }: Users) => {
           </div>
           <div className={style.uiForm}>
             <div>
-            <label htmlFor="zipcode" className={style.label}>郵便番号</label>
+              <label htmlFor="zipcode" className={style.label}>
+                郵便番号
+              </label>
+              <button type="button" onClick={setAutoAdress}>
+                住所検索
+              </button>
+              <span className={style.addressErr}>
+                {addressErrors}
+              </span>
             </div>
             <input
               type="text"
@@ -216,7 +252,9 @@ const Register = ({ users }: Users) => {
           </div>
           <div className={style.uiForm}>
             <div>
-            <label htmlFor="prefecture" className={style.label}>住所1(都道府県)</label>
+              <label htmlFor="prefecture" className={style.label}>
+                住所1(都道府県)
+              </label>
             </div>
             <input
               type="text"
@@ -228,7 +266,9 @@ const Register = ({ users }: Users) => {
             />
             <p>{formErrors?.prefecture}</p>
             <div className={style.uiForm}>
-            <label htmlFor="city" className={style.label}>住所2(市区町村)</label>
+              <label htmlFor="city" className={style.label}>
+                住所2(市区町村)
+              </label>
             </div>
             <input
               type="text"
@@ -240,7 +280,9 @@ const Register = ({ users }: Users) => {
             />
             <p>{formErrors?.city}</p>
             <div className={style.uiForm}>
-            <label htmlFor="aza" className={style.label}>住所3(字丁目)</label>
+              <label htmlFor="aza" className={style.label}>
+                住所3(字丁目)
+              </label>
             </div>
             <input
               type="text"
@@ -252,7 +294,9 @@ const Register = ({ users }: Users) => {
             />
             <p>{formErrors?.aza}</p>
             <div className={style.uiForm}>
-            <label htmlFor="building" className={style.label}>住所4(建物名)</label>
+              <label htmlFor="building" className={style.label}>
+                住所4(建物名)
+              </label>
             </div>
             <input
               type="text"
@@ -266,7 +310,9 @@ const Register = ({ users }: Users) => {
           </div>
           <div className={style.uiForm}>
             <div>
-            <label htmlFor="tel" className={style.label}>電話番号</label>
+              <label htmlFor="tel" className={style.label}>
+                電話番号
+              </label>
             </div>
             <input
               type="tel"
@@ -280,7 +326,9 @@ const Register = ({ users }: Users) => {
           </div>
           <div className={style.uiForm}>
             <div>
-            <label htmlFor="pass" className={style.label}>パスワード</label>
+              <label htmlFor="pass" className={style.label}>
+                パスワード
+              </label>
             </div>
             <input
               type="pass"
@@ -294,7 +342,9 @@ const Register = ({ users }: Users) => {
           </div>
           <div className={style.uiForm}>
             <div>
-            <label htmlFor="confirmPass" className={style.label}>確認用パスワード</label>
+              <label htmlFor="confirmPass" className={style.label}>
+                確認用パスワード
+              </label>
             </div>
             <input
               type="pass"
@@ -308,7 +358,7 @@ const Register = ({ users }: Users) => {
           </div>
           <div>
             <button>登録</button>
-            <button onClick={clearForm}>クリア</button>
+            <button type='button' onClick={clearForm}>クリア</button>
           </div>
         </fieldset>
       </form>
