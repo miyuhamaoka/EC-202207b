@@ -34,7 +34,7 @@
   width: 100px;
 }
 
-.registerForm p {
+.registerForm p, .addressErr {
   color: red;
   font-size: 14px;
   margin: 0;
