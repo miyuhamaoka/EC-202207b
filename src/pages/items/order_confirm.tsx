@@ -82,7 +82,9 @@ const OrderConfirm = ({ items, user }: any) => {
       ) ||
       !zipcode.match(/^\d{3}-\d{4}$/) ||
       !tel.match(/^\d{2,4}-\d{3,4}-\d{4}$/) ||
-      diffTime < 3
+      diffTime < 3 ||
+      selectTime.getHours() < 9 ||
+      selectTime.getHours() > 20
     ) {
       alert('入力内容に誤りがあります');
       return;
