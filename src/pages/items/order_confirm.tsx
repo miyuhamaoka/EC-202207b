@@ -1,10 +1,20 @@
 import Checkout from '../../components/checkout';
 import ItemConfirm from '../../components/item_confirm';
 import Layout from '../../components/itemlistlayout';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Router from 'next/router';
 import style from '../../styles/item_confirm.module.css';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import CheckoutForm from '../../components/CheckoutForm';
 
+// stripe設定
+// Make sure to call loadStripe outside of a component’s render to avoid
+// recreating the Stripe object on every render.
+// This is your test publishable API key.
+const stripePromise = loadStripe(
+  'pk_test_51LkLe7BiB9jVEIuZOSPiWIDqeeSf8aQPj4O0ebm39PT1Hf3D2RstWxM0ZAI8gkKfx3FOcOjkfVqbvRKTIqfZMsbL00kQETlqa0'
+);
 
 export async function getServerSideProps({ req }: any) {
   // console.log('req', req.cookies.id);
@@ -13,7 +23,6 @@ export async function getServerSideProps({ req }: any) {
   );
   const data = await res.json();
   const items = data[0].items;
-  // console.log('data', items);
 
   const userRes = await fetch(
     `http://localhost:8000/users/${req.cookies.id}`
@@ -49,6 +58,31 @@ const OrderConfirm = ({ items, user }: any) => {
   const onChangeTime = (e: any) => setTime(e.target.value);
 
   const [sta, setSta] = useState(0);
+
+  const [clientSecret, setClientSecret] = useState('');
+
+  console.log('items', items);
+
+  // stripe payment内容をfetch
+  useEffect(() => {
+    // Create PaymentIntent as soon as the page loads
+    fetch('/api/create-payment-intent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items: items }),
+    })
+      .then((res) => res.json())
+      .then((data) => setClientSecret(data.clientSecret));
+  }, [items]);
+
+  const appearance = {
+    theme: 'stripe',
+  };
+  const options: any = {
+    clientSecret,
+    appearance,
+  };
+
   const onChangeSta = (e: any) => {
     const value = Number(e.target.value);
     return setSta(value);
@@ -157,10 +191,25 @@ const OrderConfirm = ({ items, user }: any) => {
             onChangeSta={onChangeSta}
           ></Checkout>
         </div>
+        {sta === 1 && (
+        <div>
         <button type="button" onClick={onClickPost}>
           この内容で注文する
         </button>
+        </div>
+      )}
+      {/* stripe表示 */}
+      {sta === 2 && (
+        <div className="App">
+          {clientSecret && (
+            <Elements options={options} stripe={stripePromise}>
+              <CheckoutForm onClickPost={onClickPost} name={name} email={email} zipcode={zipcode} address={address} tel={tel} time={time} sta={sta} items={items} />
+            </Elements>
+          )}
+        </div>
+      )}
       </section>
+
     </>
   );
 };
