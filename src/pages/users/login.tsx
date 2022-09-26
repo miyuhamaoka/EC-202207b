@@ -10,11 +10,11 @@ import Layout from '../../components/layout';
 const combine = async () => {
   const cookie = () => {
     const cookies = document.cookie;
-    console.log('id', cookies);
     const num = cookies.substring(cookies.indexOf('id='));
     console.log('num', num);
     const cookieArray = num.split('; ');
     console.log('array', cookieArray);
+    console.log('id', Number(cookieArray[0].slice(3)))
     return Number(cookieArray[0].slice(3));
   };
   console.log('cookie', cookie());
@@ -25,13 +25,23 @@ const combine = async () => {
     `http://localhost:8000/cartItems?userId=${cookie()}`
   );
   const data = await res.json();
-  return fetch(`http://localhost:8000/cartitems/${data[0].id}`, {
+  console.log('data', data)
+if(data[0])
+  {return fetch(`http://localhost:8000/cartitems/${data[0].id}`, {
     method: 'PATCH',
     headers: { 'Content-type': 'application/json' },
     body: JSON.stringify({
       items: [...data[0].items, ...localItem],
     }),
+  });} else if(!data[0]) {
+    return fetch(`http://localhost:8000/cartitems`, {
+    method: 'POST',
+    headers: { 'Content-type': 'application/json' },
+    body: JSON.stringify({
+      userId: cookie(), items: localItem
+    }),
   });
+  }
 };
 
 export default function Login() {
@@ -67,7 +77,7 @@ export default function Login() {
               document.cookie = `id=${user.id};path=/;expires=${date};`;
               document.cookie = `name=${user.name};path=/;expires=${date};`;
             }
-            console.log(document.cookie);
+            console.log('document.cookie', document.cookie);
             const cookies = document.cookie;
             if (cookies.indexOf('url=') === -1) {
               return router.push('/items');
@@ -94,7 +104,6 @@ export default function Login() {
   const togglePassword = () => {
     setIsRevealPassword((prevState) => !prevState);
   };
-
 
   return (
     <>

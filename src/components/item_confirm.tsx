@@ -43,10 +43,10 @@ const ItemConfirm = (props: any) => {
                   <td>
                     {n.options.map((option: Option) => {
                       return (
-                        <>
-                          <p key={option.id}>{option.name}</p>
+                        <div key={option.id}>
+                          <p>{option.name}</p>
                           <p>{option.price.toLocaleString()}円</p>
-                        </>
+                        </div>
                       );
                     })}
                   </td>
