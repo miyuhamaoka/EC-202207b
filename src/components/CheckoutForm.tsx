@@ -4,7 +4,6 @@ import {
   useStripe,
   useElements,
 } from '@stripe/react-stripe-js';
-import Styles from '../styles/item_confirm.module.css';
 
 export default function CheckoutForm({
   onClickPost,
@@ -16,10 +15,13 @@ export default function CheckoutForm({
   time,
   sta,
   items,
+  clientSecret,
 }: any) {
+  //useStripe(), useElements()フックの使用
   const stripe = useStripe();
   const elements = useElements();
 
+  //支払いの追跡、エラーの表示用のstate
   const [message, setMessage]: [string, any] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -27,61 +29,48 @@ export default function CheckoutForm({
     if (!stripe) {
       return;
     }
-
-    const clientSecret = new URLSearchParams(
-      window.location.search
-    ).get('payment_intent_client_secret');
-
     if (!clientSecret) {
       return;
     }
-
     stripe
       .retrievePaymentIntent(clientSecret)
       .then(({ paymentIntent }) => {
+        //TODO succeeded, processing時が表示されない
         switch (paymentIntent!.status) {
           case 'succeeded':
-            setMessage('Payment succeeded!');
+            setMessage('成功しました');
             break;
           case 'processing':
-            setMessage('Your payment is processing.');
+            setMessage('プロセス中');
             break;
           case 'requires_payment_method':
-            setMessage(
-              'Your payment was not successful, please try again.'
-            );
+            setMessage('支払い内容を確認してください');
             break;
           default:
-            setMessage('Something went wrong.');
+            setMessage('何かエラーがあります');
             break;
         }
       });
-  }, [stripe]);
+  }, [clientSecret, stripe]);
 
+  // カード情報送信時の処理
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     if (!stripe || !elements) {
-      // Stripe.js has not yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
-
     setIsLoading(true);
 
+    // 支払いフォームのデータによってPaymentIntentを確認
     const { error } = await stripe.confirmPayment({
       elements,
+      // 支払い成功時に遷移するURL
       confirmParams: {
-        // Make sure to change this to your payment completion page
         return_url: 'http://localhost:3000/items/order_checkouted',
       },
     });
-
-    // This point will only be reached if there is an immediate error when
-    // confirming the payment. Otherwise, your customer will be redirected to
-    // your `return_url`. For some payment methods like iDEAL, your customer will
-    // be redirected to an intermediate site first to authorize the payment, then
-    // redirected to the `return_url`.
+    // 決済がエラーの際、下記の処理になる
     if (
       error.type === 'card_error' ||
       error.type === 'validation_error'
@@ -90,10 +79,10 @@ export default function CheckoutForm({
     } else {
       setMessage('An unexpected error occurred.');
     }
-
     setIsLoading(false);
   };
 
+  // 入力情報が誤っているときに注文ボタンが押せないようにする際の条件定義用
   const now = new Date();
   const selectTime = new Date(time);
   const diffTime =
@@ -101,7 +90,11 @@ export default function CheckoutForm({
 
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
+      {/* iframe(支払いフォーム)の追加 */}
       <PaymentElement id="payment-element" />
+      {/* messageの表示 */}
+      {message && <div id="payment-message">{message}</div>}
+      {/* 注文ボタン （取得の失敗、入力情報の誤りで無効化） */}
       <button
         disabled={
           isLoading ||
@@ -114,6 +107,7 @@ export default function CheckoutForm({
           !tel ||
           !time ||
           !sta ||
+          !clientSecret ||
           items.length === 0 ||
           !email.match(
             /^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/
@@ -123,6 +117,7 @@ export default function CheckoutForm({
           diffTime < 3
         }
         id="submit"
+        type="submit"
         onClick={onClickPost}
       >
         <span id="button-text">
@@ -133,8 +128,6 @@ export default function CheckoutForm({
           )}
         </span>
       </button>
-      {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
     </form>
   );
 }

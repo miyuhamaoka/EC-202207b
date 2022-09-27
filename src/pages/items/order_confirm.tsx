@@ -8,12 +8,9 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from '../../components/CheckoutForm';
 
-// stripe設定
-// Make sure to call loadStripe outside of a component’s render to avoid
-// recreating the Stripe object on every render.
-// This is your test publishable API key.
+// Stripe設定(public api key)
 const stripePromise = loadStripe(
-  'pk_test_51LkLe7BiB9jVEIuZOSPiWIDqeeSf8aQPj4O0ebm39PT1Hf3D2RstWxM0ZAI8gkKfx3FOcOjkfVqbvRKTIqfZMsbL00kQETlqa0'
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 );
 
 export async function getServerSideProps({ req }: any) {
@@ -39,7 +36,9 @@ export async function getServerSideProps({ req }: any) {
 }
 
 const OrderConfirm = ({ items, user }: any) => {
-  const [name, setName] = useState(`${user.firstName} ${user.lastName}`);
+  const [name, setName] = useState(
+    `${user.firstName} ${user.lastName}`
+  );
   const onChangeName = (e: any) => setName(e.target.value);
 
   const [email, setEmail] = useState(user.email);
@@ -48,7 +47,9 @@ const OrderConfirm = ({ items, user }: any) => {
   const [zipcode, setZipcode] = useState(user.zipcode);
   const onChangeZipcode = (e: any) => setZipcode(e.target.value);
 
-  const [address, setAddress] = useState(`${user.prefecture}${user.city}${user.aza}${user.building}`);
+  const [address, setAddress] = useState(
+    `${user.prefecture}${user.city}${user.aza}${user.building}`
+  );
   const onChangeAddress = (e: any) => setAddress(e.target.value);
 
   const [tel, setTel] = useState(user.telephone);
@@ -63,9 +64,8 @@ const OrderConfirm = ({ items, user }: any) => {
 
   console.log('items', items);
 
-  // stripe payment内容をfetch
+  // Stripe 購入予定の商品情報をcreate-payment-intent apiへ送る
   useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
     fetch('/api/create-payment-intent', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -75,8 +75,13 @@ const OrderConfirm = ({ items, user }: any) => {
       .then((data) => setClientSecret(data.clientSecret));
   }, [items]);
 
+  //支払いフォームスタイルの設定
   const appearance = {
     theme: 'stripe',
+    variables: {
+      colorPrimary: '#fcba03',
+      colorBackground: '#f7e5b6',
+    },
   };
   const options: any = {
     clientSecret,
@@ -88,6 +93,7 @@ const OrderConfirm = ({ items, user }: any) => {
     return setSta(value);
   };
 
+  // 入力内容のサーバーへデータ送信、エラー表示
   const onClickPost = async () => {
     const now = new Date();
     const selectTime = new Date(time);
@@ -161,7 +167,6 @@ const OrderConfirm = ({ items, user }: any) => {
         const date = new Date();
         date.setDate(date.getDate() + 1);
         document.cookie = `url=/items/order_confirm;max-age=0;path=/;expires=${date};`;
-        Router.push('/items/order_checkouted');
       }
     }
   };
@@ -191,25 +196,42 @@ const OrderConfirm = ({ items, user }: any) => {
             onChangeSta={onChangeSta}
           ></Checkout>
         </div>
+        {/* 代金引換時の表示 */}
         {sta === 1 && (
-        <div>
-        <button type="button" onClick={onClickPost}>
-          この内容で注文する
-        </button>
-        </div>
-      )}
-      {/* stripe表示 */}
-      {sta === 2 && (
-        <div className="App">
-          {clientSecret && (
-            <Elements options={options} stripe={stripePromise}>
-              <CheckoutForm onClickPost={onClickPost} name={name} email={email} zipcode={zipcode} address={address} tel={tel} time={time} sta={sta} items={items} />
-            </Elements>
-          )}
-        </div>
-      )}
+          <div>
+            <button
+              type="button"
+              onClick={() => {
+                onClickPost();
+                Router.push('/items/order_checkouted');
+              }}
+            >
+              この内容で注文する
+            </button>
+          </div>
+        )}
+        {/* クレジットカード時の表示 */}
+        {sta === 2 && (
+          <div className="App">
+            {clientSecret && (
+              <Elements options={options} stripe={stripePromise}>
+                <CheckoutForm
+                  onClickPost={onClickPost}
+                  name={name}
+                  email={email}
+                  zipcode={zipcode}
+                  address={address}
+                  tel={tel}
+                  time={time}
+                  sta={sta}
+                  items={items}
+                  clientSecret={clientSecret}
+                />
+              </Elements>
+            )}
+          </div>
+        )}
       </section>
-
     </>
   );
 };

@@ -1,18 +1,21 @@
-const stripe = require("stripe")('sk_test_51LkLe7BiB9jVEIuZO10YySWsQFLgymDiv9SEPSPrFcJumC0ginpj2e2LuuqofPGNZMIQkzXi1N7vz9Rq9sFEBSCt00GooID5r9');
+import { NextApiRequest, NextApiResponse } from 'next';
 
+//yarn add stripe
+// npm install --save @stripe/react-stripe-js @stripe/stripe-js
+
+//stripeの取得(secret api key)
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+
+//カートアイテムの合計金額計算関数定義
 const calculateOrderAmount = (items: any) => {
-  // Replace this constant with a calculation of the order's amount
-  // Calculate the order total on the server to prevent
-  // people from directly manipulating the amount on the client
   const itemtotal = items.map((e: any) => e.subtotal);
   const total = itemtotal.reduce((a: number, b: number) => a + b);
   return Math.round(total * 1.08)
 };
 
-export default async function handler(req: any, res: any) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { items } = req.body;
-
-  // Create a PaymentIntent with the order amount and currency
+  // PaymentIntentオブジェクトの作成
   const paymentIntent = await stripe.paymentIntents.create({
     amount: calculateOrderAmount(items),
     currency: 'jpy',
@@ -21,6 +24,7 @@ export default async function handler(req: any, res: any) {
     },
   });
 
+  // clientSecretを返す
   res.send({
     clientSecret: paymentIntent.client_secret,
   });
