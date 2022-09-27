@@ -370,6 +370,18 @@
               "price": 100
             }
           ]
+        },
+        {
+          "id": 21,
+          "type": "coffee",
+          "name": "Gorgeous4サンド",
+          "description": "人気の定番具材「ハム」と「チキン」をセットにした食べごたえ抜群のサンドイッチです。",
+          "price": 480,
+          "image_path": "/1.jpg",
+          "deleted": false,
+          "quantity": 1,
+          "subtotal": 480,
+          "options": []
         }
       ],
       "id": 1

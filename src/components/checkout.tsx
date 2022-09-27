@@ -121,7 +121,7 @@ export default function Checkout({
             {diffTime < 3 && (
               <span>今から3時間後以降の日時をご入力ください</span>
             )}
-            {selectTime.getHours() < 9 && (<span>配達時間外になります。09:00〜21:00で選択してください。</span>)}
+            {selectTime.getHours() < 9 && diffTime > 3 && (<span>配達時間外になります。09:00〜21:00で選択してください。</span>)}
             {selectTime.getHours() > 20 && (<span>配達時間外になります。09:00〜21:00で選択してください。</span>)}
           </div>
           <div>

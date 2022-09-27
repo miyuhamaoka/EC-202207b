@@ -11,17 +11,17 @@
 }
 
 .searchForm input[type="text"]{
-  background: #edac56;
-  border: none;
+  /* background: #edac56; */
+  /* border: none; */
   border-radius: 4px;
   height: 28px;
-  width: 150px;
+  width: 250px;
   margin-bottom: 4px;
   margin-right: 16px;
-  color: white;
+  /* color: white; */
 }
 .searchForm input::placeholder {
-  color: white
+  /* color: white */
 }
 
 .searchForm input[type="text"]:focus {
@@ -100,7 +100,8 @@
 .card{
   border: #f0a169 2px solid;
   padding: 10px;
-  margin: 15px;
+  width: 350px;
+  margin: 15px auto;
 }
 
 .text {

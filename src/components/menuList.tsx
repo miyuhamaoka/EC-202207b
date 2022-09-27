@@ -4,6 +4,7 @@ import useSWR from 'swr';
 import { Item } from '../types';
 import styles from '../components/items.module.css';
 import Image from 'next/image';
+import { isBuffer } from 'util';
 
 //import { resourceLimits } from 'worker_threads';
 //import useSWRInfinite from "swr/infinite";
@@ -15,8 +16,8 @@ export default function Items() {
   const { data, error } = useSWR('/api/items', fetcher);
 
   const [nameText, setNameText] = useState('');
-  const onChangeNameText = (event: any) =>
-    setNameText(event.target.value);
+  // const onChangeNameText = (event: any) =>
+  //   setNameText(event.target.value);
   const [searchData, setSearchData] = useState([]);
   const [orderData, setOrderData] = useState([]);
   const [expensive, setExpensive] = useState([]);
@@ -45,7 +46,10 @@ export default function Items() {
     data.sort(function ({ price: a }: any, { price: b }: any) {
       return b - a;
     });
-    console.log(expensive);
+    searchData.sort(function ({ price: a }: any, { price: b }: any) {
+      return b - a;
+    });
+    // console.log(expensive);
   };
 
   const formClear = () => {
@@ -59,7 +63,7 @@ export default function Items() {
         return e.name.indexOf(nameText) >= 0;
       })
     );
-    console.log(searchData);
+    // console.log(searchData);
   };
 
   const cheapData = () => {
@@ -67,7 +71,33 @@ export default function Items() {
     data.sort(function ({ price: a }: any, { price: b }: any) {
       return a - b;
     });
-    console.log(orderData);
+    searchData.sort(function ({ price: a }: any, { price: b }: any) {
+      return a - b;
+    });
+    // console.log(orderData);
+  };
+
+  // リアルタイム検索機能追加
+  const search = (value: string) => {
+    if (value !== '') {
+      const filteredList = data.filter(
+        (item: Item) =>
+          item.name
+            .trim()
+            .toLowerCase()
+            .indexOf(value.trim().toLowerCase()) !== -1
+      );
+      setSearchData(filteredList);
+      return;
+    } else {
+      setSearchData([]);
+      return;
+    }
+  };
+
+  const handleChange = (e: any) => {
+    setNameText(e.target.value);
+    search(e.target.value);
   };
 
   return (
@@ -82,10 +112,10 @@ export default function Items() {
               name="name"
               value={nameText}
               placeholder={'商品名を入れてください'}
-              onChange={onChangeNameText}
+              onChange={handleChange}
               className={styles.search_container}
             ></input>
-            <button
+            {/* <button
               type="button"
               value="検索"
               className={styles.searchBtn}
@@ -94,7 +124,7 @@ export default function Items() {
               }}
             >
               検索
-            </button>
+            </button> */}
 
             <button
               type="button"
@@ -125,29 +155,29 @@ export default function Items() {
           </form>
         </div>
       </div>
-			{/* 画面に表示させるデータの切り取り */}
+      {/* 画面に表示させるデータの切り取り */}
       <div className={styles.itemWrapper}>
-        {nameText == '' ? (
+        {nameText === '' ? (
           data
             .slice(pageIndex * perPage - perPage, pageIndex * perPage)
             .map((item: Item) => {
               const { id, image_path, name, price } = item;
               return (
                 <div key={id} className={styles.card}>
-                  <div className={styles.item}>
-                    <Image
-                      src={image_path}
-                      alt={name}
-                      width={210}
-                      height={210}
-                    />
-                    <Link href={`http://localhost:3000/items/${id}`}>
-                      <a>
+                  <Link href={`http://localhost:3000/items/${id}`}>
+                    <a>
+                      <div className={styles.item}>
+                        <Image
+                          src={image_path}
+                          alt={name}
+                          width={210}
+                          height={210}
+                        />
                         <p className={styles.text}>{name}</p>
-                      </a>
-                    </Link>
-                    <p>価格: {price}円</p>
-                  </div>
+                        <p>価格: {price}円</p>
+                      </div>
+                    </a>
+                  </Link>
                 </div>
               );
             })
@@ -157,52 +187,50 @@ export default function Items() {
           searchData.map((item: Item) => {
             const { id, image_path, name, price } = item;
             return (
-              <div key={id}>
-                <table className={styles.item}>
-                  <tr>
-                    <th>
+              <div key={id} className={styles.card}>
+                <Link href={`http://localhost:3000/items/${id}`}>
+                  <a>
+                    <div className={styles.item}>
                       <Image
                         src={image_path}
                         alt={name}
-                        width={200}
-                        height={100}
+                        width={210}
+                        height={210}
                       />
-                    </th>
-                  </tr>
-                  <tr>
-                    <th>
-                      <Link
-                        href={`http://localhost:3000/items/${id}`}
-                      >
-                        <a>
-                          <p>{name}</p>
-                        </a>
-                      </Link>
-                    </th>
-                  </tr>
-                  <tr>
-                    <th>
+                      <p className={styles.text}>{name}</p>
                       <p>価格: {price}円</p>
-                    </th>
-                  </tr>
-                </table>
+                    </div>
+                  </a>
+                </Link>
               </div>
             );
           })
         )}
       </div>
-			{/* ページ選択 */}
+      {/* ページ選択 */}
       <div>
         {pageNumArray.map((e) => {
           if (e === pageIndex) {
             return (
-              <button key={e} className={styles.thisPage} onClick={()=>{setPageIndex(e)}}>
+              <button
+                key={e}
+                className={styles.thisPage}
+                onClick={() => {
+                  setPageIndex(e);
+                }}
+              >
                 &nbsp;{e}&nbsp;
               </button>
             );
           } else {
             return (
-              <button key={e} className={styles.anotherPage} onClick={()=>{setPageIndex(e)}}>
+              <button
+                key={e}
+                className={styles.anotherPage}
+                onClick={() => {
+                  setPageIndex(e);
+                }}
+              >
                 &nbsp;{e}&nbsp;
               </button>
             );
