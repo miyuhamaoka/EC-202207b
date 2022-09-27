@@ -47,3 +47,25 @@
 .label {
   font-weight: bold;
 }
+
+.registerForm button {
+  color: white;
+  height: 28px;
+  border-radius: 4px;
+  background: #e0a14e;
+  border: none;
+  margin-bottom: 4px;
+  margin-right: 16px;
+  cursor: pointer;
+  margin: 8px;
+}
+
+.registerForm button:hover{
+  background:#f39213;
+  color: black;
+  border:none;
+}
+
+.registerForm legend {
+  font-weight: bold;
+}
