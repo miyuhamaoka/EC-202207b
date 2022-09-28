@@ -1,16 +1,14 @@
 .registerForm {
-  /* background:#000000; */
   border-radius: 4px;
   margin: 16px auto 0;
   width: 60%;
   padding: 24px 0;
-  /* text-align: center; */
 }
 
 .registerForm fieldset {
   border: none;
   margin: 0 auto;
-  width: 650px;
+  width: 390px;
 }
 
 .registerForm legend {
@@ -18,23 +16,39 @@
 }
 
 .registerForm input {
-  width: 650px;
-  height: 24px;
+  width: 360px;
+  height: 32px;
   border: 1px solid rgba(203, 203, 209, 0.9);
   border-radius: 4px;
 }
 
-.registerForm fieldset span {
+.nameForm {
+  display: flex;
+}
+
+.nameForm > div {
+  margin-right: 24px;
+}
+
+.nameForm input {
+  width: 100px;
+}
+
+.registerForm p, .addressErr {
   color: red;
-}
-
-.registerForm fieldset>div {
-  margin-top: 12px;
   font-size: 14px;
-  width: 650px;
+  margin: 0;
 }
 
-.registerForm button{
+.uiForm {
+  margin-top: 20px;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.registerForm button {
   color: white;
   height: 28px;
   border-radius: 4px;
@@ -42,23 +56,16 @@
   border: none;
   margin-bottom: 4px;
   margin-right: 16px;
+  cursor: pointer;
+  margin: 8px;
 }
 
 .registerForm button:hover{
-  cursor: pointer;
   background:#f39213;
   color: black;
   border:none;
 }
 
-.inputPass {
-  position: relative;
-}
-
-.revealPass {
-  color: black;
-  left: auto;
-  position: absolute;
-  top: 4px;
-  right: 18px;
+.registerForm legend {
+  font-weight: bold;
 }

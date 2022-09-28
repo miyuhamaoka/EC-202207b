@@ -42,8 +42,13 @@ const ItemlistLayout = ({users}:any) => {
             </Link>
           </li>
           <li>
-            <Link href='../users/register'>
+            <Link href='../users/register_new'>
               <a>新規登録</a>
+            </Link>
+          </li>
+          <li>
+            <Link href='../items/orderHistory'>
+              <a>注文履歴</a>
             </Link>
           </li>
           <li>

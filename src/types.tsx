@@ -24,10 +24,12 @@ export type Order = {
   deliveryTime: Date;
   paymentMethod: number;
   user: User;
-  orderltemList: Orderitem;
+  orderItemList: Orderitem;
 };
 
 export type Orderitem = {
+  map(arg0: (f: Item) => number): any;
+  forEach(arg0: (f: Item) => number): any;
   id: number;
   itemId: number;
   orderId: number;
@@ -38,12 +40,16 @@ export type Orderitem = {
 
 export type User = {
   id: number;
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   confirmationPassword: string;
   zipcode: string;
-  address: string;
+  prefecture: string;
+  city: string;
+  aza: string;
+  building: string;
   telephone: string;
   logined: boolean;
 };
@@ -55,14 +61,14 @@ export type CartItem = {
 };
 
 export type Option = {
-   id: number;
-   name: string;
-   price: number;
-}
+  id: number;
+  name: string;
+  price: number;
+};
 
 export type OrderOption = {
   id: number;
   optionId: number;
   cartItemID: number;
   option: Option;
-}
+};

@@ -5,6 +5,8 @@ import { useState } from 'react';
 import Layout from '../../components/layout';
 import Head from 'next/head';
 import cartStyle from '../../styles/cart.module.css';
+import Styles from '../../components/items.module.css'
+import Reccomend from '../../components/reccomend';
 
 const LogoutCart = () => {
   const router = useRouter();
@@ -85,13 +87,13 @@ const LogoutCart = () => {
                   />
                   {item.name}
                 </td>
-                <td className={cartStyle.th}>{item.price}円</td>
+                <td className={cartStyle.th}>{item.price.toLocaleString()}円</td>
                 <td className={cartStyle.th}>{item.quantity}個</td>
                 <td className={cartStyle.th}>
                       {item.options.map((option: any) => (
                         <>
                           <p key={option.id}>{option.name}</p>
-                          <span>{option.price}円</span>
+                          <span>{option.price.toLocaleString()}円</span>
                         </>
                       ))}
                     </td>
@@ -128,11 +130,12 @@ const LogoutCart = () => {
             judgeCookie();
             router.push('/users/login');
           }}
-          className={cartStyle.btn}
+          className={Styles.btn}
         >
           ログイン画面に進む
         </button>
         </div>
+        <Reccomend />
       </>
     );
   }

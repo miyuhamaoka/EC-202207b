@@ -45,21 +45,29 @@
   color: red;
 }
 
-.confirm button {
-  margin: 16px;
-  width: 320px;
-  height: 40px;
-  border-radius: 10px;
-  background: #e0a14e;
-  color: white;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
+.confirm button{
+  width:180px;
+  display: block;
+  height: auto;
+  padding:15px;
+  color:#fff;
+  background:#edac56;
+  border:none;
+  border-radius:3px;
+  outline: none;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  margin:auto;
+  box-shadow: 0px 1px 4px rgb(61, 66, 9);
+  -moz-box-shadow: 0px 1px 4px rgb(81, 70, 18);
+  -webkit-box-shadow: 0px 1px 4px rgb(76, 78, 16);
+  margin-bottom: 50px;
+
 }
 
-.confirm button:hover {
-  cursor: pointer;
-  background:rgb(79, 92, 175);
-  color: white;
+.confirm button:hover{
+  background:#f39213;
+  color: black;
   border:none;
 }

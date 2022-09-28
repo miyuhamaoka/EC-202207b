@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import Styles from '../../components/items.module.css'
 
 export default function button() {
   return (
@@ -14,7 +15,7 @@ export default function button() {
         <p>メールが届かない場合は「注文履歴」からご確認ください。</p>
       </div>
       <div>
-        <button type="submit">
+        <button type="submit" className={Styles.btn}>
           <Link href="/items">
             <a>トップ画面を表示する</a>
           </Link>

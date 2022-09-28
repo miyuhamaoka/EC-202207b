@@ -9,34 +9,72 @@
   box-sizing: border-box;
   padding: 10px 0 0 35px;
 }
+
 .searchForm input[type="text"]{
-  background: #ffe5c4;
-  border: none;
-  height: 2.0em;
-  padding: 20px;
-  width: 230px;
-  color: rgb(66, 63, 57);
+  /* background: #edac56; */
+  /* border: none; */
+  border-radius: 4px;
+  height: 28px;
+  width: 250px;
+  margin-bottom: 4px;
+  margin-right: 16px;
+  /* color: white; */
 }
+.searchForm input::placeholder {
+  /* color: white */
+}
+
 .searchForm input[type="text"]:focus {
   outline: 0;
 }
-.searchForm button[type="button"]{
-  cursor: pointer;
-  border: none;
+.searchBtn{
   background: #edac56;
-  color: #fff;
-  outline : none;
-  padding: 9px;
-  margin-left:11px ;
-}
-.searchForm button[type="reset"]{
-  cursor: pointer;
   border: none;
-  background: #7899ed;
-  color: #fff;
-  outline : none;
-  padding: 8px 5px 8px 5px;
-  margin-left:11px ;
+  border-radius: 4px;
+  height: 28px;
+  margin-bottom: 4px;
+  margin-right: 16px;
+  color: white;
+}
+
+.clearBtn{
+  background: #edac56;
+  border: none;
+  border-radius: 4px;
+  height: 28px;
+  margin-bottom: 4px;
+  margin-right: 16px;
+  color: white;
+}
+
+.searchBtn:hover {
+  background: #f39213;
+  border: none;
+  border-radius: 4px;
+  height: 28px;
+  margin-bottom: 4px;
+  margin-right: 16px;
+  color: black;
+}
+
+.clearBtn:hover {
+  background: #f39213;
+  border: none;
+  border-radius: 4px;
+  height: 28px;
+  margin-bottom: 4px;
+  margin-right: 16px;
+  color: black;
+}
+
+.searchForm button[type="reset"]{
+  background: #edac56;
+  border: none;
+  border-radius: 4px;
+  height: 28px;
+  margin-bottom: 4px;
+  margin-right: 16px;
+  color: white;
 }
 .searchForm ::-webkit-input-placeholder {
   color: #7e7062;
@@ -62,7 +100,8 @@
 .card{
   border: #f0a169 2px solid;
   padding: 10px;
-  margin: 15px;
+  width: 350px;
+  margin: 15px auto;
 }
 
 .text {
@@ -192,7 +231,7 @@ margin-top: 40px;
   height: auto;
   padding:15px;
   color:#fff;
-  background:#f0952e;
+  background:#edac56;
   border:none;
   border-radius:3px;
   outline: none;
@@ -208,8 +247,8 @@ margin-top: 40px;
 }
 
 .btn:hover{
-  background:rgb(79, 92, 175);
-  color: white;
+  background:#f39213;
+  color: black;
   border:none;
 }
 
@@ -220,6 +259,17 @@ margin-top: 40px;
   padding-bottom: 10px;
 }
 
+.thisPage{
+  color: #f39213;
+  text-decoration: underline;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  background: none;
+}
 
-
-
+.anotherPage{
+  border: none;
+  outline: none;
+  background: none;
+}

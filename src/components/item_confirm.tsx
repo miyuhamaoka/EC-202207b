@@ -38,15 +38,16 @@ const ItemConfirm = (props: any) => {
                       alt={n.description}
                     />
                   </td>
-                  <td>{n.price}円</td>
+                  <td>{n.price.toLocaleString()}円</td>
                   <td>{n.quantity}個</td>
                   <td>
+                    {n.options.length === 0 && (<p>なし</p>)}
                     {n.options.map((option: Option) => {
                       return (
-                        <>
-                          <p key={option.id}>{option.name}</p>
-                          <p>{option.price}円</p>
-                        </>
+                        <div key={option.id}>
+                          <p>{option.name}</p>
+                          <p>{option.price.toLocaleString()}円</p>
+                        </div>
                       );
                     })}
                   </td>

@@ -6,6 +6,7 @@ import Layout from '../../components/itemlistlayout';
 import style from '../../styles/item_detail.module.css';
 import { Option } from '../../types';
 import styles from '../../components/items.module.css';
+import { exit } from 'process';
 
 export async function getStaticPaths() {
   const res = await fetch('http://localhost:8000/items');
@@ -25,11 +26,13 @@ export async function getStaticProps({ params }: any) {
   const response = await fetch(`http://localhost:8000/options/`);
   const options = (await response.json()) as Option[];
   if (!detail || !detail.id) {
-    return { notFound: true };
+    return { redirect: {
+      destination: '/items',
+      permanent: true,
+     } };
   } else {
     return {
       props: { detail, options },
-      revalidate: 1,
     };
   }
 }
@@ -45,7 +48,12 @@ const ItemData = ({
   const [num, setNum] = useState(1);
   const router = useRouter();
   if (router.isFallback) {
-    return <p>お探しのページは存在しません</p>;
+    return (
+      <div>
+      <Head><title>不明</title></Head>
+    <p>お探しのページは存在しません</p>
+    </div>
+    )
   } else {
  
   const cookie = () => {
@@ -235,7 +243,7 @@ const ItemData = ({
             個
           </p>
           <p className={styles.price}>
-            金額：<span>{detail.price}</span>円(1個)
+            金額：<span>{detail.price.toLocaleString()}</span>円(1個)
           </p>
         </div>
         <div className={styles.right}>
@@ -264,7 +272,7 @@ const ItemData = ({
           </div>
           <form className={styles.form} method="post">
             <p className={styles.total}>
-              商品の合計金額：<span>{total}</span>円
+              商品の合計金額：<span>{total.toLocaleString()}</span>円
             </p>
             <button
               type="button"

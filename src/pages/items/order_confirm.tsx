@@ -1,9 +1,17 @@
 import Checkout from '../../components/checkout';
 import ItemConfirm from '../../components/item_confirm';
 import Layout from '../../components/itemlistlayout';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Router from 'next/router';
 import style from '../../styles/item_confirm.module.css';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import CheckoutForm from '../../components/CheckoutForm';
+
+// Stripe設定(public api key)
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+);
 
 export async function getServerSideProps({ req }: any) {
   // console.log('req', req.cookies.id);
@@ -12,7 +20,6 @@ export async function getServerSideProps({ req }: any) {
   );
   const data = await res.json();
   const items = data[0].items;
-  // console.log('data', items);
 
   const userRes = await fetch(
     `http://localhost:8000/users/${req.cookies.id}`
@@ -29,7 +36,9 @@ export async function getServerSideProps({ req }: any) {
 }
 
 const OrderConfirm = ({ items, user }: any) => {
-  const [name, setName] = useState(user.name);
+  const [name, setName] = useState(
+    `${user.firstName} ${user.lastName}`
+  );
   const onChangeName = (e: any) => setName(e.target.value);
 
   const [email, setEmail] = useState(user.email);
@@ -38,7 +47,9 @@ const OrderConfirm = ({ items, user }: any) => {
   const [zipcode, setZipcode] = useState(user.zipcode);
   const onChangeZipcode = (e: any) => setZipcode(e.target.value);
 
-  const [address, setAddress] = useState(user.address);
+  const [address, setAddress] = useState(
+    `${user.prefecture}${user.city}${user.aza}${user.building}`
+  );
   const onChangeAddress = (e: any) => setAddress(e.target.value);
 
   const [tel, setTel] = useState(user.telephone);
@@ -48,11 +59,41 @@ const OrderConfirm = ({ items, user }: any) => {
   const onChangeTime = (e: any) => setTime(e.target.value);
 
   const [sta, setSta] = useState(0);
+
+  const [clientSecret, setClientSecret] = useState('');
+
+  console.log('items', items);
+
+  // Stripe 購入予定の商品情報をcreate-payment-intent apiへ送る
+  useEffect(() => {
+    fetch('/api/create-payment-intent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items: items }),
+    })
+      .then((res) => res.json())
+      .then((data) => setClientSecret(data.clientSecret));
+  }, [items]);
+
+  //支払いフォームスタイルの設定
+  const appearance = {
+    theme: 'stripe',
+    variables: {
+      colorPrimary: '#fcba03',
+      colorBackground: '#f7e5b6',
+    },
+  };
+  const options: any = {
+    clientSecret,
+    appearance,
+  };
+
   const onChangeSta = (e: any) => {
     const value = Number(e.target.value);
     return setSta(value);
   };
 
+  // 入力内容のサーバーへデータ送信、エラー表示
   const onClickPost = async () => {
     const now = new Date();
     const selectTime = new Date(time);
@@ -81,7 +122,9 @@ const OrderConfirm = ({ items, user }: any) => {
       ) ||
       !zipcode.match(/^\d{3}-\d{4}$/) ||
       !tel.match(/^\d{2,4}-\d{3,4}-\d{4}$/) ||
-      diffTime < 3
+      diffTime < 3 ||
+      selectTime.getHours() < 9 ||
+      selectTime.getHours() > 20
     ) {
       alert('入力内容に誤りがあります');
       return;
@@ -100,7 +143,7 @@ const OrderConfirm = ({ items, user }: any) => {
         deliveryTime: time,
         paymentMethod: sta,
         user: user,
-        orderltemList: items,
+        orderItemList: items,
       };
 
       const parameter = {
@@ -124,7 +167,6 @@ const OrderConfirm = ({ items, user }: any) => {
         const date = new Date();
         date.setDate(date.getDate() + 1);
         document.cookie = `url=/items/order_confirm;max-age=0;path=/;expires=${date};`;
-        Router.push('/items/order_checkouted');
       }
     }
   };
@@ -154,9 +196,41 @@ const OrderConfirm = ({ items, user }: any) => {
             onChangeSta={onChangeSta}
           ></Checkout>
         </div>
-        <button type="button" onClick={onClickPost}>
-          この内容で注文する
-        </button>
+        {/* 代金引換時の表示 */}
+        {sta === 1 && (
+          <div>
+            <button
+              type="button"
+              onClick={() => {
+                onClickPost();
+                Router.push('/items/order_checkouted');
+              }}
+            >
+              この内容で注文する
+            </button>
+          </div>
+        )}
+        {/* クレジットカード時の表示 */}
+        {sta === 2 && (
+          <div className="App">
+            {clientSecret && (
+              <Elements options={options} stripe={stripePromise}>
+                <CheckoutForm
+                  onClickPost={onClickPost}
+                  name={name}
+                  email={email}
+                  zipcode={zipcode}
+                  address={address}
+                  tel={tel}
+                  time={time}
+                  sta={sta}
+                  items={items}
+                  clientSecret={clientSecret}
+                />
+              </Elements>
+            )}
+          </div>
+        )}
       </section>
     </>
   );
